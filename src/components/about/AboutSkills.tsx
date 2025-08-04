@@ -1,15 +1,15 @@
-import { 
-  Code2, 
-  Database, 
-  Globe, 
-  Smartphone, 
-  Cloud, 
+import {
+  Code2,
+  Database,
+  Globe,
+  Smartphone,
+  Cloud,
   GitBranch,
   Palette,
   Zap
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 export function AboutSkills() {
   const skillCategories = [
@@ -94,11 +94,11 @@ export function AboutSkills() {
           Skills & Expertise
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Over the years, I've worked with a wide range of technologies and frameworks. 
+          Over the years, I've worked with a wide range of technologies and frameworks.
           Here's what I specialize in and love to teach.
         </p>
       </div>
-      
+
       {/* Achievements */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {achievements.map((achievement, index) => (
@@ -117,23 +117,23 @@ export function AboutSkills() {
           </Card>
         ))}
       </div>
-      
+
       {/* Skills Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {skillCategories.map((category, index) => {
           const IconComponent = category.icon;
-          
+
           return (
             <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-6">
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div 
+                  <div
                     className="p-2 rounded-lg"
                     style={{ backgroundColor: `${category.color}15` }}
                   >
-                    <IconComponent 
-                      className="h-5 w-5" 
+                    <IconComponent
+                      className="h-5 w-5"
                       style={{ color: category.color }}
                     />
                   </div>
@@ -141,11 +141,11 @@ export function AboutSkills() {
                     {category.title}
                   </h3>
                 </div>
-                
+
                 {/* Skills */}
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <Badge 
+                    <Badge
                       key={skillIndex}
                       variant="secondary"
                       className="text-xs"
@@ -159,14 +159,14 @@ export function AboutSkills() {
           );
         })}
       </div>
-      
+
       {/* Learning Philosophy */}
       <div className="bg-gradient-to-r from-primary/5 to-accent-blue/5 rounded-2xl p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             My Learning Philosophy
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="space-y-3">
               <div className="w-12 h-12 bg-accent-yellow/20 rounded-lg flex items-center justify-center mx-auto">
@@ -177,7 +177,7 @@ export function AboutSkills() {
                 The best way to learn programming is through hands-on practice and real projects.
               </p>
             </div>
-            
+
             <div className="space-y-3">
               <div className="w-12 h-12 bg-accent-green/20 rounded-lg flex items-center justify-center mx-auto">
                 <Globe className="h-6 w-6 text-accent-green" />
@@ -187,7 +187,7 @@ export function AboutSkills() {
                 Technology evolves rapidly. I continuously learn and adapt to new trends and tools.
               </p>
             </div>
-            
+
             <div className="space-y-3">
               <div className="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mx-auto">
                 <Zap className="h-6 w-6 text-accent-blue" />

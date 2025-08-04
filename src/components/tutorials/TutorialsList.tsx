@@ -11,9 +11,9 @@ import {
   Search,
   BookOpen
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { MOCK_BLOG_POSTS } from '@/lib/constants';
 import { useRouter, useSearchParams } from 'next/navigation';

@@ -12,9 +12,9 @@ import {
   Lightbulb,
   AlertTriangle
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import type { BlogPost } from '@/types';
 
 interface BlogPostContentProps {
@@ -54,7 +54,7 @@ npm install lucide-react @types/node`
       language: 'tsx',
       title: 'Creating a React component',
       code: `import React from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 interface MyComponentProps {
   title: string;

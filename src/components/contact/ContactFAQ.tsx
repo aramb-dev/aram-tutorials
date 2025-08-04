@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  HelpCircle, 
-  ChevronDown, 
+import {
+  HelpCircle,
+  ChevronDown,
   ChevronUp,
   MessageCircle,
   BookOpen,
@@ -12,8 +12,8 @@ import {
   Lightbulb,
   Clock
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface FAQItem {
   id: string;
@@ -98,15 +98,15 @@ export function ContactFAQ() {
   ];
 
   const toggleItem = (id: string) => {
-    setOpenItems(prev => 
-      prev.includes(id) 
+    setOpenItems(prev =>
+      prev.includes(id)
         ? prev.filter(item => item !== id)
         : [...prev, id]
     );
   };
 
-  const filteredFAQs = activeCategory === 'all' 
-    ? faqItems 
+  const filteredFAQs = activeCategory === 'all'
+    ? faqItems
     : faqItems.filter(item => item.category === activeCategory);
 
   return (
@@ -117,7 +117,7 @@ export function ContactFAQ() {
           Frequently Asked Questions
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Find answers to common questions about tutorials, collaboration, and getting in touch. 
+          Find answers to common questions about tutorials, collaboration, and getting in touch.
           Can't find what you're looking for? Feel free to reach out!
         </p>
       </div>
@@ -146,7 +146,7 @@ export function ContactFAQ() {
         <div className="space-y-4">
           {filteredFAQs.map((item) => {
             const isOpen = openItems.includes(item.id);
-            
+
             return (
               <Card key={item.id} className="overflow-hidden">
                 <button
@@ -166,7 +166,7 @@ export function ContactFAQ() {
                     </div>
                   </div>
                 </button>
-                
+
                 {isOpen && (
                   <CardContent className="pt-0 pb-6">
                     <div className="border-t pt-4">
@@ -202,16 +202,16 @@ export function ContactFAQ() {
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <Lightbulb className="h-8 w-8 text-primary" />
           </div>
-          
+
           <h3 className="text-2xl font-bold text-foreground mb-4">
             Still have questions?
           </h3>
-          
+
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Don't hesitate to reach out! 
+            Can't find the answer you're looking for? Don't hesitate to reach out!
             I'm always happy to help and answer any questions you might have.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" onClick={() => {
               const formElement = document.getElementById('contact-form');
@@ -222,13 +222,13 @@ export function ContactFAQ() {
               <MessageCircle className="h-5 w-5 mr-2" />
               Send a Message
             </Button>
-            
+
             <Button variant="outline" size="lg">
               <Users className="h-5 w-5 mr-2" />
               Join Discord Community
             </Button>
           </div>
-          
+
           <div className="mt-6 flex items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />

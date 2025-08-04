@@ -1,7 +1,7 @@
 import { Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { BlogCard } from '@/components/blog/BlogCard';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { MOCK_BLOG_POSTS } from '@/lib/constants';
 
 export function RecentPosts() {
@@ -18,22 +18,22 @@ export function RecentPosts() {
           <Clock className="h-4 w-4" />
           <span className="text-sm font-medium">Latest Content</span>
         </div>
-        
+
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Recent Tutorials
         </h2>
-        
+
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Stay up-to-date with our latest tutorials and programming insights.
         </p>
       </div>
-      
+
       {/* Recent Posts Grid */}
       {recentPosts.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentPosts.map((post) => (
-              <BlogCard 
+              <BlogCard
                 key={post.id}
                 post={post}
                 variant="default"
@@ -45,7 +45,7 @@ export function RecentPosts() {
               />
             ))}
           </div>
-          
+
           {/* View All Button */}
           <div className="text-center">
             <Button asChild variant="outline" size="lg">

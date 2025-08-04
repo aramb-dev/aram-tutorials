@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/badge';
 import { generateCategoryUrl, getCategoryColor } from '@/lib/utils';
 import type { Category, CategoryBadgeProps } from '@/types';
 

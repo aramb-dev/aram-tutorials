@@ -41,23 +41,23 @@ export const metadata: Metadata = {
 };
 
 interface TutorialsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
     tag?: string;
     search?: string;
     sort?: string;
     page?: string;
-  };
+  }>;
 }
 
-export default function TutorialsPage({ searchParams }: TutorialsPageProps) {
+export default async function TutorialsPage({ searchParams }: TutorialsPageProps) {
   const {
     category,
     tag,
     search,
     sort = 'newest',
     page = '1'
-  } = searchParams;
+  } = await searchParams;
 
   return (
     <div className="min-h-screen bg-background">

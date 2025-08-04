@@ -1,14 +1,14 @@
-import { 
-  Briefcase, 
-  GraduationCap, 
-  Award, 
+import {
+  Briefcase,
+  GraduationCap,
+  Award,
   ExternalLink,
   Calendar,
   MapPin
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export function AboutExperience() {
@@ -105,14 +105,14 @@ export function AboutExperience() {
           Here's a look at my professional journey, education, and some of the projects I've worked on.
         </p>
       </div>
-      
+
       {/* Experience Timeline */}
       <div className="space-y-8">
         <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <Briefcase className="h-6 w-6" />
           Professional Experience
         </h3>
-        
+
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <Card key={index} className="border-l-4 border-l-primary">
@@ -129,7 +129,7 @@ export function AboutExperience() {
                         {exp.title}
                       </h4>
                     </div>
-                    
+
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
                       <span className="font-medium text-primary">{exp.company}</span>
                       <div className="flex items-center gap-1">
@@ -141,11 +141,11 @@ export function AboutExperience() {
                         <span>{exp.period}</span>
                       </div>
                     </div>
-                    
+
                     <p className="text-muted-foreground mb-4">
                       {exp.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, techIndex) => (
                         <Badge key={techIndex} variant="secondary" className="text-xs">
@@ -160,21 +160,21 @@ export function AboutExperience() {
           ))}
         </div>
       </div>
-      
+
       {/* Projects */}
       <div className="space-y-8">
         <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <Award className="h-6 w-6" />
           Featured Projects
         </h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <Badge 
+                  <Badge
                     variant={project.status === 'Completed' ? 'default' : 'secondary'}
                     className="text-xs"
                   >
@@ -182,12 +182,12 @@ export function AboutExperience() {
                   </Badge>
                 </div>
               </CardHeader>
-              
+
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground text-sm">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, techIndex) => (
                     <Badge key={techIndex} variant="outline" className="text-xs">
@@ -195,11 +195,11 @@ export function AboutExperience() {
                     </Badge>
                   ))}
                 </div>
-                
+
                 <Link href={project.link}>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
+                  <Button
+                    variant="outline"
+                    size="sm"
                     className="w-full"
                   >
                     View Project
@@ -211,14 +211,14 @@ export function AboutExperience() {
           ))}
         </div>
       </div>
-      
+
       {/* Certifications */}
       <div className="space-y-8">
         <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <Award className="h-6 w-6" />
           Certifications
         </h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <Card key={index} className="text-center">
@@ -226,19 +226,19 @@ export function AboutExperience() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Award className="h-6 w-6 text-primary" />
                 </div>
-                
+
                 <h4 className="font-semibold text-foreground mb-2">
                   {cert.title}
                 </h4>
-                
+
                 <p className="text-sm text-muted-foreground mb-1">
                   {cert.issuer}
                 </p>
-                
+
                 <p className="text-xs text-muted-foreground mb-3">
                   {cert.year}
                 </p>
-                
+
                 <Badge variant="outline" className="text-xs">
                   {cert.credentialId}
                 </Badge>

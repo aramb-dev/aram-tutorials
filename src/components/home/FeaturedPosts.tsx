@@ -1,7 +1,7 @@
 import { Star, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import { BlogCard } from '@/components/blog/BlogCard';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { MOCK_BLOG_POSTS } from '@/lib/constants';
 
 export function FeaturedPosts() {

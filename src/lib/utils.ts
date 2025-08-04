@@ -1,35 +1,35 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import type { BlogPost, Category } from "@/types";
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-// Utility function for merging Tailwind classes
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
-// Date formatting utilities
-export function formatDate(date: Date | string): string {
-  const d = new Date(date);
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+// Category color utility
+export function getCategoryColor(category: string): string {
+  const colors: Record<string, string> = {
+    'web-development': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+    'javascript': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+    'react': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300',
+    'nextjs': 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300',
+    'typescript': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+    'css': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300',
+    'html': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
+    'nodejs': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+    'database': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+    'tutorial': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300',
+    'beginner': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300',
+    'intermediate': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
+    'advanced': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+  };
+  return colors[category.toLowerCase()] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300';
 }
 
-export function formatDateShort(date: Date | string): string {
-  const d = new Date(date);
-  return d.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
-}
-
-export function formatRelativeTime(date: Date | string): string {
-  const d = new Date(date);
+// Time formatting utility
+export function formatRelativeTime(date: string): string {
   const now = new Date();
-  const diffInSeconds = Math.floor((now.getTime() - d.getTime()) / 1000);
+  const targetDate = new Date(date);
+  const diffInSeconds = Math.floor((now.getTime() - targetDate.getTime()) / 1000);
 
   if (diffInSeconds < 60) {
     return 'just now';
@@ -55,199 +55,37 @@ export function formatRelativeTime(date: Date | string): string {
     return `${diffInWeeks} week${diffInWeeks > 1 ? 's' : ''} ago`;
   }
 
-  return formatDateShort(date);
+  const diffInMonths = Math.floor(diffInDays / 30);
+  if (diffInMonths < 12) {
+    return `${diffInMonths} month${diffInMonths > 1 ? 's' : ''} ago`;
+  }
+
+  const diffInYears = Math.floor(diffInDays / 365);
+  return `${diffInYears} year${diffInYears > 1 ? 's' : ''} ago`;
 }
 
-// String utilities
-export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/[\s_-]+/g, '-') // Replace spaces and underscores with hyphens
-    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
-}
-
-export function truncate(text: string, length: number): string {
-  if (text.length <= length) return text;
-  return text.slice(0, length).trim() + '...';
-}
-
-export function capitalizeFirst(text: string): string {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-export function toTitleCase(text: string): string {
-  return text
-    .split(' ')
-    .map(word => capitalizeFirst(word.toLowerCase()))
-    .join(' ');
-}
-
-// Reading time calculation
-export function calculateReadingTime(content: string): number {
-  const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  const readingTime = Math.ceil(words / wordsPerMinute);
-  return Math.max(1, readingTime); // Minimum 1 minute
-}
-
-// URL utilities
-export function generateBlogPostUrl(post: BlogPost): string {
-  return `/blog/${post.slug}`;
-}
-
-export function generateCategoryUrl(category: Category): string {
-  return `/blog/category/${category.slug}`;
-}
-
-export function generateTagUrl(tagSlug: string): string {
-  return `/blog/tag/${tagSlug}`;
-}
-
-// Validation utilities
+// Email validation utility
 export function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-export function isValidUrl(url: string): boolean {
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
+// Blog post URL generation utility
+export function generateBlogPostUrl(slug: string): string {
+  return `/tutorials/${slug}`;
 }
 
-// Search utilities
-export function highlightSearchTerm(text: string, searchTerm: string): string {
-  if (!searchTerm) return text;
-
-  const regex = new RegExp(`(${searchTerm})`, 'gi');
-  return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>');
+// Date formatting utility
+export function formatDate(date: string | Date): string {
+  const dateObj = typeof date === 'string' ? new Date(date) : date;
+  return dateObj.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
 
-export function extractSearchableText(content: string): string {
-  // Remove HTML tags and extract plain text for searching
-  return content
-    .replace(/<[^>]*>/g, '') // Remove HTML tags
-    .replace(/\s+/g, ' ') // Normalize whitespace
-    .trim();
-}
-
-// Array utilities
-export function unique<T>(array: T[]): T[] {
-  return [...new Set(array)];
-}
-
-export function groupBy<T, K extends keyof any>(
-  array: T[],
-  key: (item: T) => K
-): Record<K, T[]> {
-  return array.reduce((groups, item) => {
-    const group = key(item);
-    groups[group] = groups[group] || [];
-    groups[group].push(item);
-    return groups;
-  }, {} as Record<K, T[]>);
-}
-
-// Pagination utilities
-export function calculatePagination(page: number, limit: number, total: number) {
-  const totalPages = Math.ceil(total / limit);
-  const hasNext = page < totalPages;
-  const hasPrev = page > 1;
-
-  return {
-    page,
-    limit,
-    total,
-    totalPages,
-    hasNext,
-    hasPrev,
-    offset: (page - 1) * limit
-  };
-}
-
-// SEO utilities
-export function generateMetaDescription(content: string, maxLength: number = 160): string {
-  const plainText = extractSearchableText(content);
-  return truncate(plainText, maxLength);
-}
-
-export function generateKeywords(title: string, content: string, category?: string): string[] {
-  const text = `${title} ${content} ${category || ''}`;
-  const words = text
-    .toLowerCase()
-    .replace(/[^\w\s]/g, '')
-    .split(/\s+/)
-    .filter(word => word.length > 3)
-    .filter(word => !['this', 'that', 'with', 'from', 'they', 'been', 'have', 'were', 'said', 'each', 'which', 'their', 'time', 'will', 'about', 'would', 'there', 'could', 'other', 'after', 'first', 'well', 'also', 'some', 'where', 'much'].includes(word));
-
-  // Count word frequency
-  const wordCount = words.reduce((acc, word) => {
-    acc[word] = (acc[word] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
-
-  // Sort by frequency and take top keywords
-  return Object.entries(wordCount)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 10)
-    .map(([word]) => word);
-}
-
-// Color utilities for categories
-export function getCategoryColor(categoryName: string): string {
-  const colors: Record<string, string> = {
-    'mac': 'var(--color-mac)',
-    'windows': 'var(--color-windows)',
-    'android': 'var(--color-android)',
-    'vscode': 'var(--color-vscode)',
-    'homebrew': 'var(--color-homebrew)',
-    'google': 'var(--color-google)',
-  };
-
-  return colors[categoryName.toLowerCase()] || 'var(--color-primary)';
-}
-
-// Local storage utilities
-export function getFromLocalStorage<T>(key: string, defaultValue: T): T {
-  if (typeof window === 'undefined') return defaultValue;
-
-  try {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : defaultValue;
-  } catch {
-    return defaultValue;
-  }
-}
-
-export function setToLocalStorage<T>(key: string, value: T): void {
-  if (typeof window === 'undefined') return;
-
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-    // Handle storage errors silently
-  }
-}
-
-// Debounce utility
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-
-// Theme utilities
-export function getSystemTheme(): 'light' | 'dark' {
-  if (typeof window === 'undefined') return 'light';
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+// Category URL generation utility
+export function generateCategoryUrl(slug: string): string {
+  return `/tutorials?category=${slug}`;
 }

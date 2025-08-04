@@ -1,6 +1,6 @@
 // UI Components Export
-export { Button } from './Button';
-export type { ButtonProps } from './Button';
+export { Button } from './button';
+export type { ButtonProps } from './button';
 
 export { 
   Card, 
@@ -9,7 +9,7 @@ export {
   CardTitle, 
   CardDescription, 
   CardContent 
-} from './Card';
+} from './card';
 export type { 
   CardProps, 
   CardHeaderProps, 
@@ -17,16 +17,35 @@ export type {
   CardTitleProps, 
   CardDescriptionProps, 
   CardContentProps 
-} from './Card';
+} from './card';
 
-export { Input } from './Input';
-export type { InputProps } from './Input';
+export { Input } from './input';
+export type { InputProps } from './input';
 
-export { Textarea } from './Textarea';
-export type { TextareaProps } from './Textarea';
+export { Textarea } from './textarea';
+export type { TextareaProps } from './textarea';
 
-export { Badge } from './Badge';
-export type { BadgeProps } from './Badge';
+export { Badge } from './badge';
+export type { BadgeProps } from './badge';
+
+// New shadcn/ui components
+export {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from './dialog';
+
+export {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from './dropdown-menu';
 
 export { SearchInput } from './SearchInput';
 export type { SearchInputProps } from './SearchInput';

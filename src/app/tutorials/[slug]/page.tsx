@@ -11,14 +11,15 @@ import { MOCK_BLOG_POSTS } from '@/lib/constants';
 import type { BlogPost } from '@/types';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate metadata for the blog post
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === params.slug);
+  const { slug } = await params;
+  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
   
   if (!post) {
     return {
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.title} | Aram Tutorials`,
     description: post.excerpt,
-    keywords: post.tags,
+    keywords: post.tags.map((tag: any) => tag.name),
     authors: [{ name: post.author.name }],
     openGraph: {
       title: post.title,
@@ -39,22 +40,22 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       url: `https://aramtutorials.com/tutorials/${post.slug}`,
       images: [
         {
-          url: post.featuredImage || 'https://aramtutorials.com/og-default.jpg',
+          url: 'https://aramtutorials.com/og-default.jpg',
           width: 1200,
           height: 630,
           alt: post.title
         }
       ],
-      publishedTime: post.publishedAt,
-      modifiedTime: post.updatedAt,
+      publishedTime: post.publishedAt.toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
       authors: [post.author.name],
-      tags: post.tags
+      tags: post.tags.map((tag: any) => tag.name),
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [post.featuredImage || 'https://aramtutorials.com/og-default.jpg'],
+      images: ['https://aramtutorials.com/og-default.jpg'],
       creator: '@aram_dev'
     },
     alternates: {
@@ -70,8 +71,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === params.slug);
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
   
   if (!post) {
     notFound();
@@ -119,7 +121,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         {relatedPosts.length > 0 && (
           <div className="mt-16">
             <Suspense fallback={<LoadingSpinner size="md" text="Loading related posts..." />}>
-              <RelatedPosts posts={relatedPosts} currentPost={post} />
+              <RelatedPosts currentPostId={post.id} category={post.category?.name} tags={post.tags?.map((tag: any) => tag.name)} />
             </Suspense>
           </div>
         )}
