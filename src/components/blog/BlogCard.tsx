@@ -130,7 +130,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               )}
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />
-                <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
+                <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                         <span>{post.reading_time}m</span>
                       </div>
                     )}
-                    <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
+                    <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
                   </div>
                 </div>
               </div>
@@ -286,7 +286,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 <span>{post.views}</span>
               </div>
             )}
-            <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
+            <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
           </div>
         </div>
       </CardFooter>

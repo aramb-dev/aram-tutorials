@@ -294,7 +294,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
                 <span>Published</span>
               </div>
               <span className="font-medium">
-                {new Date((post.published_at || post.created_at).toString()).toLocaleDateString('en-US', {
+                {new Date((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString()).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
                   year: 'numeric'

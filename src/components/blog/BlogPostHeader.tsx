@@ -113,12 +113,12 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                 <div className="flex items-center gap-4 text-sm text-slate-300">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
-                    <span>Published {formatDate((post.published_at || post.created_at).toString())}</span>
+                    <span>Published {formatDate((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
                   </div>
 
-                  {post.updated_at !== post.created_at && (
+                  {(post.updated_at || (post as any).updatedAt) !== (post.created_at || (post as any).publishedAt) && (
                     <div className="text-xs">
-                      Updated {formatRelativeTime(post.updated_at.toString())}
+                      Updated {formatRelativeTime((post.updated_at || (post as any).updatedAt || new Date()).toString())}
                     </div>
                   )}
                 </div>
