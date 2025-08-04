@@ -1,9 +1,19 @@
-import { ArrowRight, Folder } from 'lucide-react';
+import { ArrowRight, Folder, Laptop, Monitor, Smartphone, Code, Package, Search } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { DEFAULT_CATEGORIES } from '@/lib/constants';
 import { generateCategoryUrl } from '@/lib/utils';
+
+// Icon mapping for category icons
+const iconMap = {
+  laptop: Laptop,
+  monitor: Monitor,
+  smartphone: Smartphone,
+  code: Code,
+  package: Package,
+  search: Search,
+} as const;
 
 export function CategoriesSection() {
   return (
@@ -26,12 +36,12 @@ export function CategoriesSection() {
 
       {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {DEFAULT_CATEGORIES.map((category) => {
-          const IconComponent = category.icon;
+        {DEFAULT_CATEGORIES.map((category, index) => {
+          const IconComponent = iconMap[category.icon as keyof typeof iconMap] || Code;
 
           return (
             <Link
-              key={category.id}
+              key={category.slug}
               href={generateCategoryUrl(category.slug)}
               className="group"
             >
@@ -60,7 +70,7 @@ export function CategoriesSection() {
 
                   {/* Tutorial Count */}
                   <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                    <span>{category.postCount || 0} tutorials</span>
+                    <span>0 tutorials</span>
                     <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </CardContent>

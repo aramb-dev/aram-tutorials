@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Filter, 
-  X, 
-  ChevronDown, 
+import {
+  Filter,
+  X,
+  ChevronDown,
   ChevronUp,
   Hash,
   Folder,
@@ -25,10 +25,10 @@ interface TutorialsFiltersProps {
   searchQuery?: string;
 }
 
-export function TutorialsFilters({ 
-  selectedCategory, 
-  selectedTag, 
-  searchQuery 
+export function TutorialsFilters({
+  selectedCategory,
+  selectedTag,
+  searchQuery
 }: TutorialsFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -48,16 +48,16 @@ export function TutorialsFilters({
 
   const updateFilters = (key: string, value: string | null) => {
     const params = new URLSearchParams(searchParams.toString());
-    
+
     if (value) {
       params.set(key, value);
     } else {
       params.delete(key);
     }
-    
+
     // Reset to first page when filters change
     params.delete('page');
-    
+
     router.push(`/tutorials?${params.toString()}`);
   };
 
@@ -96,9 +96,9 @@ export function TutorialsFilters({
           Filters
         </h2>
         {hasActiveFilters && (
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={clearAllFilters}
             className="text-muted-foreground hover:text-foreground"
           >
@@ -120,7 +120,7 @@ export function TutorialsFilters({
                 <Badge variant="secondary" className="flex items-center gap-1">
                   <Folder className="h-3 w-3" />
                   {selectedCategory}
-                  <button 
+                  <button
                     onClick={() => updateFilters('category', null)}
                     className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                   >
@@ -134,7 +134,7 @@ export function TutorialsFilters({
                 <Badge variant="secondary" className="flex items-center gap-1">
                   <Hash className="h-3 w-3" />
                   {selectedTag}
-                  <button 
+                  <button
                     onClick={() => updateFilters('tag', null)}
                     className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                   >
@@ -147,7 +147,7 @@ export function TutorialsFilters({
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="flex items-center gap-1">
                   Search: {searchQuery}
-                  <button 
+                  <button
                     onClick={() => updateFilters('search', null)}
                     className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
                   >
@@ -163,7 +163,7 @@ export function TutorialsFilters({
       {/* Categories Filter */}
       <Card>
         <CardHeader className="pb-3">
-          <button 
+          <button
             onClick={() => toggleSection('categories')}
             className="flex items-center justify-between w-full text-left"
           >
@@ -185,15 +185,15 @@ export function TutorialsFilters({
                 key={category.slug}
                 onClick={() => updateFilters('category', category.slug)}
                 className={`w-full text-left p-2 rounded-md transition-colors hover:bg-muted ${
-                  selectedCategory === category.slug 
-                    ? 'bg-primary/10 text-primary border border-primary/20' 
+                  selectedCategory === category.slug
+                    ? 'bg-primary/10 text-primary border border-primary/20'
                     : 'text-muted-foreground'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">{category.name}</span>
                   <Badge variant="outline" className="text-xs">
-                    {category.count}
+                    0
                   </Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -208,7 +208,7 @@ export function TutorialsFilters({
       {/* Tags Filter */}
       <Card>
         <CardHeader className="pb-3">
-          <button 
+          <button
             onClick={() => toggleSection('tags')}
             className="flex items-center justify-between w-full text-left"
           >
@@ -250,7 +250,7 @@ export function TutorialsFilters({
       {/* Difficulty Filter */}
       <Card>
         <CardHeader className="pb-3">
-          <button 
+          <button
             onClick={() => toggleSection('difficulty')}
             className="flex items-center justify-between w-full text-left"
           >
@@ -290,20 +290,20 @@ export function TutorialsFilters({
         <CardContent className="p-4">
           <h3 className="font-medium text-foreground mb-3">Quick Actions</h3>
           <div className="space-y-2">
-            <Link 
-              href="/tutorials?sort=newest" 
+            <Link
+              href="/tutorials?sort=newest"
               className="block text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               → Latest Tutorials
             </Link>
-            <Link 
-              href="/tutorials?sort=popular" 
+            <Link
+              href="/tutorials?sort=popular"
               className="block text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               → Most Popular
             </Link>
-            <Link 
-              href="/tutorials?difficulty=beginner" 
+            <Link
+              href="/tutorials?difficulty=beginner"
               className="block text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               → Beginner Friendly

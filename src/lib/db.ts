@@ -166,7 +166,36 @@ export class Database {
       GROUP BY bp.id, u.name, u.email, u.avatar_url, u.bio, c.name, c.slug, c.color, c.icon, c.description
     `;
 
-    const result = await sql(query, [slug]);
+    const result = await sql`
+      SELECT
+        bp.*,
+        u.name as author_name,
+        u.email as author_email,
+        u.avatar_url as author_avatar,
+        u.bio as author_bio,
+        c.name as category_name,
+        c.slug as category_slug,
+        c.color as category_color,
+        c.icon as category_icon,
+        c.description as category_description,
+        COALESCE(
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'id', t.id,
+              'name', t.name,
+              'slug', t.slug
+            )
+          ) FILTER (WHERE t.id IS NOT NULL),
+          '[]'
+        ) as tags
+      FROM blog_posts bp
+      LEFT JOIN users u ON bp.author_id = u.id
+      LEFT JOIN categories c ON bp.category_id = c.id
+      LEFT JOIN blog_post_tags bpt ON bp.id = bpt.post_id
+      LEFT JOIN tags t ON bpt.tag_id = t.id
+      WHERE bp.slug = ${slug} AND bp.status = 'published'
+      GROUP BY bp.id, u.name, u.email, u.avatar_url, u.bio, c.name, c.slug, c.color, c.icon, c.description
+    `;
 
     if (result.length === 0) return null;
 

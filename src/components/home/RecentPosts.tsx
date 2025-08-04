@@ -35,7 +35,7 @@ export function RecentPosts() {
             {recentPosts.map((post) => (
               <BlogCard
                 key={post.id}
-                post={post}
+                post={post as any}
                 variant="default"
                 showExcerpt
                 showCategory

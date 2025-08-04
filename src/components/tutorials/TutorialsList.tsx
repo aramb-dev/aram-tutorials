@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { 
-  Grid, 
-  List, 
-  SortAsc, 
-  SortDesc, 
-  ChevronLeft, 
+import {
+  Grid,
+  List,
+  SortAsc,
+  SortDesc,
+  ChevronLeft,
   ChevronRight,
   Search,
   BookOpen
@@ -31,12 +31,12 @@ type SortOption = 'newest' | 'oldest' | 'popular' | 'alphabetical';
 
 const POSTS_PER_PAGE = 9;
 
-export function TutorialsList({ 
-  category, 
-  tag, 
-  search, 
-  sort = 'newest', 
-  page = 1 
+export function TutorialsList({
+  category,
+  tag,
+  search,
+  sort = 'newest',
+  page = 1
 }: TutorialsListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -48,26 +48,26 @@ export function TutorialsList({
 
     // Apply category filter
     if (category) {
-      filtered = filtered.filter(post => 
+      filtered = filtered.filter(post =>
         post.category.slug === category
       );
     }
 
     // Apply tag filter
     if (tag) {
-      filtered = filtered.filter(post => 
-        post.tags.some(postTag => postTag.toLowerCase() === tag.toLowerCase())
+      filtered = filtered.filter(post =>
+        post.tags.some(postTag => postTag.slug === tag.toLowerCase())
       );
     }
 
     // Apply search filter
     if (search) {
       const searchLower = search.toLowerCase();
-      filtered = filtered.filter(post => 
+      filtered = filtered.filter(post =>
         post.title.toLowerCase().includes(searchLower) ||
         post.excerpt.toLowerCase().includes(searchLower) ||
         post.content.toLowerCase().includes(searchLower) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchLower))
+        post.tags.some(tag => tag.name.toLowerCase().includes(searchLower))
       );
     }
 
@@ -127,8 +127,8 @@ export function TutorialsList({
             {search ? `Search Results for "${search}"` : 'All Tutorials'}
           </h2>
           <p className="text-muted-foreground mt-1">
-            {totalPosts === 0 ? 'No tutorials found' : 
-             totalPosts === 1 ? '1 tutorial found' : 
+            {totalPosts === 0 ? 'No tutorials found' :
+             totalPosts === 1 ? '1 tutorial found' :
              `${totalPosts} tutorials found`}
             {(category || tag) && (
               <span>
@@ -196,13 +196,13 @@ export function TutorialsList({
               No tutorials found
             </h3>
             <p className="text-muted-foreground mb-4">
-              {search ? 
+              {search ?
                 `We couldn't find any tutorials matching "${search}". Try adjusting your search terms or filters.` :
                 'No tutorials match your current filters. Try adjusting your selection.'
               }
             </p>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={() => router.push('/tutorials')}
             >
               <BookOpen className="h-4 w-4 mr-2" />
@@ -214,14 +214,14 @@ export function TutorialsList({
         <>
           {/* Tutorials Grid/List */}
           <div className={`grid gap-6 ${
-            viewMode === 'grid' 
-              ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' 
+            viewMode === 'grid'
+              ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
               : 'grid-cols-1'
           }`}>
             {currentPosts.map((post) => (
-              <BlogCard 
-                key={post.id} 
-                post={post} 
+              <BlogCard
+                key={post.id}
+                post={post as any}
                 variant={viewMode === 'list' ? 'compact' : 'default'}
                 showTags={true}
                 showViews={true}
@@ -241,15 +241,15 @@ export function TutorialsList({
                 <ChevronLeft className="h-4 w-4 mr-1" />
                 Previous
               </Button>
-              
+
               <div className="flex items-center gap-1">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
                   // Show first page, last page, current page, and pages around current
-                  const showPage = 
-                    pageNum === 1 || 
-                    pageNum === totalPages || 
+                  const showPage =
+                    pageNum === 1 ||
+                    pageNum === totalPages ||
                     (pageNum >= page - 1 && pageNum <= page + 1);
-                  
+
                   if (!showPage) {
                     // Show ellipsis
                     if (pageNum === page - 2 || pageNum === page + 2) {
@@ -261,7 +261,7 @@ export function TutorialsList({
                     }
                     return null;
                   }
-                  
+
                   return (
                     <Button
                       key={pageNum}
@@ -275,7 +275,7 @@ export function TutorialsList({
                   );
                 })}
               </div>
-              
+
               <Button
                 variant="outline"
                 size="sm"

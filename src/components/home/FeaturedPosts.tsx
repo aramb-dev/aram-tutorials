@@ -16,24 +16,24 @@ export function FeaturedPosts() {
           <Star className="h-4 w-4" />
           <span className="text-sm font-medium">Featured Content</span>
         </div>
-        
+
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Popular Tutorials
         </h2>
-        
+
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover our most popular and highly-rated tutorials that developers love.
         </p>
       </div>
-      
+
       {/* Featured Posts Grid */}
       {featuredPosts.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredPosts.map((post) => (
-              <BlogCard 
+              <BlogCard
                 key={post.id}
-                post={post}
+                post={post as any}
                 variant="featured"
                 showExcerpt
                 showCategory
@@ -44,7 +44,7 @@ export function FeaturedPosts() {
               />
             ))}
           </div>
-          
+
           {/* View All Button */}
           <div className="text-center">
             <Button asChild variant="outline" size="lg">
