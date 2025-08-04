@@ -33,7 +33,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   showViews = false,
   className
 }) => {
-  const postUrl = generateBlogPostUrl(post);
+  const postUrl = generateBlogPostUrl(post.slug);
   const categoryColor = post.category ? getCategoryColor(post.category.name) : undefined;
 
   if (variant === 'featured') {
@@ -90,12 +90,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {showTags && post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.tags.slice(0, 3).map((tag) => (
-                  <Badge key={tag.id} variant="outline" size="sm">
+                  <Badge key={tag.id} variant="outline">
                     {tag.name}
                   </Badge>
                 ))}
                 {post.tags.length > 3 && (
-                  <Badge variant="outline" size="sm">
+                  <Badge variant="outline">
                     +{post.tags.length - 3} more
                   </Badge>
                 )}
@@ -130,7 +130,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               )}
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />
-                <span>{formatRelativeTime(post.published_at || post.created_at)}</span>
+                <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
               </div>
             </div>
           </div>
