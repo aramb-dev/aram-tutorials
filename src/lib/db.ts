@@ -240,10 +240,21 @@ export class Database {
       LEFT JOIN categories c ON bp.category_id = c.id
       WHERE bp.status = 'published' AND bp.is_featured = true
       ORDER BY bp.published_at DESC
-      LIMIT $1
+      LIMIT ${limit}
     `;
 
-    const result = await sql(query, [limit]);
+    const result = await sql`
+      SELECT
+        bp.*,
+        c.name as category_name,
+        c.slug as category_slug,
+        c.color as category_color
+      FROM blog_posts bp
+      LEFT JOIN categories c ON bp.category_id = c.id
+      WHERE bp.status = 'published' AND bp.is_featured = true
+      ORDER BY bp.published_at DESC
+      LIMIT ${limit}
+    `;
 
     return result.map(post => ({
       ...post,
@@ -276,13 +287,26 @@ export class Database {
       LEFT JOIN users u ON bp.author_id = u.id
       LEFT JOIN categories c ON bp.category_id = c.id
       WHERE bp.status = 'published'
-        AND bp.id != $1
-        AND bp.category_id = $2
+        AND bp.id != ${postId}
+        AND bp.category_id = ${categoryId}
       ORDER BY bp.published_at DESC
-      LIMIT $3
+      LIMIT ${limit}
     `;
 
-    const result = await sql(query, [postId, categoryId, limit]);
+    const result = await sql`
+      SELECT
+        bp.*,
+        c.name as category_name,
+        c.slug as category_slug,
+        c.color as category_color
+      FROM blog_posts bp
+      LEFT JOIN categories c ON bp.category_id = c.id
+      WHERE bp.status = 'published'
+        AND bp.id != ${postId}
+        AND bp.category_id = ${categoryId}
+      ORDER BY bp.published_at DESC
+      LIMIT ${limit}
+    `;
 
     return result.map(post => ({
       ...post,
@@ -311,13 +335,15 @@ export class Database {
       ORDER BY c.name
     `;
 
-    const result = await sql(query);
+    const result = await sql`
+      SELECT * FROM categories
+      ORDER BY c.name
+    `;
     return result as Category[];
   }
 
   static async getCategoryBySlug(slug: string): Promise<Category | null> {
-    const query = 'SELECT * FROM categories WHERE slug = $1';
-    const result = await sql(query, [slug]);
+    const result = await sql`SELECT * FROM categories WHERE slug = ${slug}`;
     return result[0] as Category || null;
   }
 
@@ -333,7 +359,15 @@ export class Database {
       ORDER BY post_count DESC, t.name
     `;
 
-    const result = await sql(query);
+    const result = await sql`
+      SELECT t.*, COUNT(bpt.post_id) as post_count
+      FROM tags t
+      LEFT JOIN blog_post_tags bpt ON t.id = bpt.tag_id
+      LEFT JOIN blog_posts bp ON bpt.post_id = bp.id AND bp.status = 'published'
+      GROUP BY t.id
+      HAVING COUNT(bpt.post_id) > 0
+      ORDER BY post_count DESC, t.name
+    `;
     return result as Tag[];
   }
 
@@ -341,28 +375,24 @@ export class Database {
   static async getCommentsByPostId(postId: string): Promise<Comment[]> {
     const query = `
       SELECT * FROM comments
-      WHERE post_id = $1 AND status = 'approved'
+      WHERE post_id = ${postId} AND status = 'approved'
       ORDER BY created_at ASC
     `;
 
-    const result = await sql(query, [postId]);
+    const result = await sql`
+      SELECT * FROM comments
+      WHERE post_id = ${postId} AND status = 'approved'
+      ORDER BY created_at ASC
+    `;
     return result as Comment[];
   }
 
   static async createComment(comment: Omit<Comment, 'id' | 'created_at' | 'updated_at'>): Promise<Comment> {
-    const query = `
+    const result = await sql`
       INSERT INTO comments (post_id, author_name, author_email, content, status)
-      VALUES ($1, $2, $3, $4, $5)
+      VALUES (${comment.post_id}, ${comment.author_name}, ${comment.author_email}, ${comment.content}, ${comment.status})
       RETURNING *
     `;
-
-    const result = await sql(query, [
-      comment.post_id,
-      comment.author_name,
-      comment.author_email,
-      comment.content,
-      comment.status
-    ]);
 
     return result[0] as Comment;
   }
@@ -377,24 +407,23 @@ export class Database {
       RETURNING *
     `;
 
-    const result = await sql(query, [email]);
+    const result = await sql`
+      INSERT INTO newsletter_subscriptions (email, status)
+      VALUES (${email}, 'active')
+      ON CONFLICT (email)
+      DO UPDATE SET status = 'active', subscribed_at = NOW()
+      RETURNING *
+    `;
     return result[0] as NewsletterSubscription;
   }
 
   // Contact
   static async createContactSubmission(submission: Omit<ContactSubmission, 'id' | 'created_at' | 'updated_at'>): Promise<ContactSubmission> {
-    const query = `
+    const result = await sql`
       INSERT INTO contact_submissions (name, email, subject, message, status)
-      VALUES ($1, $2, $3, $4, 'new')
+      VALUES (${submission.name}, ${submission.email}, ${submission.subject}, ${submission.message}, 'new')
       RETURNING *
     `;
-
-    const result = await sql(query, [
-      submission.name,
-      submission.email,
-      submission.subject,
-      submission.message
-    ]);
 
     return result[0] as ContactSubmission;
   }
@@ -410,17 +439,36 @@ export class Database {
         c.slug as category_slug,
         c.color as category_color,
         c.icon as category_icon,
-        ts_rank(to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content), plainto_tsquery('english', $1)) as rank
+        ts_rank(to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content), plainto_tsquery('english', ${query})) as rank
       FROM blog_posts bp
       LEFT JOIN users u ON bp.author_id = u.id
       LEFT JOIN categories c ON bp.category_id = c.id
       WHERE bp.status = 'published'
-        AND to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content) @@ plainto_tsquery('english', $1)
+        AND to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content) @@ plainto_tsquery('english', ${query})
       ORDER BY rank DESC, bp.published_at DESC
-      LIMIT $2
+      LIMIT ${limit}
     `;
 
-    const result = await sql(searchQuery, [query, limit]);
+    const result = await sql`
+      SELECT
+        bp.*,
+        u.name as author_name,
+        u.email as author_email,
+        u.avatar_url as author_avatar,
+        u.bio as author_bio,
+        c.name as category_name,
+        c.slug as category_slug,
+        c.color as category_color,
+        c.icon as category_icon,
+        ts_rank(to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content), plainto_tsquery('english', ${query})) as rank
+      FROM blog_posts bp
+      LEFT JOIN users u ON bp.author_id = u.id
+      LEFT JOIN categories c ON bp.category_id = c.id
+      WHERE bp.status = 'published'
+        AND to_tsvector('english', bp.title || ' ' || bp.excerpt || ' ' || bp.content) @@ plainto_tsquery('english', ${query})
+      ORDER BY rank DESC, bp.published_at DESC
+      LIMIT ${limit}
+    `;
 
     return result.map(post => ({
       ...post,

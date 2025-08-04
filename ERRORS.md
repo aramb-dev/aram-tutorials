@@ -1,28 +1,10 @@
-src/components/home/CategoriesSection.tsx(34,29): error TS2339: Property 'id' does not exist on type 'Omit<Category, "created_at" | "id" | "updated_at">'.
-src/components/home/CategoriesSection.tsx(45,22): error TS2604: JSX element type 'IconComponent' does not have any construct or call signatures.
-src/components/home/CategoriesSection.tsx(45,22): error TS2786: 'IconComponent' cannot be used as a JSX component.
-  Its type 'string | undefined' is not a valid JSX element type.
-    Type 'undefined' is not assignable to type 'ElementType'.
-src/components/home/CategoriesSection.tsx(63,37): error TS2339: Property 'postCount' does not exist on type 'Omit<Category, "created_at" | "id" | "updated_at">'.
-src/components/home/FeaturedPosts.tsx(36,17): error TS2322: Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; } | { ...; } | { ...; }' is not assignable to type 'BlogPost'.
-  Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; }' is missing the following properties from type 'BlogPost': author_id, category_id, status, is_featured, and 3 more.
-src/components/home/RecentPosts.tsx(38,17): error TS2322: Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; } | { ...; } | { ...; }' is not assignable to type 'BlogPost'.
-  Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; }' is missing the following properties from type 'BlogPost': author_id, category_id, status, is_featured, and 3 more.
-src/components/tutorials/TutorialsFilters.tsx(196,31): error TS2339: Property 'count' does not exist on type 'Omit<Category, "created_at" | "id" | "updated_at">'.
-src/components/tutorials/TutorialsList.tsx(59,43): error TS2339: Property 'toLowerCase' does not exist on type '{ readonly id: "1"; readonly name: "React"; readonly slug: "react"; } | { readonly id: "2"; readonly name: "Hooks"; readonly slug: "hooks"; } | { readonly id: "3"; readonly name: "JavaScript"; readonly slug: "javascript"; } | ... 5 more ... | { ...; }'.
-  Property 'toLowerCase' does not exist on type '{ readonly id: "1"; readonly name: "React"; readonly slug: "react"; }'.
-src/components/tutorials/TutorialsList.tsx(70,35): error TS2339: Property 'toLowerCase' does not exist on type '{ readonly id: "1"; readonly name: "React"; readonly slug: "react"; } | { readonly id: "2"; readonly name: "Hooks"; readonly slug: "hooks"; } | { readonly id: "3"; readonly name: "JavaScript"; readonly slug: "javascript"; } | ... 5 more ... | { ...; }'.
-  Property 'toLowerCase' does not exist on type '{ readonly id: "1"; readonly name: "React"; readonly slug: "react"; }'.
-src/components/tutorials/TutorialsList.tsx(224,17): error TS2322: Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; } | { ...; } | { ...; }' is not assignable to type 'BlogPost'.
-  Type '{ readonly id: "1"; readonly title: "Getting Started with React Hooks"; readonly slug: "getting-started-with-react-hooks"; readonly excerpt: "Learn the fundamentals of React Hooks and how they can simplify your component logic."; ... 15 more ...; readonly seoKeywords: readonly [...]; }' is missing the following properties from type 'BlogPost': author_id, category_id, status, is_featured, and 3 more.
-src/lib/db.ts(169,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(217,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(256,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(246,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
 src/lib/db.ts(285,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(291,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(307,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(319,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(330,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(351,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(363,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
-src/lib/db.ts(394,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(314,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(320,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(336,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(348,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(359,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(380,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(392,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
+src/lib/db.ts(423,30): error TS2345: Argument of type 'string' is not assignable to parameter of type 'TemplateStringsArray'.
