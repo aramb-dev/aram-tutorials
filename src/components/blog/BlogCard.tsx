@@ -183,7 +183,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                         <span>{post.reading_time}m</span>
                       </div>
                     )}
-                    <span>{formatRelativeTime(post.published_at || post.created_at)}</span>
+                    <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
                   </div>
                 </div>
               </div>
@@ -215,14 +215,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
           </div>
         )}
         {post.is_featured && (
-          <Badge className="absolute top-3 left-3" variant="default" size="sm">
+          <Badge className="absolute top-3 left-3" variant="default">
             Featured
           </Badge>
         )}
         {showCategory && post.category && (
           <Badge 
             className="absolute top-3 right-3"
-            size="sm"
             style={{ backgroundColor: categoryColor }}
           >
             {post.category.name}
@@ -249,12 +248,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {showTags && post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {post.tags.slice(0, 2).map((tag) => (
-                <Badge key={tag.id} variant="outline" size="sm">
+                <Badge key={tag.id} variant="outline">
                   {tag.name}
                 </Badge>
               ))}
               {post.tags.length > 2 && (
-                <Badge variant="outline" size="sm">
+                <Badge variant="outline">
                   +{post.tags.length - 2}
                 </Badge>
               )}
