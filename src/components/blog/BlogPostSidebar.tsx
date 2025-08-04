@@ -3,17 +3,17 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  User, 
-  Calendar, 
-  Clock, 
-  Eye, 
-  Heart, 
-  Share2, 
-  Bookmark, 
-  Twitter, 
-  Facebook, 
-  Linkedin, 
+import {
+  User,
+  Calendar,
+  Clock,
+  Eye,
+  Heart,
+  Share2,
+  Bookmark,
+  Twitter,
+  Facebook,
+  Linkedin,
   Link as LinkIcon,
   Check,
   ChevronRight,
@@ -155,7 +155,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               <Heart className={`h-4 w-4 mr-2 ${isLiked ? 'fill-current' : ''}`} />
               {isLiked ? 'Liked' : 'Like this post'}
             </Button>
-            
+
             <Button
               variant={isBookmarked ? "default" : "outline"}
               size="sm"
@@ -188,7 +188,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               <Twitter className="h-4 w-4 mr-2" />
               Twitter
             </Button>
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -198,7 +198,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               <Facebook className="h-4 w-4 mr-2" />
               Facebook
             </Button>
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -208,7 +208,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               <Linkedin className="h-4 w-4 mr-2" />
               LinkedIn
             </Button>
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -263,7 +263,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               </div>
               <span className="font-medium">{post.views?.toLocaleString() || '1,234'}</span>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Heart className="h-4 w-4" />
@@ -271,7 +271,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               </div>
               <span className="font-medium">89</span>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Bookmark className="h-4 w-4" />
@@ -279,22 +279,22 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               </div>
               <span className="font-medium">23</span>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Clock className="h-4 w-4" />
                 <span>Read Time</span>
               </div>
-              <span className="font-medium">{post.readTime} min</span>
+              <span className="font-medium">{post.reading_time} min</span>
             </div>
-            
+
             <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Calendar className="h-4 w-4" />
                 <span>Published</span>
               </div>
               <span className="font-medium">
-                {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                {new Date((post.published_at || post.created_at).toString()).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
                   year: 'numeric'
@@ -330,7 +330,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               </Link>
             ))}
           </div>
-          
+
           <div className="mt-4 pt-4 border-t">
             <Link href="/tutorials">
               <Button variant="outline" size="sm" className="w-full">

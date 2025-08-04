@@ -99,8 +99,8 @@ export class Database {
     `;
 
     const [posts, countResult] = await Promise.all([
-      sql(query, params),
-      sql(countQuery, params.slice(0, -2)) // Remove limit and offset for count
+      sql`${sql.unsafe(query)}`,
+      sql`${sql.unsafe(countQuery)}`
     ]);
 
     const total = parseInt(countResult[0]?.total || '0');
@@ -173,7 +173,7 @@ export class Database {
     const post = result[0];
 
     // Increment view count
-    await sql('UPDATE blog_posts SET views = views + 1 WHERE id = $1', [post.id]);
+    await sql`UPDATE blog_posts SET views = views + 1 WHERE id = ${post.id}`;
 
     return {
       ...post,

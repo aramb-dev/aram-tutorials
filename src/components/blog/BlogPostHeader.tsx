@@ -20,7 +20,7 @@ interface BlogPostHeaderProps {
 }
 
 export function BlogPostHeader({ post }: BlogPostHeaderProps) {
-  const categoryColor = getCategoryColor(post.category.name);
+  const categoryColor = getCategoryColor(post.category?.name || '');
 
   return (
     <div className="relative">
@@ -46,29 +46,26 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
           <div className="max-w-4xl mx-auto">
             {/* Category and Reading Time */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
-              <Link href={`/tutorials?category=${post.category.slug}`}>
-                <Badge
-                  className="hover:opacity-80 transition-opacity"
-                  style={{ backgroundColor: categoryColor }}
-                >
-                  {post.category.name}
-                </Badge>
-              </Link>
+              {post.category && (
+                <Link href={`/tutorials?category=${post.category.slug}`}>
+                  <Badge
+                    className="hover:opacity-80 transition-opacity"
+                    style={{ backgroundColor: categoryColor }}
+                  >
+                    {post.category.name}
+                  </Badge>
+                </Link>
+              )}
 
               <div className="flex items-center gap-4 text-sm text-slate-300">
                 <div className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
-                  <span>{post.readingTime} min read</span>
+                  <span>{post.reading_time} min read</span>
                 </div>
 
                 <div className="flex items-center gap-1">
                   <Eye className="h-4 w-4" />
                   <span>{post.views.toLocaleString()} views</span>
-                </div>
-
-                <div className="flex items-center gap-1">
-                  <Heart className="h-4 w-4" />
-                  <span>{post.likes.toLocaleString()} likes</span>
                 </div>
               </div>
             </div>
@@ -87,26 +84,28 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
               <div className="flex items-center gap-4">
                 {/* Author */}
-                <div className="flex items-center gap-3">
-                  {post.author.avatar ? (
-                    <Image
-                      src={post.author.avatar}
-                      alt={post.author.name}
-                      width={48}
-                      height={48}
-                      className="rounded-full"
-                    />
-                  ) : (
-                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                      <User className="h-6 w-6 text-primary" />
-                    </div>
-                  )}
+                {post.author && (
+                  <div className="flex items-center gap-3">
+                    {post.author.avatar_url ? (
+                      <Image
+                        src={post.author.avatar_url}
+                        alt={post.author.name}
+                        width={48}
+                        height={48}
+                        className="rounded-full"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                    )}
 
-                  <div>
-                    <p className="font-semibold text-white">{post.author.name}</p>
-                    <p className="text-sm text-slate-300">{post.author.bio}</p>
+                    <div>
+                      <p className="font-semibold text-white">{post.author.name}</p>
+                      <p className="text-sm text-slate-300">{post.author.bio}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Date and Actions */}
@@ -114,12 +113,12 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                 <div className="flex items-center gap-4 text-sm text-slate-300">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
-                    <span>Published {formatDate(post.publishedAt)}</span>
+                    <span>Published {formatDate((post.published_at || post.created_at).toString())}</span>
                   </div>
 
-                  {post.updatedAt !== post.publishedAt && (
+                  {post.updated_at !== post.created_at && (
                     <div className="text-xs">
-                      Updated {formatRelativeTime(post.updatedAt)}
+                      Updated {formatRelativeTime(post.updated_at.toString())}
                     </div>
                   )}
                 </div>
@@ -142,12 +141,12 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
               <div className="mt-8">
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <Link key={tag} href={`/tutorials?tag=${tag.toLowerCase()}`}>
+                    <Link key={tag.id} href={`/tutorials?tag=${tag.slug}`}>
                       <Badge
                         variant="outline"
                         className="text-white border-white/30 hover:bg-white/10 transition-colors"
                       >
-                        #{tag}
+                        #{tag.name}
                       </Badge>
                     </Link>
                   ))}

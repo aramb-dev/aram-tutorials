@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { generateTagUrl } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import type { TagProps } from '@/types';
 
 const TagComponent: React.FC<TagProps> = ({
@@ -24,13 +25,19 @@ const TagComponent: React.FC<TagProps> = ({
 
   const badgeContent = (
     <Badge
-      size={size}
       variant={variant}
-      removable={removable}
-      onRemove={removable ? handleRemove : undefined}
-      className={className}
+      className={cn(className, removable && "pr-1")}
     >
       #{tag.name}
+      {removable && (
+        <button
+          onClick={handleRemove}
+          className="ml-1 text-xs hover:text-destructive"
+          aria-label={`Remove ${tag.name} tag`}
+        >
+          ×
+        </button>
+      )}
     </Badge>
   );
 

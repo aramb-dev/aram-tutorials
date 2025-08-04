@@ -35,7 +35,6 @@ export function HeroSection() {
             <SearchInput
               placeholder="Search tutorials, topics, or technologies..."
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/70"
-              size="lg"
             />
           </div>
 

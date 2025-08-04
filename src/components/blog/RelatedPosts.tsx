@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { 
-  ArrowRight, 
-  Clock, 
-  Eye, 
+import {
+  ArrowRight,
+  Clock,
+  Eye,
   TrendingUp,
   Star,
   BookOpen
@@ -30,30 +30,37 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
       slug: 'advanced-react-patterns',
       excerpt: 'Learn advanced React patterns that will make your components more flexible and reusable. We\'ll explore compound components, render props, and custom hooks.',
       content: 'Detailed content about advanced React patterns...',
+      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20React%20development%20setup%20with%20code%20editor%20showing%20advanced%20patterns%2C%20clean%20workspace%2C%20professional%20tech%20illustration&image_size=landscape_16_9',
+      author_id: '1',
+      category_id: '1',
+      status: 'published' as const,
+      is_featured: false,
+      reading_time: 12,
+      views: 2847,
+      published_at: new Date('2024-01-10T00:00:00Z'),
+      created_at: new Date('2024-01-10T00:00:00Z'),
+      updated_at: new Date('2024-01-10T00:00:00Z'),
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square'
+        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       category: {
         id: '1',
         name: 'React',
         slug: 'react',
-        color: '#61DAFB'
+        color: '#61DAFB',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       tags: [
-        { id: '1', name: 'React', slug: 'react' },
-        { id: '2', name: 'JavaScript', slug: 'javascript' },
-        { id: '5', name: 'Advanced', slug: 'advanced' }
-      ],
-      featuredImage: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20React%20development%20setup%20with%20code%20editor%20showing%20advanced%20patterns%2C%20clean%20workspace%2C%20professional%20tech%20illustration&image_size=landscape_16_9',
-      publishedAt: '2024-01-10T00:00:00Z',
-      updatedAt: '2024-01-10T00:00:00Z',
-      readTime: 12,
-      views: 2847,
-      isPublished: true,
-      isFeatured: false
+        { id: '1', name: 'React', slug: 'react', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '2', name: 'JavaScript', slug: 'javascript', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '5', name: 'Advanced', slug: 'advanced', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
+      ]
     },
     {
       id: '3',
@@ -61,30 +68,37 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
       slug: 'typescript-best-practices-react',
       excerpt: 'Discover the best practices for using TypeScript in React applications. From type definitions to advanced patterns, we\'ll cover everything you need to know.',
       content: 'Comprehensive guide to TypeScript best practices...',
+      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=TypeScript%20code%20editor%20with%20React%20components%2C%20type%20definitions%2C%20modern%20development%20environment%2C%20clean%20professional%20setup&image_size=landscape_16_9',
+      author_id: '1',
+      category_id: '2',
+      status: 'published' as const,
+      is_featured: false,
+      reading_time: 10,
+      views: 1923,
+      published_at: new Date('2024-01-08T00:00:00Z'),
+      created_at: new Date('2024-01-08T00:00:00Z'),
+      updated_at: new Date('2024-01-08T00:00:00Z'),
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square'
+        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       category: {
         id: '2',
         name: 'TypeScript',
         slug: 'typescript',
-        color: '#3178C6'
+        color: '#3178C6',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       tags: [
-        { id: '3', name: 'TypeScript', slug: 'typescript' },
-        { id: '1', name: 'React', slug: 'react' },
-        { id: '4', name: 'Best Practices', slug: 'best-practices' }
-      ],
-      featuredImage: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=TypeScript%20code%20editor%20with%20React%20components%2C%20type%20definitions%2C%20modern%20development%20environment%2C%20clean%20professional%20setup&image_size=landscape_16_9',
-      publishedAt: '2024-01-08T00:00:00Z',
-      updatedAt: '2024-01-08T00:00:00Z',
-      readTime: 10,
-      views: 1923,
-      isPublished: true,
-      isFeatured: false
+        { id: '3', name: 'TypeScript', slug: 'typescript', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '1', name: 'React', slug: 'react', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '4', name: 'Best Practices', slug: 'best-practices', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
+      ]
     },
     {
       id: '4',
@@ -92,30 +106,37 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
       slug: 'nextjs-performance-optimization',
       excerpt: 'Learn how to optimize your Next.js applications for maximum performance. We\'ll cover image optimization, code splitting, caching strategies, and more.',
       content: 'Complete guide to Next.js performance optimization...',
+      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Next.js%20development%20dashboard%20showing%20performance%20metrics%2C%20optimization%20tools%2C%20modern%20web%20development%20setup&image_size=landscape_16_9',
+      author_id: '1',
+      category_id: '3',
+      status: 'published' as const,
+      is_featured: true,
+      reading_time: 15,
+      views: 3456,
+      published_at: new Date('2024-01-05T00:00:00Z'),
+      created_at: new Date('2024-01-05T00:00:00Z'),
+      updated_at: new Date('2024-01-05T00:00:00Z'),
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square'
+        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       category: {
         id: '3',
         name: 'Next.js',
         slug: 'nextjs',
-        color: '#000000'
+        color: '#000000',
+        created_at: new Date('2024-01-01T00:00:00Z'),
+        updated_at: new Date('2024-01-01T00:00:00Z')
       },
       tags: [
-        { id: '6', name: 'Next.js', slug: 'nextjs' },
-        { id: '7', name: 'Performance', slug: 'performance' },
-        { id: '8', name: 'Optimization', slug: 'optimization' }
-      ],
-      featuredImage: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Next.js%20development%20dashboard%20showing%20performance%20metrics%2C%20optimization%20tools%2C%20modern%20web%20development%20setup&image_size=landscape_16_9',
-      publishedAt: '2024-01-05T00:00:00Z',
-      updatedAt: '2024-01-05T00:00:00Z',
-      readTime: 15,
-      views: 3456,
-      isPublished: true,
-      isFeatured: true
+        { id: '6', name: 'Next.js', slug: 'nextjs', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '7', name: 'Performance', slug: 'performance', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
+        { id: '8', name: 'Optimization', slug: 'optimization', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
+      ]
     }
   ];
 
@@ -200,12 +221,12 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                         {index + 1}
                       </span>
                     </div>
-                    
+
                     <div className="flex-1 min-w-0">
                       <h4 className="font-medium text-sm text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
                         {post.title}
                       </h4>
-                      
+
                       <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
@@ -221,7 +242,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                 </Link>
               ))}
             </div>
-            
+
             <div className="mt-6 pt-4 border-t">
               <Link href="/tutorials?sort=popular">
                 <Button variant="outline" size="sm" className="w-full">
@@ -253,7 +274,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                   <p className="text-xs text-muted-foreground mt-1">25 tutorials</p>
                 </div>
               </Link>
-              
+
               <Link href="/tutorials?category=typescript" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -265,7 +286,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                   <p className="text-xs text-muted-foreground mt-1">18 tutorials</p>
                 </div>
               </Link>
-              
+
               <Link href="/tutorials?category=nextjs" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -277,7 +298,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                   <p className="text-xs text-muted-foreground mt-1">15 tutorials</p>
                 </div>
               </Link>
-              
+
               <Link href="/tutorials?category=css" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -290,7 +311,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                 </div>
               </Link>
             </div>
-            
+
             <div className="mt-6 pt-4 border-t">
               <Link href="/tutorials">
                 <Button variant="outline" size="sm" className="w-full">
@@ -315,7 +336,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
             <p className="text-sm text-muted-foreground mb-4">
               Get notified when I publish new tutorials and coding tips. No spam, just quality content!
             </p>
-            
+
             <div className="space-y-3">
               <input
                 type="email"
@@ -326,7 +347,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
                 Subscribe to Newsletter
               </Button>
             </div>
-            
+
             <p className="text-xs text-muted-foreground mt-3 text-center">
               Join 1,000+ developers who trust Aram Tutorials
             </p>

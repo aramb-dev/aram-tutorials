@@ -13,11 +13,10 @@ const CategoryBadge: React.FC<CategoryBadgeProps> = ({
   className
 }) => {
   const categoryColor = getCategoryColor(category.name);
-  const categoryUrl = generateCategoryUrl(category);
+  const categoryUrl = generateCategoryUrl(category.slug);
 
   const badgeContent = (
     <Badge
-      size={size}
       variant={variant}
       className={className}
       style={{

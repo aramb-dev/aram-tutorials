@@ -62,7 +62,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             </Badge>
           )}
           {showCategory && post.category && (
-            <Badge 
+            <Badge
               className="absolute top-4 right-4"
               style={{ backgroundColor: categoryColor }}
             >
@@ -70,7 +70,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             </Badge>
           )}
         </div>
-        
+
         <CardContent className="p-6">
           <div className="space-y-4">
             <div>
@@ -80,13 +80,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 </h2>
               </Link>
             </div>
-            
+
             {showExcerpt && (
               <p className="text-muted-foreground line-clamp-3">
                 {post.excerpt}
               </p>
             )}
-            
+
             {showTags && post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.tags.slice(0, 3).map((tag) => (
@@ -103,7 +103,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             )}
           </div>
         </CardContent>
-        
+
         <CardFooter className="px-6 py-4 border-t bg-muted/30">
           <div className="flex items-center justify-between w-full text-sm text-muted-foreground">
             <div className="flex items-center space-x-4">
@@ -120,7 +120,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 </div>
               )}
             </div>
-            
+
             <div className="flex items-center space-x-4">
               {showViews && (
                 <div className="flex items-center space-x-1">
@@ -155,7 +155,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 />
               </div>
             )}
-            
+
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -164,13 +164,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
                       {post.title}
                     </h3>
                   </Link>
-                  
+
                   {showExcerpt && (
                     <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
                       {post.excerpt}
                     </p>
                   )}
-                  
+
                   <div className="flex items-center space-x-3 mt-2 text-xs text-muted-foreground">
                     {showCategory && post.category && (
                       <Badge style={{ backgroundColor: categoryColor }}>
@@ -220,7 +220,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           </Badge>
         )}
         {showCategory && post.category && (
-          <Badge 
+          <Badge
             className="absolute top-3 right-3"
             style={{ backgroundColor: categoryColor }}
           >
@@ -228,7 +228,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           </Badge>
         )}
       </div>
-      
+
       <CardContent className="p-4">
         <div className="space-y-3">
           <div>
@@ -238,13 +238,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
               </h3>
             </Link>
           </div>
-          
+
           {showExcerpt && (
             <p className="text-sm text-muted-foreground line-clamp-3">
               {post.excerpt}
             </p>
           )}
-          
+
           {showTags && post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {post.tags.slice(0, 2).map((tag) => (
@@ -261,7 +261,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           )}
         </div>
       </CardContent>
-      
+
       <CardFooter className="px-4 py-3 border-t bg-muted/30">
         <div className="flex items-center justify-between w-full text-xs text-muted-foreground">
           <div className="flex items-center space-x-3">
@@ -278,7 +278,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               </div>
             )}
           </div>
-          
+
           <div className="flex items-center space-x-3">
             {showViews && (
               <div className="flex items-center space-x-1">
@@ -286,7 +286,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 <span>{post.views}</span>
               </div>
             )}
-            <span>{formatRelativeTime(post.published_at || post.created_at)}</span>
+            <span>{formatRelativeTime((post.published_at || post.created_at).toString())}</span>
           </div>
         </div>
       </CardFooter>

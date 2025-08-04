@@ -89,3 +89,8 @@ export function formatDate(date: string | Date): string {
 export function generateCategoryUrl(slug: string): string {
   return `/tutorials?category=${slug}`;
 }
+
+// Tag URL generation utility
+export function generateTagUrl(slug: string): string {
+  return `/tutorials?tag=${slug}`;
+}

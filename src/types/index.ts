@@ -45,7 +45,7 @@ export interface BlogPost {
   published_at?: Date;
   created_at: Date;
   updated_at: Date;
-  
+
   // Relations
   author?: User;
   category?: Category;
@@ -62,7 +62,7 @@ export interface Comment {
   status: 'pending' | 'approved' | 'rejected';
   created_at: Date;
   updated_at: Date;
-  
+
   // Relations
   post?: BlogPost;
 }
@@ -176,6 +176,7 @@ export interface CategoryBadgeProps {
   category: Category;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'outline';
+  className?: string;
 }
 
 export interface TagProps {
@@ -184,6 +185,7 @@ export interface TagProps {
   variant?: 'default' | 'outline';
   removable?: boolean;
   onRemove?: (tag: Tag) => void;
+  className?: string;
 }
 
 // Database schema types (for migrations)
