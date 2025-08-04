@@ -173,7 +173,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                   
                   <div className="flex items-center space-x-3 mt-2 text-xs text-muted-foreground">
                     {showCategory && post.category && (
-                      <Badge size="sm" style={{ backgroundColor: categoryColor }}>
+                      <Badge style={{ backgroundColor: categoryColor }}>
                         {post.category.name}
                       </Badge>
                     )}
