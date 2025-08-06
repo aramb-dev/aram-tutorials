@@ -124,51 +124,97 @@ export const FOOTER_NAV = {
   ]
 } as const;
 
-// Default categories with their styling
-export const DEFAULT_CATEGORIES: Omit<Category, 'id' | 'created_at' | 'updated_at'>[] = [
-  {
-    name: "Mac",
-    slug: "mac",
-    description: "macOS tutorials, tips, and tricks for Mac users",
-    color: "#007AFF",
-    icon: "laptop"
+// Category information with green and gray color variations
+export const CATEGORIES = {
+  mac: {
+    name: 'macOS',
+    color: '#4A7C59',
+    bgColor: 'rgba(74, 124, 89, 0.1)',
+    description: 'macOS tutorials and guides'
   },
-  {
-    name: "Windows",
-    slug: "windows",
-    description: "Windows tutorials, guides, and productivity tips",
-    color: "#0078D4",
-    icon: "monitor"
+  windows: {
+    name: 'Windows',
+    color: '#7BA05A',
+    bgColor: 'rgba(123, 160, 90, 0.1)',
+    description: 'Windows tutorials and guides'
   },
-  {
-    name: "Android",
-    slug: "android",
-    description: "Android tutorials, app guides, and mobile tips",
-    color: "#3DDC84",
-    icon: "smartphone"
+  android: {
+    name: 'Android',
+    color: '#A8C78A',
+    bgColor: 'rgba(168, 199, 138, 0.1)',
+    description: 'Android development and guides'
   },
-  {
-    name: "VS Code",
-    slug: "vscode",
-    description: "Visual Studio Code tutorials, extensions, and productivity tips",
-    color: "#007ACC",
-    icon: "code"
+  vscode: {
+    name: 'VS Code',
+    color: '#2E5E15',
+    bgColor: 'rgba(46, 94, 21, 0.1)',
+    description: 'Visual Studio Code tutorials'
   },
-  {
-    name: "Homebrew",
-    slug: "homebrew",
-    description: "Homebrew package manager tutorials and guides",
-    color: "#FBB040",
-    icon: "package"
+  homebrew: {
+    name: 'Homebrew',
+    color: '#6B7280',
+    bgColor: 'rgba(107, 114, 128, 0.1)',
+    description: 'Homebrew package manager guides'
   },
-  {
-    name: "Google",
-    slug: "google",
-    description: "Google services, apps, and productivity tutorials",
-    color: "#4285F4",
-    icon: "search"
+  google: {
+    name: 'Google',
+    color: '#4A7C59',
+    bgColor: 'rgba(74, 124, 89, 0.1)',
+    description: 'Google services and tools'
   }
-];
+} as const;
+
+// Default categories for display components
+export const DEFAULT_CATEGORIES = [
+  {
+    slug: 'mac',
+    name: 'macOS',
+    description: 'macOS tutorials and guides',
+    color: '#4A7C59',
+    icon: 'laptop',
+    count: 0
+  },
+  {
+    slug: 'windows',
+    name: 'Windows',
+    description: 'Windows tutorials and guides',
+    color: '#7BA05A',
+    icon: 'monitor',
+    count: 0
+  },
+  {
+    slug: 'android',
+    name: 'Android',
+    description: 'Android development and guides',
+    color: '#A8C78A',
+    icon: 'smartphone',
+    count: 0
+  },
+  {
+    slug: 'vscode',
+    name: 'VS Code',
+    description: 'Visual Studio Code tutorials',
+    color: '#2E5E15',
+    icon: 'code',
+    count: 0
+  },
+  {
+    slug: 'homebrew',
+    name: 'Homebrew',
+    description: 'Homebrew package manager guides',
+    color: '#6B7280',
+    icon: 'package',
+    count: 0
+  },
+  {
+    slug: 'google',
+    name: 'Google',
+    description: 'Google services and tools',
+    color: '#4A7C59',
+    icon: 'search',
+    count: 0
+  }
+] as const;
 
 // Pagination settings
 export const PAGINATION = {

@@ -6,23 +6,29 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Category color utility
-export function getCategoryColor(category: string): string {
-  const colors: Record<string, string> = {
-    'web-development': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-    'javascript': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
-    'react': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300',
-    'nextjs': 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300',
-    'typescript': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
-    'css': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300',
-    'html': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300',
-    'nodejs': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
-    'database': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
-    'tutorial': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300',
-    'beginner': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300',
-    'intermediate': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
-    'advanced': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+export function getCategoryColor(category: string): { bg: string; text: string; border: string } {
+  const colors: Record<string, { bg: string; text: string; border: string }> = {
+    'mac': { bg: '#007AFF', text: '#ffffff', border: '#007AFF' },
+    'windows': { bg: '#0078D4', text: '#ffffff', border: '#0078D4' },
+    'android': { bg: '#3DDC84', text: '#000000', border: '#3DDC84' },
+    'vscode': { bg: '#007ACC', text: '#ffffff', border: '#007ACC' },
+    'homebrew': { bg: '#FBB040', text: '#000000', border: '#FBB040' },
+    'google': { bg: '#4285F4', text: '#ffffff', border: '#4285F4' },
+    'web-development': { bg: '#2E5E15', text: '#ffffff', border: '#2E5E15' },
+    'javascript': { bg: '#F7DF1E', text: '#000000', border: '#F7DF1E' },
+    'react': { bg: '#61DAFB', text: '#000000', border: '#61DAFB' },
+    'nextjs': { bg: '#000000', text: '#ffffff', border: '#000000' },
+    'typescript': { bg: '#3178C6', text: '#ffffff', border: '#3178C6' },
+    'css': { bg: '#1572B6', text: '#ffffff', border: '#1572B6' },
+    'html': { bg: '#E34F26', text: '#ffffff', border: '#E34F26' },
+    'nodejs': { bg: '#339933', text: '#ffffff', border: '#339933' },
+    'database': { bg: '#4A7C59', text: '#ffffff', border: '#4A7C59' },
+    'tutorial': { bg: '#2E5E15', text: '#ffffff', border: '#2E5E15' },
+    'beginner': { bg: '#4A7C59', text: '#ffffff', border: '#4A7C59' },
+    'intermediate': { bg: '#7BA05A', text: '#ffffff', border: '#7BA05A' },
+    'advanced': { bg: '#DC2626', text: '#ffffff', border: '#DC2626' }
   };
-  return colors[category.toLowerCase()] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300';
+  return colors[category.toLowerCase()] || { bg: '#6B7280', text: '#ffffff', border: '#6B7280' };
 }
 
 // Time formatting utility

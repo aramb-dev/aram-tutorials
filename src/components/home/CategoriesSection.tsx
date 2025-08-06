@@ -20,7 +20,7 @@ export function CategoriesSection() {
     <div className="space-y-8">
       {/* Section Header */}
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 bg-accent-blue/10 text-accent-blue rounded-full px-4 py-2 mb-4">
+        <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary rounded-full px-4 py-2 mb-4">
           <Folder className="h-4 w-4" />
           <span className="text-sm font-medium">Browse by Topic</span>
         </div>

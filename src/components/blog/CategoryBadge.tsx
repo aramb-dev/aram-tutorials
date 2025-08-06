@@ -20,9 +20,9 @@ const CategoryBadge: React.FC<CategoryBadgeProps> = ({
       variant={variant}
       className={className}
       style={{
-        backgroundColor: variant === 'default' ? categoryColor : undefined,
-        borderColor: variant === 'outline' ? categoryColor : undefined,
-        color: variant === 'outline' ? categoryColor : undefined
+        backgroundColor: variant === 'default' ? categoryColor.bg : undefined,
+        borderColor: variant === 'outline' ? categoryColor.border : undefined,
+        color: variant === 'outline' ? categoryColor.text : categoryColor.text
       }}
     >
       {category.name}
