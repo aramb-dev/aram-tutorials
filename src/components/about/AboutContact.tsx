@@ -1,11 +1,11 @@
 'use client';
 
-import { 
-  Mail, 
-  MessageCircle, 
-  Github, 
-  Linkedin, 
-  Twitter, 
+import {
+  Mail,
+  MessageCircle,
+  Github,
+  Linkedin,
+  Twitter,
   Youtube,
   MapPin,
   Clock,
@@ -36,24 +36,39 @@ export function AboutContact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
     setFormData({ name: '', email: '', subject: '', message: '' });
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'aramtutorials@gmail.com',
+      link: 'mailto:aramtutorials@gmail.com'
+    },
+    {
+      icon: Clock,
+      label: 'Response Time',
+      value: 'Typically within 24 hours',
+      link: null
+    }
+  ];
+
   const socialLinks = [
     {
-      name: 'GitHub',
-      icon: Github,
-      url: 'https://github.com/aramtutorials',
-      description: 'Check out our code and projects'
+      name: 'YouTube',
+      icon: Youtube,
+      url: 'https://YouTube.com/@AramTutorials',
+      description: 'Subscribe for video tutorials'
     },
     {
       name: 'LinkedIn',
@@ -66,33 +81,6 @@ export function AboutContact() {
       icon: Twitter,
       url: 'https://twitter.com/aramtutorials',
       description: 'Follow for tech updates and tips'
-    },
-    {
-      name: 'YouTube',
-      icon: Youtube,
-      url: 'https://youtube.com/@aramtutorials',
-      description: 'Subscribe for video tutorials'
-    }
-  ];
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'contact@aramtutorials.com',
-      link: 'mailto:contact@aramtutorials.com'
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Global Team',
-      link: null
-    },
-    {
-      icon: Clock,
-      label: 'Response Time',
-      value: 'Usually within 24 hours',
-      link: null
     }
   ];
 
@@ -100,229 +88,199 @@ export function AboutContact() {
     <div className="space-y-12">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
           Let's Connect
         </h2>
-        <p className="text-lg text-muted-foreground leading-relaxed">
+        <p className="text-lg text-white/80 leading-relaxed">
           Have a question, want to collaborate, or just say hello? We'd love to hear from you!
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Contact Form */}
+        {/* Send a Message */}
         <div className="space-y-6">
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
               <MessageCircle className="h-6 w-6" />
               Send a Message
             </h3>
-            <p className="text-muted-foreground">
+            <p className="text-white/80">
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
           </div>
-          
+
           {isSubmitted ? (
-            <Card className="border-green-200 bg-green-50 dark:bg-green-950 dark:border-green-800">
-              <CardContent className="p-6 text-center">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Send className="h-6 w-6 text-green-600 dark:text-green-400" />
-                </div>
-                <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
-                  Message Sent Successfully!
-                </h4>
-                <p className="text-green-600 dark:text-green-400 text-sm">
-                  Thank you for reaching out. We'll get back to you soon!
-                </p>
-              </CardContent>
-            </Card>
+            <div className="border border-green-300/30 bg-green-500/10 rounded-lg p-6 text-center">
+              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Send className="h-6 w-6 text-green-300" />
+              </div>
+              <h4 className="font-semibold text-green-200 mb-2">
+                Message Sent Successfully!
+              </h4>
+              <p className="text-green-300 text-sm">
+                Thank you for reaching out. We'll get back to you soon!
+              </p>
+            </div>
           ) : (
-            <Card>
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                        Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your.email@example.com"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
+            <div className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                      Subject *
+                    <label htmlFor="name" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                      Name *
                     </label>
                     <Input
-                      id="subject"
-                      name="subject"
+                      id="name"
+                      name="name"
                       type="text"
-                      value={formData.subject}
+                      value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="What's this about?"
+                      placeholder="Your full name"
+                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground/40 focus:ring-primary-foreground/20"
                       required
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                      Message *
+                    <label htmlFor="email" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                      Email *
                     </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="Tell me more about your project, question, or just say hello!"
-                      rows={6}
+                      placeholder="your.email@example.com"
+                      className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground/40 focus:ring-primary-foreground/20"
                       required
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="ml-2 h-4 w-4" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                    Subject *
+                  </label>
+                  <Input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    placeholder="What's this about?"
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground/40 focus:ring-primary-foreground/20"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                    Message *
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Tell me more about your project, question, or just say hello!"
+                    rows={6}
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground/40 focus:ring-primary-foreground/20"
+                    required
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-brand-lightest text-primary hover:bg-brand-lighter font-semibold"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary mr-2" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </div>
           )}
         </div>
-        
-        {/* Contact Info & Social Links */}
+
+        {/* Other Ways to Connect */}
         <div className="space-y-8">
-          {/* Contact Information */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">
-              Contact Information
+            <h3 className="text-2xl font-bold text-primary-foreground mb-6">
+              Other Ways to Connect
             </h3>
-            
-            <div className="space-y-4">
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon;
-                const content = (
-                  <div className="flex items-center gap-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <IconComponent className="h-5 w-5 text-primary" />
+
+            {/* Direct Contact */}
+            <div className="mb-8">
+              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">Direct Contact</h4>
+              <div className="space-y-3">
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon;
+                  const content = (
+                    <div className="flex items-center gap-4 p-4 rounded-lg border border-primary-foreground/20 hover:bg-primary-foreground/5 transition-colors">
+                      <div className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center">
+                        <IconComponent className="h-5 w-5 text-brand-lightest" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-primary-foreground">{info.label}</p>
+                        <p className="text-sm text-primary-foreground/70">{info.value}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-foreground">{info.label}</p>
-                      <p className="text-sm text-muted-foreground">{info.value}</p>
+                  );
+
+                  return info.link ? (
+                    <Link key={index} href={info.link} className="block">
+                      {content}
+                    </Link>
+                  ) : (
+                    <div key={index}>
+                      {content}
                     </div>
-                  </div>
-                );
-                
-                return info.link ? (
-                  <Link key={index} href={info.link} className="block">
-                    {content}
-                  </Link>
-                ) : (
-                  <div key={index}>
-                    {content}
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Community & Code */}
+            <div>
+              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">Community & Code</h4>
+              <div className="space-y-3">
+                {socialLinks.map((social, index) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <Link
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 rounded-lg border border-primary-foreground/20 hover:bg-primary-foreground/5 transition-colors group"
+                    >
+                      <div className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center group-hover:bg-primary-foreground/20 transition-colors">
+                        <IconComponent className="h-5 w-5 text-brand-lightest" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium text-primary-foreground group-hover:text-brand-lightest transition-colors">
+                          {social.name}
+                        </p>
+                        <p className="text-xs text-primary-foreground/70">
+                          {social.description}
+                        </p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
           </div>
-          
-          {/* Social Links */}
-          <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">
-              Follow Us
-            </h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {socialLinks.map((social, index) => {
-                const IconComponent = social.icon;
-                return (
-                  <Card key={index} className="hover:shadow-md transition-shadow duration-300">
-                    <CardContent className="p-4">
-                      <Link 
-                    href={social.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 group"
-                  >
-                        <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <IconComponent className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-medium text-foreground group-hover:text-primary transition-colors">
-                            {social.name}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {social.description}
-                          </p>
-                        </div>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-          
-          {/* Quick Links */}
-          <Card className="bg-primary/5 border-primary/20">
-            <CardHeader>
-              <CardTitle className="text-lg">Quick Links</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Link 
-                href="/tutorials" 
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                → Browse All Tutorials
-              </Link>
-              <Link 
-                href="/contact" 
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                → Contact Page
-              </Link>
-              <Link 
-                href="/newsletter" 
-                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                → Subscribe to Newsletter
-              </Link>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>
