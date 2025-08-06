@@ -33,7 +33,7 @@ export function NewsletterSection() {
       // TODO: Implement actual newsletter subscription API call
       // For now, simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       setIsSubscribed(true);
       setEmail('');
     } catch (err) {
@@ -47,15 +47,15 @@ export function NewsletterSection() {
     return (
       <div className="text-center max-w-2xl mx-auto">
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-          <CheckCircle className="h-16 w-16 text-accent-green mx-auto mb-4" />
+          <CheckCircle className="h-16 w-16 text-brand-light mx-auto mb-4" />
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Welcome to the Community!
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-6">
             Thank you for subscribing! You'll receive our latest tutorials and programming tips directly in your inbox.
           </p>
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="border-white/30 text-white hover:bg-white/10"
             onClick={() => setIsSubscribed(false)}
           >
@@ -74,17 +74,17 @@ export function NewsletterSection() {
           <Mail className="h-4 w-4" />
           <span className="text-sm font-medium">Stay Updated</span>
         </div>
-        
+
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Join Our Newsletter
         </h2>
-        
+
         <p className="text-lg text-primary-foreground/90">
-          Get the latest tutorials, tips, and programming insights delivered straight to your inbox. 
+          Get the latest tutorials, tips, and programming insights delivered straight to your inbox.
           No spam, unsubscribe anytime.
         </p>
       </div>
-      
+
       {/* Newsletter Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -98,11 +98,11 @@ export function NewsletterSection() {
               disabled={isLoading}
             />
           </div>
-          
-          <Button 
-            type="submit" 
+
+          <Button
+            type="submit"
             disabled={isLoading}
-            className="bg-accent-yellow text-primary hover:bg-accent-yellow/90 font-semibold h-12 px-6"
+            className="bg-brand-lightest text-primary hover:bg-brand-lighter font-semibold h-12 px-6"
           >
             {isLoading ? (
               'Subscribing...'
@@ -114,26 +114,26 @@ export function NewsletterSection() {
             )}
           </Button>
         </div>
-        
+
         {error && (
           <p className="text-red-300 text-sm">{error}</p>
         )}
       </form>
-      
+
       {/* Benefits */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 text-sm">
         <div className="flex items-center justify-center gap-2 text-primary-foreground/80">
-          <CheckCircle className="h-4 w-4 text-accent-green" />
+          <CheckCircle className="h-4 w-4 text-brand-light" />
           <span>Weekly tutorials</span>
         </div>
-        
+
         <div className="flex items-center justify-center gap-2 text-primary-foreground/80">
-          <CheckCircle className="h-4 w-4 text-accent-green" />
+          <CheckCircle className="h-4 w-4 text-brand-light" />
           <span>Exclusive content</span>
         </div>
-        
+
         <div className="flex items-center justify-center gap-2 text-primary-foreground/80">
-          <CheckCircle className="h-4 w-4 text-accent-green" />
+          <CheckCircle className="h-4 w-4 text-brand-light" />
           <span>No spam, ever</span>
         </div>
       </div>

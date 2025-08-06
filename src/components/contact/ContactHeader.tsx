@@ -46,7 +46,7 @@ export function ContactHeader() {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/20 to-transparent" />
 
       <div className="relative container mx-auto px-4 py-20 lg:py-32">
         <div className="max-w-4xl mx-auto text-center">
@@ -62,7 +62,7 @@ export function ContactHeader() {
           {/* Main Heading */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Get in{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand-light to-brand-lighter bg-clip-text text-transparent">
               Touch
             </span>
           </h1>
@@ -83,7 +83,7 @@ export function ContactHeader() {
           <Button
             size="lg"
             onClick={scrollToForm}
-            className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 text-lg"
+            className="bg-brand-primary text-white hover:bg-brand-light font-semibold px-8 py-4 text-lg"
           >
             <MessageCircle className="h-5 w-5 mr-2" />
             Send Message
@@ -101,7 +101,7 @@ export function ContactHeader() {
                   key={index}
                   className="text-center p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-lighter rounded-full flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="h-6 w-6 text-white" />
                   </div>
                   <div className="text-2xl font-bold text-white mb-2">

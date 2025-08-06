@@ -10,8 +10,8 @@ export function TutorialsHeader() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Header Content */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-primary" />
+            <div className="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-brand-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold">
               Tutorials
@@ -26,17 +26,17 @@ export function TutorialsHeader() {
           {/* Stats */}
           <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
                 50+ Tutorials
               </Badge>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
                 10+ Categories
               </Badge>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
+              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
                 Free Access
               </Badge>
             </div>
@@ -47,10 +47,10 @@ export function TutorialsHeader() {
             <div className="relative">
               <SearchInput
                 placeholder="Search tutorials, topics, or technologies..."
-                className="w-full h-14 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/20 focus:border-primary"
+                className="w-full h-14 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/20 focus:border-brand-primary"
               />
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                <Button size="sm" className="h-8">
+                <Button size="sm" className="h-8 bg-brand-primary hover:bg-brand-light">
                   <Search className="h-4 w-4" />
                 </Button>
               </div>

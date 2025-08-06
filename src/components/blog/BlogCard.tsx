@@ -49,9 +49,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <div className="w-full h-64 bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+            <div className="w-full h-64 bg-gradient-to-br from-brand-primary/10 to-brand-light/20 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary/30 mb-2">AT</div>
+                <div className="text-4xl font-bold text-brand-primary/30 mb-2">AT</div>
                 <div className="text-sm text-muted-foreground">Aram Tutorials</div>
               </div>
             </div>
@@ -75,7 +75,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           <div className="space-y-4">
             <div>
               <Link href={postUrl} className="group">
-                <h2 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                <h2 className="text-2xl font-bold text-foreground group-hover:text-brand-primary transition-colors duration-200 line-clamp-2">
                   {post.title}
                 </h2>
               </Link>
@@ -160,7 +160,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <Link href={postUrl} className="group">
-                    <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                    <h3 className="font-semibold text-foreground group-hover:text-brand-primary transition-colors duration-200 line-clamp-2">
                       {post.title}
                     </h3>
                   </Link>
@@ -207,9 +207,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-48 bg-gradient-to-br from-primary/10 to-primary/20 flex items-center justify-center">
+          <div className="w-full h-48 bg-gradient-to-br from-brand-primary/10 to-brand-light/20 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary/30 mb-1">AT</div>
+              <div className="text-2xl font-bold text-brand-primary/30 mb-1">AT</div>
               <div className="text-xs text-muted-foreground">Aram Tutorials</div>
             </div>
           </div>
@@ -233,7 +233,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         <div className="space-y-3">
           <div>
             <Link href={postUrl} className="group">
-              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-brand-primary transition-colors duration-200 line-clamp-2">
                 {post.title}
               </h3>
             </Link>

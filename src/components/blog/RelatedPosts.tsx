@@ -52,7 +52,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         id: '1',
         name: 'React',
         slug: 'react',
-        color: '#61DAFB',
+        color: '#4A7C59',
         created_at: new Date('2024-01-01T00:00:00Z'),
         updated_at: new Date('2024-01-01T00:00:00Z')
       },

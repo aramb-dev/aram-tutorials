@@ -26,7 +26,7 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
     <div className="relative">
       {/* Featured Image Background */}
       <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20" />
+        <div className="w-full h-full bg-gradient-to-br from-brand-primary/20 to-brand-light/20" />
         <div className="absolute inset-0 bg-black/30" />
       </div>
 
@@ -95,8 +95,8 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                         className="rounded-full"
                       />
                     ) : (
-                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                        <User className="h-6 w-6 text-primary" />
+                      <div className="w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                        <User className="h-6 w-6 text-brand-primary" />
                       </div>
                     )}
 

@@ -375,7 +375,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'React',
       slug: 'react',
       description: 'React tutorials and guides',
-      color: '#61dafb'
+      color: '#4A7C59'
     },
     authorId: '1',
     author: {
@@ -413,7 +413,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'Node.js',
       slug: 'nodejs',
       description: 'Node.js backend development',
-      color: '#339933'
+      color: '#2E5E15'
     },
     authorId: '1',
     author: {
@@ -451,7 +451,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'CSS',
       slug: 'css',
       description: 'CSS styling and layout techniques',
-      color: '#1572b6'
+      color: '#7BA05A'
     },
     authorId: '1',
     author: {

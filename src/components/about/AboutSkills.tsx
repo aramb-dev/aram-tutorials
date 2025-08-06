@@ -16,49 +16,49 @@ export function AboutSkills() {
     {
       icon: Code2,
       title: 'Frontend Development',
-      color: '#61dafb',
+      color: '#4A7C59',
       skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue.js', 'HTML5', 'CSS3']
     },
     {
       icon: Database,
       title: 'Backend Development',
-      color: '#339933',
+      color: '#2E5E15',
       skills: ['Node.js', 'Express.js', 'Python', 'Django', 'FastAPI', 'REST APIs', 'GraphQL']
     },
     {
       icon: Database,
       title: 'Databases',
-      color: '#336791',
+      color: '#7BA05A',
       skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Supabase', 'Firebase']
     },
     {
       icon: Cloud,
       title: 'Cloud & DevOps',
-      color: '#ff9900',
+      color: '#6B7280',
       skills: ['AWS', 'Vercel', 'Docker', 'GitHub Actions', 'Netlify', 'Railway']
     },
     {
       icon: Smartphone,
       title: 'Mobile Development',
-      color: '#0066cc',
+      color: '#A8C78A',
       skills: ['React Native', 'Flutter', 'Expo', 'iOS', 'Android']
     },
     {
       icon: GitBranch,
       title: 'Tools & Workflow',
-      color: '#f05032',
+      color: '#4A7C59',
       skills: ['Git', 'GitHub', 'VS Code', 'Figma', 'Postman', 'Linux']
     },
     {
       icon: Palette,
       title: 'Design & UI/UX',
-      color: '#ff6b6b',
+      color: '#7BA05A',
       skills: ['Tailwind CSS', 'Figma', 'Adobe XD', 'Responsive Design', 'UI/UX Principles']
     },
     {
       icon: Zap,
       title: 'Other Technologies',
-      color: '#9c88ff',
+      color: '#2E5E15',
       skills: ['Machine Learning', 'Data Analysis', 'Web Scraping', 'Automation', 'Testing']
     }
   ];
@@ -161,7 +161,7 @@ export function AboutSkills() {
       </div>
 
       {/* Learning Philosophy */}
-      <div className="bg-gradient-to-r from-primary/5 to-accent-blue/5 rounded-2xl p-8 md:p-12">
+      <div className="bg-gradient-to-r from-primary/5 to-brand-light/5 rounded-2xl p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
             My Learning Philosophy
@@ -169,8 +169,8 @@ export function AboutSkills() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-accent-yellow/20 rounded-lg flex items-center justify-center mx-auto">
-                <Code2 className="h-6 w-6 text-accent-yellow" />
+              <div className="w-12 h-12 bg-brand-light/20 rounded-lg flex items-center justify-center mx-auto">
+                <Code2 className="h-6 w-6 text-brand-light" />
               </div>
               <h4 className="font-semibold text-foreground">Learn by Doing</h4>
               <p className="text-sm text-muted-foreground">
@@ -179,8 +179,8 @@ export function AboutSkills() {
             </div>
 
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-accent-green/20 rounded-lg flex items-center justify-center mx-auto">
-                <Globe className="h-6 w-6 text-accent-green" />
+              <div className="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center mx-auto">
+                <Globe className="h-6 w-6 text-brand-primary" />
               </div>
               <h4 className="font-semibold text-foreground">Stay Current</h4>
               <p className="text-sm text-muted-foreground">
@@ -189,8 +189,8 @@ export function AboutSkills() {
             </div>
 
             <div className="space-y-3">
-              <div className="w-12 h-12 bg-accent-blue/20 rounded-lg flex items-center justify-center mx-auto">
-                <Zap className="h-6 w-6 text-accent-blue" />
+              <div className="w-12 h-12 bg-brand-lighter/20 rounded-lg flex items-center justify-center mx-auto">
+                <Zap className="h-6 w-6 text-brand-lighter" />
               </div>
               <h4 className="font-semibold text-foreground">Share Knowledge</h4>
               <p className="text-sm text-muted-foreground">

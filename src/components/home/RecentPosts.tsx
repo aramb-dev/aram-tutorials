@@ -14,7 +14,7 @@ export function RecentPosts() {
     <div className="space-y-8">
       {/* Section Header */}
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 bg-accent-green/10 text-accent-green rounded-full px-4 py-2 mb-4">
+        <div className="inline-flex items-center gap-2 bg-brand-light/10 text-brand-light rounded-full px-4 py-2 mb-4">
           <Clock className="h-4 w-4" />
           <span className="text-sm font-medium">Latest Content</span>
         </div>

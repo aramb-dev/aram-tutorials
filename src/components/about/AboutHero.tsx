@@ -15,13 +15,13 @@ export function AboutHero() {
             {/* Content */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
-                <Heart className="h-4 w-4 text-accent-yellow" />
+                <Heart className="h-4 w-4 text-brand-lightest" />
                 <span className="text-sm font-medium">Meet Our Team</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Welcome to{' '}
-                <span className="text-accent-yellow">Aram Tutorials</span>
+                <span className="text-brand-lightest">Aram Tutorials</span>
               </h1>
 
               <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed">
@@ -50,7 +50,7 @@ export function AboutHero() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-accent-yellow text-primary hover:bg-accent-yellow/90 font-semibold"
+                  className="bg-brand-lightest text-primary hover:bg-brand-lighter font-semibold"
                 >
                   <Link href="/contact">
                     Get in Touch
@@ -74,12 +74,12 @@ export function AboutHero() {
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 {/* Decorative Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-yellow/20 to-accent-blue/20 rounded-3xl transform rotate-6"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-green/20 to-accent-yellow/20 rounded-3xl transform -rotate-3"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-lighter/20 to-brand-light/20 rounded-3xl transform rotate-6"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-light/20 to-brand-lightest/20 rounded-3xl transform -rotate-3"></div>
 
                 {/* Profile Image Container */}
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-2">
-                  <div className="w-80 h-80 md:w-96 md:h-96 relative rounded-2xl overflow-hidden bg-gradient-to-br from-accent-yellow/10 to-accent-blue/10">
+                  <div className="w-80 h-80 md:w-96 md:h-96 relative rounded-2xl overflow-hidden bg-gradient-to-br from-brand-lighter/10 to-brand-light/10">
                     {/* Placeholder for team image */}
                     <div className="w-full h-full flex items-center justify-center text-6xl font-bold text-white/20">
                       AT

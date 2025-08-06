@@ -12,7 +12,7 @@ export function FeaturedPosts() {
     <div className="space-y-8">
       {/* Section Header */}
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 bg-accent-yellow/10 text-accent-yellow rounded-full px-4 py-2 mb-4">
+        <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary rounded-full px-4 py-2 mb-4">
           <Star className="h-4 w-4" />
           <span className="text-sm font-medium">Featured Content</span>
         </div>
