@@ -1,31 +1,31 @@
-import { BookOpen, Code, Users, Target } from 'lucide-react';
+import { BookOpen, Code, Users, Target, Rocket, TrendingUp } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export function AboutStory() {
   const milestones = [
     {
-      icon: Code,
-      year: '2019',
+      icon: Rocket,
+      year: 'Aug 2024',
       title: 'Foundation',
-      description: 'Our team came together with a shared passion for technology and education.'
+      description: 'Aram Tutorials was launched with a clear mission: to make technology accessible through simple, practical tutorials.'
     },
     {
       icon: BookOpen,
-      year: '2021',
-      title: 'First Tutorials',
-      description: 'We began creating comprehensive tutorials to help learners understand complex concepts.'
+      year: 'Late 2024',
+      title: 'First Content Wave',
+      description: 'We published our initial set of tutorials, focusing on essential tools for developers and learners.'
     },
     {
-      icon: Users,
-      year: '2022',
-      title: 'Growing Community',
-      description: 'Built a thriving community of learners and educators sharing knowledge across platforms.'
+      icon: TrendingUp,
+      year: 'Early 2025',
+      title: 'Building Momentum',
+      description: 'Our community grew rapidly, with our tutorials surpassing 5,000 views from learners worldwide.'
     },
     {
       icon: Target,
-      year: '2024',
-      title: 'Aram Tutorials',
-      description: 'Launched this platform to make tech education more accessible and comprehensive.'
+      year: 'Aug 2025',
+      title: 'Expanding Our Library',
+      description: 'Nearing our one-year anniversary, we now offer a library of over 20 tutorials and continue to expand into new technologies based on community feedback.'
     }
   ];
 
@@ -37,8 +37,8 @@ export function AboutStory() {
           Our Story
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          From passionate developers to dedicated educators, here's how our love for technology
-          and teaching shaped the creation of Aram Tutorials.
+          From a passion for accessible technology education to building a growing community of learners,
+          here's our authentic journey over the past year.
         </p>
       </div>
 
@@ -48,27 +48,27 @@ export function AboutStory() {
         <div className="space-y-6">
           <div className="prose prose-lg max-w-none">
             <p className="text-muted-foreground leading-relaxed">
-              <strong className="text-primary">Aram Tutorials</strong> was born from a collective passion
-              for technology and education. Our team consists of experienced developers and educators
-              who understand the challenges of learning programming.
+              <strong className="text-primary">Aram Tutorials</strong> was launched in August 2024
+              with a simple but powerful mission: to make technology accessible through clear,
+              practical tutorials that anyone can follow.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              We've all been through the journey of learning to code - from the initial excitement
-              of writing your first "Hello World" to the satisfaction of building complex applications.
-              We know the struggles, the breakthroughs, and everything in between.
+              As we approach our first anniversary, we've focused on creating quality content
+              in the areas where we have genuine expertise - from macOS and Windows systems
+              to development tools like VS Code and essential utilities like Homebrew.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              Through our combined experience, we noticed that many learners struggled with the same
-              concepts we had once found challenging. This sparked our mission:
-              <strong className="text-primary"> to create clear, practical tutorials that make learning accessible to everyone.</strong>
+              What started as a vision to help learners navigate technology has grown into
+              a community of over 5,700 views and 21 carefully crafted tutorials.
+              <strong className="text-primary"> Our approach is simple: teach what we know well, be honest about our journey, and grow with our community.</strong>
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              Our approach focuses on breaking down complex concepts into simple, digestible pieces.
-              We believe that technology should be accessible to everyone, regardless of their
-              background or experience level, and we're committed to making that vision a reality.
+              We believe in authentic growth over inflated claims. Every tutorial we create
+              comes from real experience, and every milestone we share reflects our actual progress.
+              This transparency has become the foundation of our relationship with learners.
             </p>
           </div>
         </div>
@@ -114,9 +114,9 @@ export function AboutStory() {
           Our Mission
         </h3>
         <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-          To make technology education accessible, engaging, and practical for learners at every level.
-          We believe that with the right guidance and clear explanations, anyone can master programming
-          and build amazing things with code.
+          To build trust through authentic content and transparent growth. We focus on the technologies
+          we know well, share our real journey milestones, and create tutorials that deliver practical
+          value from day one of learning.
         </p>
       </div>
     </div>

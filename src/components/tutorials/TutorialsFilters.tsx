@@ -34,9 +34,9 @@ export function TutorialsFilters({
   const searchParams = useSearchParams();
   const [expandedSections, setExpandedSections] = useState({
     categories: true,
-    tags: true,
+    tags: false,
     dateRange: false,
-    difficulty: true
+    difficulty: false
   });
 
   const toggleSection = (section: keyof typeof expandedSections) => {

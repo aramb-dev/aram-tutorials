@@ -16,7 +16,7 @@ export function AboutHero() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
                 <Heart className="h-4 w-4 text-brand-lightest" />
-                <span className="text-sm font-medium">Meet Our Team</span>
+                <span className="text-sm font-medium">About Us</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -25,24 +25,24 @@ export function AboutHero() {
               </h1>
 
               <p className="text-xl md:text-2xl text-primary-foreground/90 leading-relaxed">
-                We are a dedicated team of passionate developers and tech educators
-                committed to making programming accessible to everyone.
+                We are dedicated to making technology accessible through clear,
+                practical tutorials that empower learners at every level.
               </p>
 
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1">
                   <MapPin className="h-4 w-4" />
-                  <span>Global Team</span>
+                  <span>Global Reach</span>
                 </div>
 
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1">
                   <Calendar className="h-4 w-4" />
-                  <span>Years of Experience</span>
+                  <span>Proven Experience</span>
                 </div>
 
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1">
                   <Coffee className="h-4 w-4" />
-                  <span>Tech Enthusiasts</span>
+                  <span>Quality Content</span>
                 </div>
               </div>
 
@@ -63,7 +63,7 @@ export function AboutHero() {
                   size="lg"
                   className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
                 >
-                  <Link href="/blog">
+                  <Link href="/tutorials">
                     View Our Tutorials
                   </Link>
                 </Button>

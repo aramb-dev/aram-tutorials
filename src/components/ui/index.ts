@@ -40,3 +40,5 @@ export type { SearchInputProps } from './SearchInput';
 
 export { LoadingSpinner } from './LoadingSpinner';
 export type { LoadingSpinnerProps } from './LoadingSpinner';
+
+export { GlobalFooter } from './GlobalFooter';

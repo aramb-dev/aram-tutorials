@@ -1,96 +1,127 @@
 import {
-  Briefcase,
-  GraduationCap,
+  Target,
+  Users,
+  BookOpen,
   Award,
-  ExternalLink,
+  TrendingUp,
+  Globe,
   Calendar,
-  MapPin
+  Rocket,
+  Heart,
+  Eye
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export function AboutExperience() {
-  const experiences = [
+  const journeyMilestones = [
     {
-      type: 'work',
-      title: 'Full-Stack Developer',
-      company: 'Freelance',
-      location: 'Remote',
-      period: '2022 - Present',
-      description: 'Developing web applications and mobile apps for various clients, specializing in React, Node.js, and modern web technologies.',
-      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'AWS']
+      period: 'August 2024',
+      title: 'Foundation',
+      description: 'Aram Tutorials was launched with a clear mission: to make technology accessible through simple, practical tutorials.',
+      icon: Rocket,
+      highlight: 'Launch'
     },
     {
-      type: 'work',
-      title: 'Content Creator & Educator',
-      company: 'Aram Tutorials',
-      location: 'Online',
-      period: '2021 - Present',
-      description: 'Creating educational content, tutorials, and courses to help developers learn programming and web development.',
-      technologies: ['Teaching', 'Content Creation', 'Video Production', 'Technical Writing']
+      period: 'Late 2024',
+      title: 'First Content Wave',
+      description: 'We published our initial set of tutorials, focusing on essential tools for developers and learners.',
+      icon: BookOpen,
+      highlight: 'Content Creation'
     },
     {
-      type: 'education',
-      title: 'Bachelor of Science in Computer Science',
-      company: 'University',
-      location: 'Bangladesh',
-      period: '2019 - 2023',
-      description: 'Studied computer science fundamentals, algorithms, data structures, and software engineering principles.',
-      technologies: ['Computer Science', 'Algorithms', 'Data Structures', 'Software Engineering']
+      period: 'Early 2025',
+      title: 'Building Momentum',
+      description: 'Our community grew rapidly, with our tutorials surpassing 5,000 views from learners worldwide.',
+      icon: TrendingUp,
+      highlight: 'Community Growth'
+    },
+    {
+      period: 'Present (August 2025)',
+      title: 'Expanding Our Library',
+      description: 'Nearing our one-year anniversary, we now offer a library of over 20 tutorials and continue to expand into new technologies based on community feedback.',
+      icon: Globe,
+      highlight: 'Expansion'
     }
   ];
 
-  const projects = [
+  const currentStats = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-featured e-commerce platform with payment integration, inventory management, and admin dashboard.',
-      technologies: ['Next.js', 'Stripe', 'PostgreSQL', 'Tailwind CSS'],
-      status: 'Completed',
-      link: '#'
+      value: '21',
+      label: 'Tutorials Created',
+      description: 'Quality content focused on practical skills'
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates and team collaboration features.',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-      status: 'Completed',
-      link: '#'
+      value: '5,700+',
+      label: 'Community Views',
+      description: 'Real engagement from learners worldwide'
     },
     {
-      title: 'Learning Management System',
-      description: 'An LMS platform for online courses with video streaming, progress tracking, and interactive quizzes.',
-      technologies: ['Vue.js', 'Django', 'PostgreSQL', 'AWS S3'],
-      status: 'In Progress',
-      link: '#'
+      value: '6+',
+      label: 'Years Experience',
+      description: 'Deep expertise behind every tutorial'
     },
     {
-      title: 'Mobile Fitness App',
-      description: 'A React Native app for fitness tracking with workout plans, progress monitoring, and social features.',
-      technologies: ['React Native', 'Firebase', 'Redux', 'Expo'],
-      status: 'Completed',
-      link: '#'
+      value: '6',
+      label: 'Core Technologies',
+      description: 'Focused mastery in key areas'
     }
   ];
 
-  const certifications = [
+  const coreExpertise = [
     {
-      title: 'AWS Certified Developer',
-      issuer: 'Amazon Web Services',
-      year: '2023',
-      credentialId: 'AWS-DEV-2023'
+      category: 'macOS',
+      description: 'System optimization, productivity tips, and essential workflows',
+      level: 'Expert',
+      tutorialCount: 4
     },
     {
-      title: 'React Developer Certification',
-      issuer: 'Meta',
-      year: '2022',
-      credentialId: 'META-REACT-2022'
+      category: 'Windows',
+      description: 'Configuration, troubleshooting, and power user techniques',
+      level: 'Expert',
+      tutorialCount: 3
     },
     {
-      title: 'Full-Stack Web Development',
-      issuer: 'freeCodeCamp',
-      year: '2021',
-      credentialId: 'FCC-FULLSTACK-2021'
+      category: 'Android',
+      description: 'Device setup, customization, and mobile productivity',
+      level: 'Advanced',
+      tutorialCount: 2
+    },
+    {
+      category: 'VS Code',
+      description: 'Editor mastery, extensions, and development workflows',
+      level: 'Expert',
+      tutorialCount: 5
+    },
+    {
+      category: 'Homebrew',
+      description: 'Package management and command-line efficiency',
+      level: 'Advanced',
+      tutorialCount: 3
+    },
+    {
+      category: 'Google Suite',
+      description: 'Productivity optimization and collaboration workflows',
+      level: 'Advanced',
+      tutorialCount: 4
+    }
+  ];
+
+  const values = [
+    {
+      title: 'Authentic Growth',
+      description: 'We celebrate our journey honestly, building trust through transparency about our progress.',
+      icon: Heart
+    },
+    {
+      title: 'Focused Excellence',
+      description: 'Rather than claiming expertise in everything, we master the technologies we actually teach.',
+      icon: Target
+    },
+    {
+      title: 'Community-Driven',
+      description: 'Our content direction is shaped by real feedback from learners like you.',
+      icon: Users
     }
   ];
 
@@ -99,152 +130,139 @@ export function AboutExperience() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-          Experience & Projects
+          Our Journey So Far
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Here's a look at my professional journey, education, and some of the projects I've worked on.
+          In less than a year, we've built something meaningful. Here's our authentic story of growth, learning, and community building.
         </p>
       </div>
 
-      {/* Experience Timeline */}
+      {/* Journey Timeline */}
       <div className="space-y-8">
-        <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
-          <Briefcase className="h-6 w-6" />
-          Professional Experience
-        </h3>
-
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <Card key={index} className="border-l-4 border-l-primary">
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      {exp.type === 'work' ? (
-                        <Briefcase className="h-4 w-4 text-primary" />
-                      ) : (
-                        <GraduationCap className="h-4 w-4 text-primary" />
-                      )}
-                      <h4 className="text-lg font-semibold text-foreground">
-                        {exp.title}
-                      </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {journeyMilestones.map((milestone, index) => {
+            const IconComponent = milestone.icon;
+            return (
+              <Card key={index} className="relative overflow-hidden">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <IconComponent className="h-5 w-5 text-primary" />
                     </div>
-
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
-                      <span className="font-medium text-primary">{exp.company}</span>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        <span>{exp.location}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-muted-foreground mb-4">
-                      {exp.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="secondary" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
+                    <div>
+                      <Badge variant="outline" className="mb-1 text-xs">
+                        {milestone.period}
+                      </Badge>
+                      <CardTitle className="text-lg">{milestone.title}</CardTitle>
                     </div>
                   </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {milestone.description}
+                  </p>
+                </CardContent>
+                <div className="absolute top-4 right-4">
+                  <Badge variant="secondary" className="text-xs font-medium">
+                    {milestone.highlight}
+                  </Badge>
                 </div>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Current Stats */}
+      <div className="space-y-8">
+        <h3 className="text-2xl font-bold text-foreground text-center">
+          Where We Stand Today
+        </h3>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {currentStats.map((stat, index) => (
+            <Card key={index} className="text-center">
+              <CardContent className="p-6">
+                <div className="text-3xl font-bold text-primary mb-2">
+                  {stat.value}
+                </div>
+                <div className="font-medium text-foreground mb-1">
+                  {stat.label}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {stat.description}
+                </p>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      {/* Projects */}
+      {/* Skills & Expertise Aligned with Content */}
       <div className="space-y-8">
         <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
-          <Award className="h-6 w-6" />
-          Featured Projects
+          <BookOpen className="h-6 w-6" />
+          Our Expertise Matches Our Content
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {coreExpertise.map((area, index) => (
+            <Card key={index} className="h-full">
               <CardHeader>
-                <div className="flex items-start justify-between">
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-lg">{area.category}</CardTitle>
                   <Badge
-                    variant={project.status === 'Completed' ? 'default' : 'secondary'}
+                    variant={area.level === 'Expert' ? 'default' : 'secondary'}
                     className="text-xs"
                   >
-                    {project.status}
+                    {area.level}
                   </Badge>
                 </div>
               </CardHeader>
-
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground text-sm">
-                  {project.description}
+              <CardContent className="space-y-3">
+                <p className="text-sm text-muted-foreground">
+                  {area.description}
                 </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <Badge key={techIndex} variant="outline" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
+                <div className="flex items-center gap-2">
+                  <Eye className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">
+                    {area.tutorialCount} tutorials available
+                  </span>
                 </div>
-
-                <Link href={project.link}>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                  >
-                    View Project
-                    <ExternalLink className="ml-2 h-3 w-3" />
-                  </Button>
-                </Link>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
 
-      {/* Certifications */}
+      {/* Our Approach */}
       <div className="space-y-8">
         <h3 className="text-2xl font-bold text-foreground flex items-center gap-2">
           <Award className="h-6 w-6" />
-          Certifications
+          Our Approach
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {certifications.map((cert, index) => (
-            <Card key={index} className="text-center">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-6 w-6 text-primary" />
-                </div>
+          {values.map((value, index) => {
+            const IconComponent = value.icon;
+            return (
+              <Card key={index} className="text-center h-full">
+                <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <IconComponent className="h-6 w-6 text-primary" />
+                  </div>
 
-                <h4 className="font-semibold text-foreground mb-2">
-                  {cert.title}
-                </h4>
+                  <h4 className="font-semibold text-foreground mb-3">
+                    {value.title}
+                  </h4>
 
-                <p className="text-sm text-muted-foreground mb-1">
-                  {cert.issuer}
-                </p>
-
-                <p className="text-xs text-muted-foreground mb-3">
-                  {cert.year}
-                </p>
-
-                <Badge variant="outline" className="text-xs">
-                  {cert.credentialId}
-                </Badge>
-              </CardContent>
-            </Card>
-          ))}
+                  <p className="text-sm text-muted-foreground">
+                    {value.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </div>

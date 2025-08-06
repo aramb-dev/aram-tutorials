@@ -14,15 +14,15 @@ export function FeaturedPosts() {
       <div className="text-center">
         <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary rounded-full px-4 py-2 mb-4">
           <Star className="h-4 w-4" />
-          <span className="text-sm font-medium">Featured Content</span>
+          <span className="text-sm font-medium">🔥 Featured Content</span>
         </div>
 
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-          Popular Tutorials
+          Featured Tutorials
         </h2>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Discover our most popular and highly-rated tutorials that developers love.
+          Hand-picked tutorials covering the most important concepts and popular technologies in development.
         </p>
       </div>
 

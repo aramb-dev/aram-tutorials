@@ -91,11 +91,11 @@ export function AboutSkills() {
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-          Skills & Expertise
+          Our Expertise
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Over the years, I've worked with a wide range of technologies and frameworks.
-          Here's what I specialize in and love to teach.
+          Our team brings together years of experience across a wide range of technologies and frameworks.
+          Here's what we specialize in and love to teach.
         </p>
       </div>
 
@@ -164,7 +164,7 @@ export function AboutSkills() {
       <div className="bg-gradient-to-r from-primary/5 to-brand-light/5 rounded-2xl p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-            My Learning Philosophy
+            Our Teaching Philosophy
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -174,7 +174,7 @@ export function AboutSkills() {
               </div>
               <h4 className="font-semibold text-foreground">Learn by Doing</h4>
               <p className="text-sm text-muted-foreground">
-                The best way to learn programming is through hands-on practice and real projects.
+                We believe the best way to learn programming is through hands-on practice and real projects.
               </p>
             </div>
 
@@ -184,7 +184,7 @@ export function AboutSkills() {
               </div>
               <h4 className="font-semibold text-foreground">Stay Current</h4>
               <p className="text-sm text-muted-foreground">
-                Technology evolves rapidly. I continuously learn and adapt to new trends and tools.
+                Technology evolves rapidly. We continuously update our content to reflect the latest trends and best practices.
               </p>
             </div>
 
@@ -192,9 +192,9 @@ export function AboutSkills() {
               <div className="w-12 h-12 bg-brand-lighter/20 rounded-lg flex items-center justify-center mx-auto">
                 <Zap className="h-6 w-6 text-brand-lighter" />
               </div>
-              <h4 className="font-semibold text-foreground">Share Knowledge</h4>
+              <h4 className="font-semibold text-foreground">Clear & Practical</h4>
               <p className="text-sm text-muted-foreground">
-                Teaching others reinforces my own learning and helps build a stronger community.
+                Our tutorials focus on clear explanations and practical applications you can use immediately.
               </p>
             </div>
           </div>

@@ -1,12 +1,12 @@
 'use client';
 
-import { 
-  Mail, 
-  MapPin, 
-  Clock, 
-  Github, 
-  Twitter, 
-  Linkedin, 
+import {
+  Mail,
+  MapPin,
+  Clock,
+  Github,
+  Twitter,
+  Linkedin,
   Youtube,
   ExternalLink,
   Calendar,
@@ -23,8 +23,8 @@ export function ContactInfo() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'contact@aramtutorials.com',
-      href: 'mailto:contact@aramtutorials.com',
+      value: 'aramtutorials@gmail.com',
+      href: 'mailto:aramtutorials@gmail.com',
       description: 'Best for detailed questions and collaboration'
     },
     {
@@ -45,10 +45,10 @@ export function ContactInfo() {
 
   const socialLinks = [
     {
-      icon: Github,
-      label: 'GitHub',
-      href: 'https://github.com/aram-tutorials',
-      color: 'hover:text-gray-900 dark:hover:text-gray-100'
+      icon: Youtube,
+      label: 'YouTube',
+      href: 'https://YouTube.com/@AramTutorials',
+      color: 'hover:text-red-600'
     },
     {
       icon: Twitter,
@@ -61,12 +61,6 @@ export function ContactInfo() {
       label: 'LinkedIn',
       href: 'https://linkedin.com/in/aramtutorials',
       color: 'hover:text-blue-600'
-    },
-    {
-      icon: Youtube,
-      label: 'YouTube',
-      href: 'https://youtube.com/@aramtutorials',
-      color: 'hover:text-red-600'
     }
   ];
 
@@ -141,10 +135,10 @@ export function ContactInfo() {
               <Badge variant="default">{responseTime.urgent}</Badge>
             </div>
           </div>
-          
+
           <div className="mt-4 p-3 bg-muted/30 rounded-lg">
             <p className="text-xs text-muted-foreground">
-              <strong>Note:</strong> Our team operates across multiple timezones. We typically respond faster during 
+              <strong>Note:</strong> Our team operates across multiple timezones. We typically respond faster during
               weekdays (9 AM - 6 PM UTC).
             </p>
           </div>
@@ -170,7 +164,7 @@ export function ContactInfo() {
                 <p className="text-sm text-muted-foreground">Global Team (Multiple Timezones)</p>
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <h4 className="font-medium text-sm">Working Hours</h4>
               <div className="text-sm text-muted-foreground space-y-1">
@@ -201,7 +195,7 @@ export function ContactInfo() {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3">
             {socialLinks.map((social, index) => {
               const IconComponent = social.icon;
               return (
@@ -233,19 +227,19 @@ export function ContactInfo() {
           <p className="text-sm text-muted-foreground mb-4">
             If our tutorials have helped you, consider supporting our work to help us create more quality content.
           </p>
-          
+
           <div className="space-y-3">
             <Button className="w-full" size="sm">
               <Coffee className="h-4 w-4 mr-2" />
               Buy me a coffee
             </Button>
-            
+
             <Button variant="outline" className="w-full" size="sm">
-              <Github className="h-4 w-4 mr-2" />
-              Sponsor on GitHub
+              <Youtube className="h-4 w-4 mr-2" />
+              Subscribe on YouTube
             </Button>
           </div>
-          
+
           <div className="mt-4 p-3 bg-background/50 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
               Your support helps us dedicate more time to creating free, high-quality tutorials for the community.
@@ -262,20 +256,20 @@ export function ContactInfo() {
         <CardContent>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-primary">50+</div>
-              <div className="text-xs text-muted-foreground">Tutorials Published</div>
+              <div className="text-2xl font-bold text-primary">21</div>
+              <div className="text-xs text-muted-foreground">Tutorials Created</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-primary">1K+</div>
-              <div className="text-xs text-muted-foreground">Developers Helped</div>
+              <div className="text-2xl font-bold text-primary">5.7K+</div>
+              <div className="text-xs text-muted-foreground">Community Views</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-primary">500+</div>
-              <div className="text-xs text-muted-foreground">Questions Answered</div>
+              <div className="text-2xl font-bold text-primary">6+</div>
+              <div className="text-xs text-muted-foreground">Years Experience</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-primary">4.9</div>
-              <div className="text-xs text-muted-foreground">Average Rating</div>
+              <div className="text-2xl font-bold text-primary">6</div>
+              <div className="text-xs text-muted-foreground">Core Technologies</div>
             </div>
           </div>
         </CardContent>
