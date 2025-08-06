@@ -124,48 +124,48 @@ export const FOOTER_NAV = {
   ]
 } as const;
 
-// Default categories with their styling - Updated for green theme with good contrast
+// Default categories with their styling
 export const DEFAULT_CATEGORIES: Omit<Category, 'id' | 'created_at' | 'updated_at'>[] = [
   {
     name: "Mac",
     slug: "mac",
     description: "macOS tutorials, tips, and tricks for Mac users",
-    color: "#007AFF", // Keep Apple blue for Mac
+    color: "#007AFF",
     icon: "laptop"
   },
   {
     name: "Windows",
     slug: "windows",
     description: "Windows tutorials, guides, and productivity tips",
-    color: "#0078D4", // Keep Windows blue
+    color: "#0078D4",
     icon: "monitor"
   },
   {
     name: "Android",
     slug: "android",
     description: "Android tutorials, app guides, and mobile tips",
-    color: "#34A853", // Google green for Android
+    color: "#3DDC84",
     icon: "smartphone"
   },
   {
     name: "VS Code",
     slug: "vscode",
     description: "Visual Studio Code tutorials, extensions, and productivity tips",
-    color: "#007ACC", // Keep VS Code blue
+    color: "#007ACC",
     icon: "code"
   },
   {
     name: "Homebrew",
     slug: "homebrew",
     description: "Homebrew package manager tutorials and guides",
-    color: "#22C55E", // Fresh green for Homebrew
+    color: "#FBB040",
     icon: "package"
   },
   {
     name: "Google",
     slug: "google",
     description: "Google services, apps, and productivity tutorials",
-    color: "#34A853", // Google green
+    color: "#4285F4",
     icon: "search"
   }
 ];
@@ -329,7 +329,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'React',
       slug: 'react',
       description: 'React tutorials and guides',
-      color: '#22C55E' // Updated to green theme
+      color: '#61dafb'
     },
     authorId: '1',
     author: {
@@ -367,7 +367,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'Node.js',
       slug: 'nodejs',
       description: 'Node.js backend development',
-      color: '#16A34A' // Updated to a better green shade
+      color: '#339933'
     },
     authorId: '1',
     author: {
@@ -405,7 +405,7 @@ export const MOCK_BLOG_POSTS = [
       name: 'CSS',
       slug: 'css',
       description: 'CSS styling and layout techniques',
-      color: '#059669' // Updated to teal-green for CSS
+      color: '#1572b6'
     },
     authorId: '1',
     author: {
