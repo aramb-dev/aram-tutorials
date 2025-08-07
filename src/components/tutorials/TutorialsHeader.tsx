@@ -1,80 +1,124 @@
-import { Search, BookOpen, Filter } from 'lucide-react';
+'use client';
+
+import { useState } from 'react';
+import { Search, BookOpen, Code, Cpu, Database, Globe } from 'lucide-react';
 import { SearchInput } from '@/components/ui/SearchInput';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
+const popularTopics = [
+  { name: 'React', icon: Code, color: 'bg-brand-primary/20 text-brand-primary border-brand-primary/30' },
+  { name: 'Next.js', icon: Globe, color: 'bg-brand-light/20 text-brand-light border-brand-light/30' },
+  { name: 'Node.js', icon: Cpu, color: 'bg-brand-lighter/20 text-brand-lighter border-brand-lighter/30' },
+  { name: 'Database', icon: Database, color: 'bg-brand-lightest/20 text-brand-lightest border-brand-lightest/30' },
+];
+
 export function TutorialsHeader() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleTopicClick = (topic: string) => {
+    setSearchQuery(topic);
+    // TODO: Integrate with actual search functionality
+  };
+
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="container mx-auto px-4 py-16">
+    <div className="relative overflow-hidden bg-gradient-to-br from-brand-darker via-brand-dark to-brand-darker text-white">
+      {/* Dynamic Brand Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 border border-brand-primary/30 rounded-lg transform rotate-12"></div>
+        <div className="absolute top-20 right-20 w-24 h-24 border border-brand-primary/30 rounded-lg transform -rotate-12"></div>
+        <div className="absolute bottom-20 left-1/4 w-16 h-16 border border-brand-primary/30 rounded-lg transform rotate-45"></div>
+        <div className="absolute bottom-10 right-1/3 w-20 h-20 border border-brand-primary/30 rounded-lg transform -rotate-45"></div>
+
+        {/* Circuit-like connecting lines */}
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1000 400">
+          <path
+            d="M100,200 Q300,100 500,200 T900,200"
+            stroke="#2E5E15"
+            strokeWidth="1"
+            fill="none"
+            opacity="0.3"
+          />
+          <path
+            d="M100,300 Q400,200 700,300"
+            stroke="#2E5E15"
+            strokeWidth="1"
+            fill="none"
+            opacity="0.3"
+          />
+        </svg>
+      </div>      {/* Content */}
+      <div className="relative container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Header Content */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-brand-primary/20 rounded-lg flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-brand-primary" />
+          {/* Brand Header */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="relative">
+              <div className="w-16 h-16 bg-brand-primary/30 rounded-xl flex items-center justify-center border border-brand-primary/50 backdrop-blur-sm">
+                <BookOpen className="h-8 w-8 text-brand-primary" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-primary rounded-full animate-pulse"></div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Tutorials
-            </h1>
-          </div>
-
-          <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-            Explore our comprehensive collection of programming tutorials, web development guides,
-            and tech tips. Learn at your own pace with step-by-step instructions.
-          </p>
-
-          {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
-                50+ Tutorials
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
-                10+ Categories
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="bg-brand-primary/20 text-brand-primary border-brand-primary/30">
-                Free Access
-              </Badge>
+            <div className="text-left">
+              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                Tutorials
+              </h1>
+              <p className="text-brand-lighter font-medium text-lg">Tech Made Simple</p>
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto">
+          <p className="text-xl text-slate-200 mb-12 leading-relaxed max-w-3xl mx-auto">
+            Discover our curated collection of programming tutorials and web development guides.
+            From beginner-friendly introductions to advanced techniques, find exactly what you need to level up your skills.
+          </p>          {/* Enhanced Search Experience */}
+          <div className="max-w-2xl mx-auto mb-12">
             <div className="relative">
               <SearchInput
+                value={searchQuery}
+                onChange={setSearchQuery}
                 placeholder="Search tutorials, topics, or technologies..."
-                className="w-full h-14 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/20 focus:border-brand-primary"
+                className="w-full h-16 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/15 focus:border-brand-primary focus:outline-none focus:ring-0 backdrop-blur-sm rounded-xl pr-16"
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                <Button size="sm" className="h-8 bg-brand-primary hover:bg-brand-light">
-                  <Search className="h-4 w-4" />
+              <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                <Button size="sm" className="h-12 w-12 bg-brand-primary hover:bg-brand-light rounded-lg text-white border-0 shadow-none">
+                  <Search className="h-5 w-5" />
                 </Button>
               </div>
             </div>
+          </div>
 
-            <p className="text-sm text-slate-400 mt-3">
-              Try searching for &quot;React&quot;, &quot;Next.js&quot;, &quot;JavaScript&quot;, or &quot;Node.js&quot;
-            </p>
+          {/* Interactive Topic Tags */}
+          <div className="mb-8">
+            <p className="text-sm text-slate-200 mb-4">Popular topics to get you started:</p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              {popularTopics.map((topic) => {
+                const IconComponent = topic.icon;
+                return (
+                  <button
+                    key={topic.name}
+                    onClick={() => handleTopicClick(topic.name)}
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 hover:scale-105 hover:shadow-lg backdrop-blur-sm ${topic.color}`}
+                  >
+                    <IconComponent className="h-4 w-4" />
+                    <span className="font-medium">{topic.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Authentic Stats */}
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+              21 Tutorials
+            </Badge>
+            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+              5,700+ Views
+            </Badge>
+            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+              Always Free
+            </Badge>
           </div>
         </div>
-      </div>
-
-      {/* Wave Decoration */}
-      <div className="relative">
-        <svg
-          className="w-full h-12 text-background"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-            fill="currentColor"
-          />
-        </svg>
       </div>
     </div>
   );
