@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import { BackButton } from '@/components/ui/BackButton';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BackButton } from '@/components/ui/BackButton';
-import { Home, Search, FileQuestion } from 'lucide-react';
+import { FileQuestion, Home, Search } from 'lucide-react';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
@@ -24,9 +24,9 @@ export default function NotFound() {
 
             {/* Description */}
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              Oops! The page you're looking for seems to have wandered off.
-              Don't worry though – there's plenty of great content waiting for
-              you.
+              Oops! The page you&apos;re looking for seems to have wandered off.
+              Don&apos;t worry though – there&apos;s plenty of great content
+              waiting for you.
             </p>
 
             {/* Action Buttons */}
@@ -86,7 +86,7 @@ export default function NotFound() {
         {/* Search Suggestion */}
         <div className="mt-8 text-sm text-muted-foreground">
           <p>
-            Can't find what you're looking for? Try{' '}
+            Can&apos;t find what you&apos;re looking for? Try{' '}
             <Link href="/tutorials" className="text-primary hover:underline">
               browsing our tutorials
             </Link>{' '}

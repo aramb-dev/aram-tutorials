@@ -1,17 +1,16 @@
-import {
-  Target,
-  Users,
-  BookOpen,
-  Award,
-  TrendingUp,
-  Globe,
-  Calendar,
-  Rocket,
-  Heart,
-  Eye,
-} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Award,
+  BookOpen,
+  Eye,
+  Globe,
+  Heart,
+  Rocket,
+  Target,
+  TrendingUp,
+  Users,
+} from 'lucide-react';
 
 export function AboutExperience() {
   const journeyMilestones = [
@@ -141,8 +140,9 @@ export function AboutExperience() {
           Our Journey So Far
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          In less than a year, we've built something meaningful. Here's our
-          authentic story of growth, learning, and community building.
+          In less than a year, we&apos;ve built something meaningful.
+          Here&apos;s our authentic story of growth, learning, and community
+          building.
         </p>
       </div>
 

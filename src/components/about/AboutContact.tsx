@@ -1,20 +1,17 @@
 'use client';
 
-import {
-  Mail,
-  MessageCircle,
-  Github,
-  Linkedin,
-  Twitter,
-  Youtube,
-  MapPin,
-  Clock,
-  Send,
-} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Clock,
+  Linkedin,
+  Mail,
+  MessageCircle,
+  Send,
+  Twitter,
+  Youtube,
+} from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -94,8 +91,8 @@ export function AboutContact() {
           Let's Connect
         </h2>
         <p className="text-lg text-white/80 leading-relaxed">
-          Have a question, want to collaborate, or just say hello? We'd love to
-          hear from you!
+          Have a question, want to collaborate, or just say hello? We&apos;d
+          love to hear from you!
         </p>
       </div>
 
@@ -108,7 +105,7 @@ export function AboutContact() {
               Send a Message
             </h3>
             <p className="text-white/80">
-              Fill out the form below and we'll get back to you as soon as
+              Fill out the form below and we&apos;ll get back to you as soon as
               possible.
             </p>
           </div>
@@ -122,7 +119,7 @@ export function AboutContact() {
                 Message Sent Successfully!
               </h4>
               <p className="text-green-300 text-sm">
-                Thank you for reaching out. We'll get back to you soon!
+                Thank you for reaching out. We&apos;ll get back to you soon!
               </p>
             </div>
           ) : (

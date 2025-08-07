@@ -1,14 +1,13 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
-import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
-import { BlogPostContent } from '@/components/blog/BlogPostContent';
-import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { BlogPostComments } from '@/components/blog/BlogPostComments';
+import { BlogPostContent } from '@/components/blog/BlogPostContent';
+import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
+import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { MOCK_BLOG_POSTS } from '@/lib/constants';
-import type { BlogPost } from '@/types';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -21,7 +20,7 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
+  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug);
 
   if (!post) {
     return {
@@ -33,7 +32,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Aram Tutorials`,
     description: post.excerpt,
-    keywords: post.tags.map((tag: any) => tag.name),
+    keywords: post.tags.map(tag => tag.name),
     authors: [{ name: post.author.name }],
     openGraph: {
       title: post.title,
@@ -51,7 +50,7 @@ export async function generateMetadata({
       publishedTime: post.publishedAt.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
       authors: [post.author.name],
-      tags: post.tags.map((tag: any) => tag.name),
+      tags: post.tags.map(tag => tag.name),
     },
     twitter: {
       card: 'summary_large_image',
@@ -75,21 +74,24 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
+  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug);
 
   if (!post) {
     notFound();
   }
 
+  // Type assertion to match component expectations
+  const typedPost = post as unknown as import('@/types').BlogPost;
+
   // Get related posts (same category, excluding current post)
   const relatedPosts = MOCK_BLOG_POSTS.filter(
-    p => p.id !== post.id && p.category.slug === post.category.slug
+    p => p.id !== typedPost.id && p.category.slug === typedPost.category?.slug
   ).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background">
       {/* Blog Post Header */}
-      <BlogPostHeader post={post} />
+      <BlogPostHeader post={typedPost} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
@@ -103,7 +105,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="lg" text="Loading content..." />
                 }
               >
-                <BlogPostContent post={post} />
+                <BlogPostContent post={typedPost} />
               </Suspense>
 
               {/* Comments Section */}
@@ -112,7 +114,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="md" text="Loading comments..." />
                 }
               >
-                <BlogPostComments postId={post.id} />
+                <BlogPostComments postId={typedPost.id} />
               </Suspense>
             </article>
           </div>
@@ -125,7 +127,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="sm" text="Loading sidebar..." />
                 }
               >
-                <BlogPostSidebar post={post} />
+                <BlogPostSidebar post={typedPost} />
               </Suspense>
             </div>
           </div>
@@ -140,9 +142,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               }
             >
               <RelatedPosts
-                currentPostId={post.id}
-                category={post.category?.name}
-                tags={post.tags?.map((tag: any) => tag.name)}
+                currentPostId={typedPost.id}
+                category={typedPost.category?.name}
+                tags={typedPost.tags?.map(tag => tag.name)}
               />
             </Suspense>
           </div>
