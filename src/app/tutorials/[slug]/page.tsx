@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+import Link from 'next/link';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostContent } from '@/components/blog/BlogPostContent';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
@@ -20,7 +22,7 @@ interface BlogPostPageProps {
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
-  
+
   if (!post) {
     return {
       title: 'Post Not Found | Aram Tutorials',
@@ -74,7 +76,7 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = MOCK_BLOG_POSTS.find(p => p.slug === slug) as any;
-  
+
   if (!post) {
     notFound();
   }
@@ -86,9 +88,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Custom Tutorial Detail Page Header */}
+      <header className="bg-background border-b border-border">
+        <div className="container mx-auto px-4 py-4">
+          <Link
+            href="/tutorials"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <BookOpen className="h-4 w-4" />
+            Back to Tutorials
+          </Link>
+        </div>
+      </header>
+
       {/* Blog Post Header */}
       <BlogPostHeader post={post} />
-      
+
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -99,14 +115,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Suspense fallback={<LoadingSpinner size="lg" text="Loading content..." />}>
                 <BlogPostContent post={post} />
               </Suspense>
-              
+
               {/* Comments Section */}
               <Suspense fallback={<LoadingSpinner size="md" text="Loading comments..." />}>
                 <BlogPostComments postId={post.id} />
               </Suspense>
             </article>
           </div>
-          
+
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
@@ -116,7 +132,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
         </div>
-        
+
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <div className="mt-16">
