@@ -59,9 +59,9 @@ export function AboutHero() {
 
                 <Button
                   asChild
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
-                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                  className="bg-white/15 text-white border-white/20 hover:bg-white/25 hover:text-white backdrop-blur-sm font-semibold"
                 >
                   <Link href="/tutorials">
                     View Our Tutorials
