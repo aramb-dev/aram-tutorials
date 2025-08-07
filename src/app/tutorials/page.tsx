@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import Link from 'next/link';
-import { Home, BookOpen } from 'lucide-react';
 import { TutorialsHeader } from '@/components/tutorials/TutorialsHeader';
 import { TutorialsFilters } from '@/components/tutorials/TutorialsFilters';
 import { TutorialsList } from '@/components/tutorials/TutorialsList';
@@ -63,20 +61,6 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Custom Tutorials Page Header */}
-      <header className="bg-background border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-          >
-            <Home className="h-4 w-4" />
-            <BookOpen className="h-4 w-4" />
-            Browse All Tutorials
-          </Link>
-        </div>
-      </header>
-
       {/* Page Header */}
       <TutorialsHeader />
 

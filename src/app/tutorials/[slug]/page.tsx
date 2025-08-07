@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, BookOpen } from 'lucide-react';
 import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostContent } from '@/components/blog/BlogPostContent';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
@@ -88,20 +86,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Custom Tutorial Detail Page Header */}
-      <header className="bg-background border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <Link
-            href="/tutorials"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <BookOpen className="h-4 w-4" />
-            Back to Tutorials
-          </Link>
-        </div>
-      </header>
-
       {/* Blog Post Header */}
       <BlogPostHeader post={post} />
 
