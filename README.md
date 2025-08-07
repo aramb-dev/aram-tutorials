@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aram-tutorials
 
-## Getting Started
+A personal website and blog featuring tech tutorials and articles.
 
-First, run the development server:
+## Project Purpose & Core Functionality
+
+This project is a modern, full-stack web application built with Next.js. Its primary purpose is to serve as a personal portfolio and knowledge-sharing platform. The core functionality revolves around providing educational content through a blog and a dedicated tutorials section. It also includes pages for personal information (About) and user interaction (Contact).
+
+## Key Features
+
+- **Blog:** A feature-rich blog with components for individual posts, comments, categories, and related post suggestions.
+- **Tutorials:** A dedicated section for tutorials, complete with filtering and listing capabilities.
+- **Contact Page:** Includes a contact form for user inquiries and an FAQ section.
+- **About Page:** A comprehensive "About Me" section detailing personal story, skills, and professional experience.
+- **Home Page:** A well-structured landing page with a hero section, featured posts, and a newsletter subscription form.
+- **Custom UI Library:** A set of reusable UI components, indicating a consistent design system.
+
+## Installation & Dependencies
+
+### Installation
+
+To get started, clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/your-username/aram-tutorials.git
+cd aram-tutorials
+npm install
+```
+
+### Running the Development Server
+
+Run the following command to start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To create a production build, run:
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Starting the Production Server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To start the production server, run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run start
+```
 
-## Deploy on Vercel
+### Key Dependencies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Core:** `next`, `react`, `react-dom`
+- **Database:** `@neondatabase/serverless`
+- **Authentication:** `next-auth`
+- **UI:** `@radix-ui/*`, `tailwindcss`
+- **Forms:** `zod`, `react-hook-form`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Configuration
+
+The `next.config.ts` file is configured to allow images from the following remote domains:
+
+- `trae-api-us.mchost.guru`
+- `images.unsplash.com`
+- `via.placeholder.com`
+
+## Contributing
+
+We welcome contributions to improve the project. Please follow these guidelines:
+
+- **Bug Reports:** If you find a bug, please open an issue with a detailed description, steps to reproduce, and expected behavior.
+- **Feature Suggestions:** Have an idea for a new feature? Open an issue to discuss it.
+- **Pull Requests:** We welcome pull requests. Please ensure your code follows the project's coding standards and includes tests where applicable.
+
+## Roadmap
+
+Here are some of the planned enhancements for the future:
+
+- [ ] Implement user authentication for comments and interactions.
+- [ ] Add a dark mode toggle.
+- [ ] Expand the tutorials section with more advanced topics.
+- [ ] Optimize performance and accessibility.
+
+## License
+
+This project is licensed under the **MIT License**.
+
+## Contact
+
+For any inquiries or support, please reach out via the contact form on the website or open an issue on GitHub.
