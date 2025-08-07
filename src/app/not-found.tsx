@@ -25,7 +25,8 @@ export default function NotFound() {
             {/* Description */}
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Oops! The page you're looking for seems to have wandered off.
-              Don't worry though – there's plenty of great content waiting for you.
+              Don't worry though – there's plenty of great content waiting for
+              you.
             </p>
 
             {/* Action Buttons */}
@@ -43,7 +44,6 @@ export default function NotFound() {
                   Browse Tutorials
                 </Link>
               </Button>
-
 
               <BackButton />
             </div>

@@ -9,7 +9,7 @@ import {
   Hash,
   Folder,
   Calendar,
-  Clock
+  Clock,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,7 +28,7 @@ interface TutorialsFiltersProps {
 export function TutorialsFilters({
   selectedCategory,
   selectedTag,
-  searchQuery
+  searchQuery,
 }: TutorialsFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -36,13 +36,13 @@ export function TutorialsFilters({
     categories: true,
     tags: false,
     dateRange: false,
-    difficulty: false
+    difficulty: false,
   });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections(prev => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
@@ -76,13 +76,13 @@ export function TutorialsFilters({
     { name: 'Tailwind', count: 9 },
     { name: 'API', count: 7 },
     { name: 'Database', count: 6 },
-    { name: 'Authentication', count: 5 }
+    { name: 'Authentication', count: 5 },
   ];
 
   const difficultyLevels = [
     { name: 'Beginner', count: 18 },
     { name: 'Intermediate', count: 22 },
-    { name: 'Advanced', count: 10 }
+    { name: 'Advanced', count: 10 },
   ];
 
   const hasActiveFilters = selectedCategory || selectedTag || searchQuery;
@@ -180,7 +180,7 @@ export function TutorialsFilters({
         </CardHeader>
         {expandedSections.categories && (
           <CardContent className="space-y-2">
-            {DEFAULT_CATEGORIES.map((category) => (
+            {DEFAULT_CATEGORIES.map(category => (
               <button
                 key={category.slug}
                 onClick={() => updateFilters('category', category.slug)}
@@ -226,7 +226,7 @@ export function TutorialsFilters({
         {expandedSections.tags && (
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              {popularTags.map((tag) => (
+              {popularTags.map(tag => (
                 <button
                   key={tag.name}
                   onClick={() => updateFilters('tag', tag.name.toLowerCase())}
@@ -267,10 +267,12 @@ export function TutorialsFilters({
         </CardHeader>
         {expandedSections.difficulty && (
           <CardContent className="space-y-2">
-            {difficultyLevels.map((level) => (
+            {difficultyLevels.map(level => (
               <button
                 key={level.name}
-                onClick={() => updateFilters('difficulty', level.name.toLowerCase())}
+                onClick={() =>
+                  updateFilters('difficulty', level.name.toLowerCase())
+                }
                 className="w-full text-left p-2 rounded-md transition-colors hover:bg-muted text-muted-foreground"
               >
                 <div className="flex items-center justify-between">

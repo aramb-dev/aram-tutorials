@@ -9,7 +9,7 @@ import {
   Youtube,
   MapPin,
   Clock,
-  Send
+  Send,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,12 +23,14 @@ export function AboutContact() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -53,14 +55,14 @@ export function AboutContact() {
       icon: Mail,
       label: 'Email',
       value: 'aramtutorials@gmail.com',
-      link: 'mailto:aramtutorials@gmail.com'
+      link: 'mailto:aramtutorials@gmail.com',
     },
     {
       icon: Clock,
       label: 'Response Time',
       value: 'Typically within 24 hours',
-      link: null
-    }
+      link: null,
+    },
   ];
 
   const socialLinks = [
@@ -68,20 +70,20 @@ export function AboutContact() {
       name: 'YouTube',
       icon: Youtube,
       url: 'https://YouTube.com/@AramTutorials',
-      description: 'Subscribe for video tutorials'
+      description: 'Subscribe for video tutorials',
     },
     {
       name: 'LinkedIn',
       icon: Linkedin,
       url: 'https://linkedin.com/in/aramtutorials',
-      description: 'Connect with us professionally'
+      description: 'Connect with us professionally',
     },
     {
       name: 'Twitter',
       icon: Twitter,
       url: 'https://twitter.com/aramtutorials',
-      description: 'Follow for tech updates and tips'
-    }
+      description: 'Follow for tech updates and tips',
+    },
   ];
 
   return (
@@ -92,7 +94,8 @@ export function AboutContact() {
           Let's Connect
         </h2>
         <p className="text-lg text-white/80 leading-relaxed">
-          Have a question, want to collaborate, or just say hello? We'd love to hear from you!
+          Have a question, want to collaborate, or just say hello? We'd love to
+          hear from you!
         </p>
       </div>
 
@@ -105,7 +108,8 @@ export function AboutContact() {
               Send a Message
             </h3>
             <p className="text-white/80">
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we'll get back to you as soon as
+              possible.
             </p>
           </div>
 
@@ -126,7 +130,10 @@ export function AboutContact() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-primary-foreground/90 mb-2"
+                    >
                       Name *
                     </label>
                     <Input
@@ -142,7 +149,10 @@ export function AboutContact() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-primary-foreground/90 mb-2"
+                    >
                       Email *
                     </label>
                     <Input
@@ -159,7 +169,10 @@ export function AboutContact() {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-primary-foreground/90 mb-2"
+                  >
                     Subject *
                   </label>
                   <Input
@@ -175,7 +188,10 @@ export function AboutContact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-primary-foreground/90 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-primary-foreground/90 mb-2"
+                  >
                     Message *
                   </label>
                   <Textarea
@@ -221,7 +237,9 @@ export function AboutContact() {
 
             {/* Direct Contact */}
             <div className="mb-8">
-              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">Direct Contact</h4>
+              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">
+                Direct Contact
+              </h4>
               <div className="space-y-3">
                 {contactInfo.map((info, index) => {
                   const IconComponent = info.icon;
@@ -231,8 +249,12 @@ export function AboutContact() {
                         <IconComponent className="h-5 w-5 text-brand-lightest" />
                       </div>
                       <div>
-                        <p className="font-medium text-primary-foreground">{info.label}</p>
-                        <p className="text-sm text-primary-foreground/70">{info.value}</p>
+                        <p className="font-medium text-primary-foreground">
+                          {info.label}
+                        </p>
+                        <p className="text-sm text-primary-foreground/70">
+                          {info.value}
+                        </p>
                       </div>
                     </div>
                   );
@@ -242,9 +264,7 @@ export function AboutContact() {
                       {content}
                     </Link>
                   ) : (
-                    <div key={index}>
-                      {content}
-                    </div>
+                    <div key={index}>{content}</div>
                   );
                 })}
               </div>
@@ -252,7 +272,9 @@ export function AboutContact() {
 
             {/* Community & Code */}
             <div>
-              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">Community & Code</h4>
+              <h4 className="text-lg font-semibold text-primary-foreground/90 mb-4">
+                Community & Code
+              </h4>
               <div className="space-y-3">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;

@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Copy, 
-  Check, 
-  ExternalLink, 
-  Download, 
+import {
+  Copy,
+  Check,
+  ExternalLink,
+  Download,
   Play,
   Code,
   FileText,
   Lightbulb,
-  AlertTriangle
+  AlertTriangle,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -47,7 +47,7 @@ npx create-next-app@latest my-app --typescript --tailwind --eslint
 cd my-app
 
 // Install additional dependencies
-npm install lucide-react @types/node`
+npm install lucide-react @types/node`,
     },
     {
       id: 'code-2',
@@ -70,8 +70,8 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
       </Button>
     </div>
   );
-}`
-    }
+}`,
+    },
   ];
 
   return (
@@ -86,19 +86,34 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
         </CardHeader>
         <CardContent>
           <nav className="space-y-2">
-            <a href="#introduction" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#introduction"
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               1. Introduction
             </a>
-            <a href="#getting-started" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#getting-started"
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               2. Getting Started
             </a>
-            <a href="#implementation" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#implementation"
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               3. Implementation
             </a>
-            <a href="#best-practices" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#best-practices"
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               4. Best Practices
             </a>
-            <a href="#conclusion" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a
+              href="#conclusion"
+              className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               5. Conclusion
             </a>
           </nav>
@@ -110,11 +125,13 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
         <div className="space-y-8">
           {/* Introduction Section */}
           <section id="introduction">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Introduction</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Introduction
+            </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
               {post.content}
             </p>
-            
+
             {/* Info Box */}
             <Card className="border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-800">
               <CardContent className="p-4">
@@ -127,8 +144,9 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
                       Pro Tip
                     </h4>
                     <p className="text-blue-700 dark:text-blue-300 text-sm">
-                      Before diving into the implementation, make sure you have a solid understanding of the fundamentals. 
-                      This will help you follow along more easily and avoid common pitfalls.
+                      Before diving into the implementation, make sure you have
+                      a solid understanding of the fundamentals. This will help
+                      you follow along more easily and avoid common pitfalls.
                     </p>
                   </div>
                 </div>
@@ -138,12 +156,14 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
 
           {/* Getting Started Section */}
           <section id="getting-started">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Getting Started</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Getting Started
+            </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Let's start by setting up our development environment. We'll need to install a few dependencies 
-              and configure our project structure.
+              Let's start by setting up our development environment. We'll need
+              to install a few dependencies and configure our project structure.
             </p>
-            
+
             {/* Prerequisites */}
             <Card className="mb-6">
               <CardHeader>
@@ -160,8 +180,8 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
                     Basic knowledge of React and TypeScript
                   </li>
                   <li className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-primary rounded-full" />
-                    A code editor (VS Code recommended)
+                    <div className="w-2 h-2 bg-primary rounded-full" />A code
+                    editor (VS Code recommended)
                   </li>
                 </ul>
               </CardContent>
@@ -169,7 +189,7 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
 
             {/* Code Block */}
             <div className="space-y-4">
-              {codeBlocks.map((block) => (
+              {codeBlocks.map(block => (
                 <Card key={block.id} className="overflow-hidden">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
@@ -206,10 +226,13 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
 
           {/* Implementation Section */}
           <section id="implementation">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Implementation</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Implementation
+            </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Now that we have our environment set up, let's dive into the actual implementation. 
-              We'll build this step by step, explaining each part along the way.
+              Now that we have our environment set up, let's dive into the
+              actual implementation. We'll build this step by step, explaining
+              each part along the way.
             </p>
 
             {/* Warning Box */}
@@ -224,8 +247,9 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
                       Important Note
                     </h4>
                     <p className="text-yellow-700 dark:text-yellow-300 text-sm">
-                      Make sure to test your implementation thoroughly before deploying to production. 
-                      The examples shown here are for educational purposes.
+                      Make sure to test your implementation thoroughly before
+                      deploying to production. The examples shown here are for
+                      educational purposes.
                     </p>
                   </div>
                 </div>
@@ -233,14 +257,17 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
             </Card>
 
             <p className="text-muted-foreground leading-relaxed mb-6">
-              The implementation involves several key concepts that work together to create a robust solution. 
-              Let's break down each component and understand how they interact with each other.
+              The implementation involves several key concepts that work
+              together to create a robust solution. Let's break down each
+              component and understand how they interact with each other.
             </p>
           </section>
 
           {/* Best Practices Section */}
           <section id="best-practices">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Best Practices</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Best Practices
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <Card>
                 <CardHeader>
@@ -255,7 +282,7 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Security</CardTitle>
@@ -274,15 +301,20 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
 
           {/* Conclusion Section */}
           <section id="conclusion">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Conclusion</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Conclusion
+            </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              In this tutorial, we've covered the essential concepts and implementation details needed to build 
-              a robust solution. The techniques we've discussed will serve as a solid foundation for your future projects.
+              In this tutorial, we've covered the essential concepts and
+              implementation details needed to build a robust solution. The
+              techniques we've discussed will serve as a solid foundation for
+              your future projects.
             </p>
-            
+
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Remember that learning is an iterative process. Don't hesitate to experiment with the code, 
-              try different approaches, and build upon what you've learned here.
+              Remember that learning is an iterative process. Don't hesitate to
+              experiment with the code, try different approaches, and build upon
+              what you've learned here.
             </p>
           </section>
 
@@ -293,22 +325,22 @@ export function MyComponent({ title, onClick }: MyComponentProps) {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Official Documentation
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Download className="h-4 w-4" />
                   Download Source Code
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Play className="h-4 w-4" />

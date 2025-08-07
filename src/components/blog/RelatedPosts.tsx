@@ -7,7 +7,7 @@ import {
   Eye,
   TrendingUp,
   Star,
-  BookOpen
+  BookOpen,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -21,16 +21,22 @@ interface RelatedPostsProps {
   tags?: string[];
 }
 
-export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProps) {
+export function RelatedPosts({
+  currentPostId,
+  category,
+  tags,
+}: RelatedPostsProps) {
   // Mock related posts data - in a real app, this would come from an API
   const relatedPosts: BlogPost[] = [
     {
       id: '2',
       title: 'Advanced React Patterns: Compound Components and Render Props',
       slug: 'advanced-react-patterns',
-      excerpt: 'Learn advanced React patterns that will make your components more flexible and reusable. We\'ll explore compound components, render props, and custom hooks.',
+      excerpt:
+        "Learn advanced React patterns that will make your components more flexible and reusable. We'll explore compound components, render props, and custom hooks.",
       content: 'Detailed content about advanced React patterns...',
-      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20React%20development%20setup%20with%20code%20editor%20showing%20advanced%20patterns%2C%20clean%20workspace%2C%20professional%20tech%20illustration&image_size=landscape_16_9',
+      featured_image:
+        'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20React%20development%20setup%20with%20code%20editor%20showing%20advanced%20patterns%2C%20clean%20workspace%2C%20professional%20tech%20illustration&image_size=landscape_16_9',
       author_id: '1',
       category_id: '1',
       status: 'published' as const,
@@ -44,9 +50,10 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        avatar_url:
+          'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       category: {
         id: '1',
@@ -54,21 +61,41 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         slug: 'react',
         color: '#4A7C59',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       tags: [
-        { id: '1', name: 'React', slug: 'react', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '2', name: 'JavaScript', slug: 'javascript', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '5', name: 'Advanced', slug: 'advanced', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
-      ]
+        {
+          id: '1',
+          name: 'React',
+          slug: 'react',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '2',
+          name: 'JavaScript',
+          slug: 'javascript',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '5',
+          name: 'Advanced',
+          slug: 'advanced',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+      ],
     },
     {
       id: '3',
       title: 'TypeScript Best Practices for React Applications',
       slug: 'typescript-best-practices-react',
-      excerpt: 'Discover the best practices for using TypeScript in React applications. From type definitions to advanced patterns, we\'ll cover everything you need to know.',
+      excerpt:
+        "Discover the best practices for using TypeScript in React applications. From type definitions to advanced patterns, we'll cover everything you need to know.",
       content: 'Comprehensive guide to TypeScript best practices...',
-      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=TypeScript%20code%20editor%20with%20React%20components%2C%20type%20definitions%2C%20modern%20development%20environment%2C%20clean%20professional%20setup&image_size=landscape_16_9',
+      featured_image:
+        'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=TypeScript%20code%20editor%20with%20React%20components%2C%20type%20definitions%2C%20modern%20development%20environment%2C%20clean%20professional%20setup&image_size=landscape_16_9',
       author_id: '1',
       category_id: '2',
       status: 'published' as const,
@@ -82,9 +109,10 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        avatar_url:
+          'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       category: {
         id: '2',
@@ -92,21 +120,41 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         slug: 'typescript',
         color: '#3178C6',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       tags: [
-        { id: '3', name: 'TypeScript', slug: 'typescript', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '1', name: 'React', slug: 'react', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '4', name: 'Best Practices', slug: 'best-practices', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
-      ]
+        {
+          id: '3',
+          name: 'TypeScript',
+          slug: 'typescript',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '1',
+          name: 'React',
+          slug: 'react',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '4',
+          name: 'Best Practices',
+          slug: 'best-practices',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+      ],
     },
     {
       id: '4',
       title: 'Next.js Performance Optimization: A Complete Guide',
       slug: 'nextjs-performance-optimization',
-      excerpt: 'Learn how to optimize your Next.js applications for maximum performance. We\'ll cover image optimization, code splitting, caching strategies, and more.',
+      excerpt:
+        "Learn how to optimize your Next.js applications for maximum performance. We'll cover image optimization, code splitting, caching strategies, and more.",
       content: 'Complete guide to Next.js performance optimization...',
-      featured_image: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Next.js%20development%20dashboard%20showing%20performance%20metrics%2C%20optimization%20tools%2C%20modern%20web%20development%20setup&image_size=landscape_16_9',
+      featured_image:
+        'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=Next.js%20development%20dashboard%20showing%20performance%20metrics%2C%20optimization%20tools%2C%20modern%20web%20development%20setup&image_size=landscape_16_9',
       author_id: '1',
       category_id: '3',
       status: 'published' as const,
@@ -120,9 +168,10 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         id: '1',
         name: 'Aram Tutorials Team',
         email: 'contact@aramtutorials.com',
-        avatar_url: 'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
+        avatar_url:
+          'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       category: {
         id: '3',
@@ -130,14 +179,32 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         slug: 'nextjs',
         color: '#000000',
         created_at: new Date('2024-01-01T00:00:00Z'),
-        updated_at: new Date('2024-01-01T00:00:00Z')
+        updated_at: new Date('2024-01-01T00:00:00Z'),
       },
       tags: [
-        { id: '6', name: 'Next.js', slug: 'nextjs', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '7', name: 'Performance', slug: 'performance', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') },
-        { id: '8', name: 'Optimization', slug: 'optimization', created_at: new Date('2024-01-01T00:00:00Z'), updated_at: new Date('2024-01-01T00:00:00Z') }
-      ]
-    }
+        {
+          id: '6',
+          name: 'Next.js',
+          slug: 'nextjs',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '7',
+          name: 'Performance',
+          slug: 'performance',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+        {
+          id: '8',
+          name: 'Optimization',
+          slug: 'optimization',
+          created_at: new Date('2024-01-01T00:00:00Z'),
+          updated_at: new Date('2024-01-01T00:00:00Z'),
+        },
+      ],
+    },
   ];
 
   // Filter out the current post
@@ -150,22 +217,22 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
       title: 'Building a Full-Stack App with Next.js and Supabase',
       slug: 'fullstack-nextjs-supabase',
       readTime: 18,
-      views: 5234
+      views: 5234,
     },
     {
       id: '6',
       title: 'Modern CSS Techniques for React Developers',
       slug: 'modern-css-react',
       readTime: 8,
-      views: 2891
+      views: 2891,
     },
     {
       id: '7',
       title: 'State Management in React: Redux vs Zustand',
       slug: 'react-state-management',
       readTime: 12,
-      views: 4567
-    }
+      views: 4567,
+    },
   ];
 
   return (
@@ -186,7 +253,7 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.slice(0, 3).map((post) => (
+          {filteredPosts.slice(0, 3).map(post => (
             <BlogCard
               key={post.id}
               post={post}
@@ -266,48 +333,64 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
               <Link href="/tutorials?category=react" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">R</span>
+                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">
+                      R
+                    </span>
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     React
                   </span>
-                  <p className="text-xs text-muted-foreground mt-1">25 tutorials</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    25 tutorials
+                  </p>
                 </div>
               </Link>
 
               <Link href="/tutorials?category=typescript" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">TS</span>
+                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">
+                      TS
+                    </span>
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     TypeScript
                   </span>
-                  <p className="text-xs text-muted-foreground mt-1">18 tutorials</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    18 tutorials
+                  </p>
                 </div>
               </Link>
 
               <Link href="/tutorials?category=nextjs" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-gray-600 dark:text-gray-400 text-sm font-bold">N</span>
+                    <span className="text-gray-600 dark:text-gray-400 text-sm font-bold">
+                      N
+                    </span>
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     Next.js
                   </span>
-                  <p className="text-xs text-muted-foreground mt-1">15 tutorials</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    15 tutorials
+                  </p>
                 </div>
               </Link>
 
               <Link href="/tutorials?category=css" className="group">
                 <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
                   <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-purple-600 dark:text-purple-400 text-sm font-bold">CSS</span>
+                    <span className="text-purple-600 dark:text-purple-400 text-sm font-bold">
+                      CSS
+                    </span>
                   </div>
                   <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                     CSS
                   </span>
-                  <p className="text-xs text-muted-foreground mt-1">12 tutorials</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    12 tutorials
+                  </p>
                 </div>
               </Link>
             </div>
@@ -334,7 +417,8 @@ export function RelatedPosts({ currentPostId, category, tags }: RelatedPostsProp
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground mb-4">
-              Get notified when I publish new tutorials and coding tips. No spam, just quality content!
+              Get notified when I publish new tutorials and coding tips. No
+              spam, just quality content!
             </p>
 
             <div className="space-y-3">

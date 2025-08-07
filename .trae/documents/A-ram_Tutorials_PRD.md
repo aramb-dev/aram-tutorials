@@ -4,9 +4,9 @@
 
 Aram Tutorials is a modern, clean, and fast tech tutorial platform that delivers short, practical, beginner-friendly how-to videos and blog posts on everyday technology topics.
 
-* The platform helps everyday people make sense of technology through clear, actionable guides covering app installations, productivity tools, Android configurations, and computer/mobile problem-solving.
+- The platform helps everyday people make sense of technology through clear, actionable guides covering app installations, productivity tools, Android configurations, and computer/mobile problem-solving.
 
-* Target market: Tech beginners and intermediate users seeking quick, reliable solutions to common technology challenges.
+- Target market: Tech beginners and intermediate users seeking quick, reliable solutions to common technology challenges.
 
 ## 2. Core Features
 
@@ -86,17 +86,17 @@ graph TD
 
 ### 4.1 Design Style
 
-* **Primary Colors**: Deep blue (#1e293b) for headers and accents, white (#ffffff) for backgrounds
+- **Primary Colors**: Deep blue (#1e293b) for headers and accents, white (#ffffff) for backgrounds
 
-* **Secondary Colors**: Accent yellow (#fbbf24) or green (#10b981) for call-to-action buttons and highlights
+- **Secondary Colors**: Accent yellow (#fbbf24) or green (#10b981) for call-to-action buttons and highlights
 
-* **Typography**: Clean sans-serif fonts (Inter or Roboto) with 16px base size, 24px for headings
+- **Typography**: Clean sans-serif fonts (Inter or Roboto) with 16px base size, 24px for headings
 
-* **Button Style**: Rounded corners (8px radius), soft shadows, hover animations
+- **Button Style**: Rounded corners (8px radius), soft shadows, hover animations
 
-* **Layout Style**: Card-based design with generous white space, top navigation with mobile hamburger menu
+- **Layout Style**: Card-based design with generous white space, top navigation with mobile hamburger menu
 
-* **Visual Elements**: Soft drop shadows, subtle gradients, tech-themed icons, emoji integration for categories
+- **Visual Elements**: Soft drop shadows, subtle gradients, tech-themed icons, emoji integration for categories
 
 ### 4.2 Page Design Overview
 
@@ -105,4 +105,3 @@ graph TD
 | Homepage  | Hero Section | Full-width background with overlay text, gradient from deep blue to lighter blue, centered content with large typography |
 | Homepage  | Navigation   | Sticky header with logo, menu items, search icon, dark mode toggle, mobile hamburger menu                                |
 | Homepage  | Recent Posts | 3-column grid on desktop, 1-column on mobile, card design                                                                |
-

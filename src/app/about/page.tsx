@@ -6,11 +6,21 @@ import { AboutContact } from '@/components/about/AboutContact';
 
 export const metadata: Metadata = {
   title: 'About Us | Aram Tutorials',
-  description: 'Learn about Aram Tutorials team. Dedicated tech educators and developers passionate about making technology accessible to everyone through clear, practical tutorials.',
-  keywords: ['Aram Tutorials', 'team', 'developers', 'educators', 'tutorials', 'programming', 'tech education'],
+  description:
+    'Learn about Aram Tutorials team. Dedicated tech educators and developers passionate about making technology accessible to everyone through clear, practical tutorials.',
+  keywords: [
+    'Aram Tutorials',
+    'team',
+    'developers',
+    'educators',
+    'tutorials',
+    'programming',
+    'tech education',
+  ],
   openGraph: {
     title: 'About Us | Aram Tutorials',
-    description: 'Learn about the Aram Tutorials team - passionate developers and educators.',
+    description:
+      'Learn about the Aram Tutorials team - passionate developers and educators.',
     type: 'website',
   },
 };

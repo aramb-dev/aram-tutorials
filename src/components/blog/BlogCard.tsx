@@ -6,7 +6,12 @@ import Image from 'next/image';
 import { Clock, Eye, User, Calendar } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { formatDate, formatRelativeTime, generateBlogPostUrl, getCategoryColor } from '@/lib/utils';
+import {
+  formatDate,
+  formatRelativeTime,
+  generateBlogPostUrl,
+  getCategoryColor,
+} from '@/lib/utils';
 import type { BlogPost } from '@/types';
 import { IMAGES } from '@/lib/constants';
 
@@ -31,14 +36,18 @@ const BlogCard: React.FC<BlogCardProps> = ({
   showAuthor = true,
   showReadingTime = true,
   showViews = false,
-  className
+  className,
 }) => {
   const postUrl = generateBlogPostUrl(post.slug);
-  const categoryColor = post.category ? getCategoryColor(post.category.name) : undefined;
+  const categoryColor = post.category
+    ? getCategoryColor(post.category.name)
+    : undefined;
 
   if (variant === 'featured') {
     return (
-      <Card className={`group overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}>
+      <Card
+        className={`group overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}
+      >
         <div className="relative">
           {post.featured_image ? (
             <Image
@@ -51,8 +60,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
           ) : (
             <div className="w-full h-64 bg-gradient-to-br from-brand-primary/10 to-brand-light/20 flex items-center justify-center">
               <div className="text-center">
-                <div className="text-4xl font-bold text-brand-primary/30 mb-2">AT</div>
-                <div className="text-sm text-muted-foreground">Aram Tutorials</div>
+                <div className="text-4xl font-bold text-brand-primary/30 mb-2">
+                  AT
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  Aram Tutorials
+                </div>
               </div>
             </div>
           )}
@@ -89,15 +102,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
             {showTags && post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {post.tags.slice(0, 3).map((tag) => (
+                {post.tags.slice(0, 3).map(tag => (
                   <Badge key={tag.id} variant="outline">
                     {tag.name}
                   </Badge>
                 ))}
                 {post.tags.length > 3 && (
-                  <Badge variant="outline">
-                    +{post.tags.length - 3} more
-                  </Badge>
+                  <Badge variant="outline">+{post.tags.length - 3} more</Badge>
                 )}
               </div>
             )}
@@ -130,7 +141,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
               )}
               <div className="flex items-center space-x-1">
                 <Calendar className="h-4 w-4" />
-                <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
+                <span>
+                  {formatRelativeTime(
+                    (
+                      post.published_at ||
+                      post.created_at ||
+                      (post as any).publishedAt ||
+                      (post as any).updatedAt ||
+                      new Date()
+                    ).toString()
+                  )}
+                </span>
               </div>
             </div>
           </div>
@@ -141,7 +162,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
   if (variant === 'compact') {
     return (
-      <Card className={`group hover:shadow-md transition-shadow duration-200 ${className}`}>
+      <Card
+        className={`group hover:shadow-md transition-shadow duration-200 ${className}`}
+      >
         <CardContent className="p-4">
           <div className="flex space-x-4">
             {post.featured_image && (
@@ -183,7 +206,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
                         <span>{post.reading_time}m</span>
                       </div>
                     )}
-                    <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
+                    <span>
+                      {formatRelativeTime(
+                        (
+                          post.published_at ||
+                          post.created_at ||
+                          (post as any).publishedAt ||
+                          (post as any).updatedAt ||
+                          new Date()
+                        ).toString()
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -196,7 +229,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
   // Default variant
   return (
-    <Card className={`group overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}>
+    <Card
+      className={`group overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}
+    >
       <div className="relative">
         {post.featured_image ? (
           <Image
@@ -209,8 +244,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
         ) : (
           <div className="w-full h-48 bg-gradient-to-br from-brand-primary/10 to-brand-light/20 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-2xl font-bold text-brand-primary/30 mb-1">AT</div>
-              <div className="text-xs text-muted-foreground">Aram Tutorials</div>
+              <div className="text-2xl font-bold text-brand-primary/30 mb-1">
+                AT
+              </div>
+              <div className="text-xs text-muted-foreground">
+                Aram Tutorials
+              </div>
             </div>
           </div>
         )}
@@ -247,15 +286,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
           {showTags && post.tags && post.tags.length > 0 && (
             <div className="flex flex-wrap gap-1">
-              {post.tags.slice(0, 2).map((tag) => (
+              {post.tags.slice(0, 2).map(tag => (
                 <Badge key={tag.id} variant="outline">
                   {tag.name}
                 </Badge>
               ))}
               {post.tags.length > 2 && (
-                <Badge variant="outline">
-                  +{post.tags.length - 2}
-                </Badge>
+                <Badge variant="outline">+{post.tags.length - 2}</Badge>
               )}
             </div>
           )}
@@ -286,7 +323,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 <span>{post.views}</span>
               </div>
             )}
-            <span>{formatRelativeTime((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
+            <span>
+              {formatRelativeTime(
+                (
+                  post.published_at ||
+                  post.created_at ||
+                  (post as any).publishedAt ||
+                  (post as any).updatedAt ||
+                  new Date()
+                ).toString()
+              )}
+            </span>
           </div>
         </div>
       </CardFooter>

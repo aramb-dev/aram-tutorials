@@ -200,7 +200,10 @@ export interface DatabaseSchema {
 }
 
 // Utility types
-export type CreateBlogPost = Omit<BlogPost, 'id' | 'created_at' | 'updated_at' | 'views'>;
+export type CreateBlogPost = Omit<
+  BlogPost,
+  'id' | 'created_at' | 'updated_at' | 'views'
+>;
 export type UpdateBlogPost = Partial<CreateBlogPost>;
 export type CreateCategory = Omit<Category, 'id' | 'created_at' | 'updated_at'>;
 export type UpdateCategory = Partial<CreateCategory>;

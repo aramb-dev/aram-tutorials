@@ -8,7 +8,7 @@ import {
   Calendar,
   Rocket,
   Heart,
-  Eye
+  Eye,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,111 +18,119 @@ export function AboutExperience() {
     {
       period: 'August 2024',
       title: 'Foundation',
-      description: 'Aram Tutorials was launched with a clear mission: to make technology accessible through simple, practical tutorials.',
+      description:
+        'Aram Tutorials was launched with a clear mission: to make technology accessible through simple, practical tutorials.',
       icon: Rocket,
-      highlight: 'Launch'
+      highlight: 'Launch',
     },
     {
       period: 'Late 2024',
       title: 'First Content Wave',
-      description: 'We published our initial set of tutorials, focusing on essential tools for developers and learners.',
+      description:
+        'We published our initial set of tutorials, focusing on essential tools for developers and learners.',
       icon: BookOpen,
-      highlight: 'Content Creation'
+      highlight: 'Content Creation',
     },
     {
       period: 'Early 2025',
       title: 'Building Momentum',
-      description: 'Our community grew rapidly, with our tutorials surpassing 5,000 views from learners worldwide.',
+      description:
+        'Our community grew rapidly, with our tutorials surpassing 5,000 views from learners worldwide.',
       icon: TrendingUp,
-      highlight: 'Community Growth'
+      highlight: 'Community Growth',
     },
     {
       period: 'Present (August 2025)',
       title: 'Expanding Our Library',
-      description: 'Nearing our one-year anniversary, we now offer a library of over 20 tutorials and continue to expand into new technologies based on community feedback.',
+      description:
+        'Nearing our one-year anniversary, we now offer a library of over 20 tutorials and continue to expand into new technologies based on community feedback.',
       icon: Globe,
-      highlight: 'Expansion'
-    }
+      highlight: 'Expansion',
+    },
   ];
 
   const currentStats = [
     {
       value: '21',
       label: 'Tutorials Created',
-      description: 'Quality content focused on practical skills'
+      description: 'Quality content focused on practical skills',
     },
     {
       value: '5,700+',
       label: 'Community Views',
-      description: 'Real engagement from learners worldwide'
+      description: 'Real engagement from learners worldwide',
     },
     {
       value: '6+',
       label: 'Years Experience',
-      description: 'Deep expertise behind every tutorial'
+      description: 'Deep expertise behind every tutorial',
     },
     {
       value: '6',
       label: 'Core Technologies',
-      description: 'Focused mastery in key areas'
-    }
+      description: 'Focused mastery in key areas',
+    },
   ];
 
   const coreExpertise = [
     {
       category: 'macOS',
-      description: 'System optimization, productivity tips, and essential workflows',
+      description:
+        'System optimization, productivity tips, and essential workflows',
       level: 'Expert',
-      tutorialCount: 4
+      tutorialCount: 4,
     },
     {
       category: 'Windows',
       description: 'Configuration, troubleshooting, and power user techniques',
       level: 'Expert',
-      tutorialCount: 3
+      tutorialCount: 3,
     },
     {
       category: 'Android',
       description: 'Device setup, customization, and mobile productivity',
       level: 'Advanced',
-      tutorialCount: 2
+      tutorialCount: 2,
     },
     {
       category: 'VS Code',
       description: 'Editor mastery, extensions, and development workflows',
       level: 'Expert',
-      tutorialCount: 5
+      tutorialCount: 5,
     },
     {
       category: 'Homebrew',
       description: 'Package management and command-line efficiency',
       level: 'Advanced',
-      tutorialCount: 3
+      tutorialCount: 3,
     },
     {
       category: 'Google Suite',
       description: 'Productivity optimization and collaboration workflows',
       level: 'Advanced',
-      tutorialCount: 4
-    }
+      tutorialCount: 4,
+    },
   ];
 
   const values = [
     {
       title: 'Authentic Growth',
-      description: 'We celebrate our journey honestly, building trust through transparency about our progress.',
-      icon: Heart
+      description:
+        'We celebrate our journey honestly, building trust through transparency about our progress.',
+      icon: Heart,
     },
     {
       title: 'Focused Excellence',
-      description: 'Rather than claiming expertise in everything, we master the technologies we actually teach.',
-      icon: Target
+      description:
+        'Rather than claiming expertise in everything, we master the technologies we actually teach.',
+      icon: Target,
     },
     {
       title: 'Community-Driven',
-      description: 'Our content direction is shaped by real feedback from learners like you.',
-      icon: Users
-    }
+      description:
+        'Our content direction is shaped by real feedback from learners like you.',
+      icon: Users,
+    },
   ];
 
   return (
@@ -133,7 +141,8 @@ export function AboutExperience() {
           Our Journey So Far
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          In less than a year, we've built something meaningful. Here's our authentic story of growth, learning, and community building.
+          In less than a year, we've built something meaningful. Here's our
+          authentic story of growth, learning, and community building.
         </p>
       </div>
 
@@ -153,7 +162,9 @@ export function AboutExperience() {
                       <Badge variant="outline" className="mb-1 text-xs">
                         {milestone.period}
                       </Badge>
-                      <CardTitle className="text-lg">{milestone.title}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {milestone.title}
+                      </CardTitle>
                     </div>
                   </div>
                 </CardHeader>

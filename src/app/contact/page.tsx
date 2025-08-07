@@ -6,18 +6,28 @@ import { ContactFAQ } from '@/components/contact/ContactFAQ';
 
 export const metadata: Metadata = {
   title: 'Contact - Aram Tutorials',
-  description: 'Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects. We\'d love to hear from you!',
-  keywords: ['contact', 'Aram Tutorials', 'team', 'programming help', 'tutorial requests', 'collaboration'],
+  description:
+    "Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects. We'd love to hear from you!",
+  keywords: [
+    'contact',
+    'Aram Tutorials',
+    'team',
+    'programming help',
+    'tutorial requests',
+    'collaboration',
+  ],
   openGraph: {
     title: 'Contact - Aram Tutorials',
-    description: 'Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects.',
+    description:
+      'Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects.',
     type: 'website',
     url: '/contact',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact - Aram Tutorials',
-    description: 'Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects.',
+    description:
+      'Get in touch with the Aram Tutorials team. Ask questions, suggest tutorial topics, or collaborate on projects.',
   },
 };
 

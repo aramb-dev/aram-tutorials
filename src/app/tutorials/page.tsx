@@ -7,7 +7,8 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export const metadata: Metadata = {
   title: 'Tutorials | Aram Tutorials - Tech Made Simple',
-  description: 'Browse our comprehensive collection of programming tutorials, web development guides, and tech tips. Learn React, Next.js, Node.js, and more with step-by-step tutorials.',
+  description:
+    'Browse our comprehensive collection of programming tutorials, web development guides, and tech tips. Learn React, Next.js, Node.js, and more with step-by-step tutorials.',
   keywords: [
     'programming tutorials',
     'web development',
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
     'JavaScript tutorials',
     'Node.js tutorials',
     'coding tutorials',
-    'tech tutorials'
+    'tech tutorials',
   ],
   openGraph: {
     title: 'Tutorials | Aram Tutorials - Tech Made Simple',
-    description: 'Browse our comprehensive collection of programming tutorials and web development guides.',
+    description:
+      'Browse our comprehensive collection of programming tutorials and web development guides.',
     type: 'website',
     url: 'https://aramtutorials.com/tutorials',
     images: [
@@ -28,16 +30,17 @@ export const metadata: Metadata = {
         url: 'https://aramtutorials.com/og-tutorials.jpg',
         width: 1200,
         height: 630,
-        alt: 'Aram Tutorials - Programming Tutorials'
-      }
-    ]
+        alt: 'Aram Tutorials - Programming Tutorials',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tutorials | Aram Tutorials - Tech Made Simple',
-    description: 'Browse our comprehensive collection of programming tutorials and web development guides.',
-    images: ['https://aramtutorials.com/og-tutorials.jpg']
-  }
+    description:
+      'Browse our comprehensive collection of programming tutorials and web development guides.',
+    images: ['https://aramtutorials.com/og-tutorials.jpg'],
+  },
 };
 
 interface TutorialsPageProps {
@@ -50,13 +53,15 @@ interface TutorialsPageProps {
   }>;
 }
 
-export default async function TutorialsPage({ searchParams }: TutorialsPageProps) {
+export default async function TutorialsPage({
+  searchParams,
+}: TutorialsPageProps) {
   const {
     category,
     tag,
     search,
     sort = 'newest',
-    page = '1'
+    page = '1',
   } = await searchParams;
 
   return (
@@ -70,7 +75,11 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
           {/* Sidebar Filters */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
-              <Suspense fallback={<LoadingSpinner size="sm" text="Loading filters..." />}>
+              <Suspense
+                fallback={
+                  <LoadingSpinner size="sm" text="Loading filters..." />
+                }
+              >
                 <TutorialsFilters
                   selectedCategory={category}
                   selectedTag={tag}
@@ -82,7 +91,11 @@ export default async function TutorialsPage({ searchParams }: TutorialsPageProps
 
           {/* Tutorials List */}
           <div className="lg:col-span-3">
-            <Suspense fallback={<LoadingSpinner size="lg" text="Loading tutorials..." />}>
+            <Suspense
+              fallback={
+                <LoadingSpinner size="lg" text="Loading tutorials..." />
+              }
+            >
               <TutorialsList
                 category={category}
                 tag={tag}

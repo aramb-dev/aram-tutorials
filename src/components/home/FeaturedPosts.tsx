@@ -6,7 +6,10 @@ import { MOCK_BLOG_POSTS } from '@/lib/constants';
 
 export function FeaturedPosts() {
   // Get featured posts (first 3 for demo)
-  const featuredPosts = MOCK_BLOG_POSTS.filter(post => post.featured).slice(0, 3);
+  const featuredPosts = MOCK_BLOG_POSTS.filter(post => post.featured).slice(
+    0,
+    3
+  );
 
   return (
     <div className="space-y-8">
@@ -22,7 +25,8 @@ export function FeaturedPosts() {
         </h2>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Hand-picked tutorials covering the most important concepts and popular technologies in development.
+          Hand-picked tutorials covering the most important concepts and popular
+          technologies in development.
         </p>
       </div>
 
@@ -30,7 +34,7 @@ export function FeaturedPosts() {
       {featuredPosts.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredPosts.map((post) => (
+            {featuredPosts.map(post => (
               <BlogCard
                 key={post.id}
                 post={post as any}
@@ -60,14 +64,14 @@ export function FeaturedPosts() {
         <div className="text-center py-12">
           <div className="bg-muted rounded-lg p-8 max-w-md mx-auto">
             <Star className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-semibold mb-2">No Featured Posts Yet</h3>
+            <h3 className="text-lg font-semibold mb-2">
+              No Featured Posts Yet
+            </h3>
             <p className="text-muted-foreground mb-4">
               Featured tutorials will appear here once they're published.
             </p>
             <Button asChild variant="outline">
-              <Link href="/tutorials">
-                Browse All Tutorials
-              </Link>
+              <Link href="/tutorials">Browse All Tutorials</Link>
             </Button>
           </div>
         </div>

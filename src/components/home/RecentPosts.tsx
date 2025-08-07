@@ -7,7 +7,10 @@ import { MOCK_BLOG_POSTS } from '@/lib/constants';
 export function RecentPosts() {
   // Get recent posts (all posts for demo, sorted by date)
   const recentPosts = [...MOCK_BLOG_POSTS]
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    )
     .slice(0, 6);
 
   return (
@@ -32,7 +35,7 @@ export function RecentPosts() {
       {recentPosts.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recentPosts.map((post) => (
+            {recentPosts.map(post => (
               <BlogCard
                 key={post.id}
                 post={post as any}
@@ -66,9 +69,7 @@ export function RecentPosts() {
               New tutorials will appear here once they're published.
             </p>
             <Button asChild variant="outline">
-              <Link href="/about">
-                Learn About Aram
-              </Link>
+              <Link href="/about">Learn About Aram</Link>
             </Button>
           </div>
         </div>

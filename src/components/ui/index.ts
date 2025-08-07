@@ -7,7 +7,7 @@ export {
   CardFooter,
   CardTitle,
   CardDescription,
-  CardContent
+  CardContent,
 } from './card';
 
 export { Input } from './input';

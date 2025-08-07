@@ -10,7 +10,7 @@ const CategoryBadge: React.FC<CategoryBadgeProps> = ({
   category,
   size = 'md',
   variant = 'default',
-  className
+  className,
 }) => {
   const categoryColor = getCategoryColor(category.name);
   const categoryUrl = generateCategoryUrl(category.slug);
@@ -22,7 +22,7 @@ const CategoryBadge: React.FC<CategoryBadgeProps> = ({
       style={{
         backgroundColor: variant === 'default' ? categoryColor.bg : undefined,
         borderColor: variant === 'outline' ? categoryColor.border : undefined,
-        color: variant === 'outline' ? categoryColor.text : categoryColor.text
+        color: variant === 'outline' ? categoryColor.text : categoryColor.text,
       }}
     >
       {category.name}

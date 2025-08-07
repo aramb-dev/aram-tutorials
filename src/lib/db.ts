@@ -4,12 +4,11 @@ import type {
   Category,
   Tag,
   Comment,
-  User,
   NewsletterSubscription,
   ContactSubmission,
   PaginatedResponse,
   BlogPostFilters,
-  BlogPostSort
+  BlogPostSort,
 } from '@/types';
 
 // Initialize Neon client
@@ -26,7 +25,7 @@ export class Database {
     page = 1,
     limit = 12,
     filters = {},
-    sort = { field: 'published_at', order: 'desc' }
+    sort = { field: 'published_at', order: 'desc' },
   }: {
     page?: number;
     limit?: number;
@@ -100,7 +99,7 @@ export class Database {
 
     const [posts, countResult] = await Promise.all([
       sql`${sql.unsafe(query)}`,
-      sql`${sql.unsafe(countQuery)}`
+      sql`${sql.unsafe(countQuery)}`,
     ]);
 
     const total = parseInt(countResult[0]?.total || '0');
@@ -115,13 +114,13 @@ export class Database {
           name: post.category_name,
           slug: post.category_slug,
           color: post.category_color,
-          icon: post.category_icon
+          icon: post.category_icon,
         },
         author: {
           id: post.author_id,
           name: post.author_name,
-          avatar_url: post.author_avatar
-        }
+          avatar_url: post.author_avatar,
+        },
       })) as BlogPost[],
       pagination: {
         page,
@@ -129,8 +128,8 @@ export class Database {
         total,
         totalPages,
         hasNext: page < totalPages,
-        hasPrev: page > 1
-      }
+        hasPrev: page > 1,
+      },
     };
   }
 
@@ -213,15 +212,15 @@ export class Database {
         slug: post.category_slug,
         color: post.category_color,
         icon: post.category_icon,
-        description: post.category_description
+        description: post.category_description,
       },
       author: {
         id: post.author_id,
         name: post.author_name,
         email: post.author_email,
         avatar_url: post.author_avatar,
-        bio: post.author_bio
-      }
+        bio: post.author_bio,
+      },
     } as BlogPost;
   }
 
@@ -263,17 +262,21 @@ export class Database {
         name: post.category_name,
         slug: post.category_slug,
         color: post.category_color,
-        icon: post.category_icon
+        icon: post.category_icon,
       },
       author: {
         id: post.author_id,
         name: post.author_name,
-        avatar_url: post.author_avatar
-      }
+        avatar_url: post.author_avatar,
+      },
     })) as BlogPost[];
   }
 
-  static async getRelatedPosts(postId: string, categoryId: string, limit: number = 3): Promise<BlogPost[]> {
+  static async getRelatedPosts(
+    postId: string,
+    categoryId: string,
+    limit: number = 3
+  ): Promise<BlogPost[]> {
     const query = `
       SELECT
         bp.*,
@@ -315,13 +318,13 @@ export class Database {
         name: post.category_name,
         slug: post.category_slug,
         color: post.category_color,
-        icon: post.category_icon
+        icon: post.category_icon,
       },
       author: {
         id: post.author_id,
         name: post.author_name,
-        avatar_url: post.author_avatar
-      }
+        avatar_url: post.author_avatar,
+      },
     })) as BlogPost[];
   }
 
@@ -344,7 +347,7 @@ export class Database {
 
   static async getCategoryBySlug(slug: string): Promise<Category | null> {
     const result = await sql`SELECT * FROM categories WHERE slug = ${slug}`;
-    return result[0] as Category || null;
+    return (result[0] as Category) || null;
   }
 
   // Tags
@@ -387,7 +390,9 @@ export class Database {
     return result as Comment[];
   }
 
-  static async createComment(comment: Omit<Comment, 'id' | 'created_at' | 'updated_at'>): Promise<Comment> {
+  static async createComment(
+    comment: Omit<Comment, 'id' | 'created_at' | 'updated_at'>
+  ): Promise<Comment> {
     const result = await sql`
       INSERT INTO comments (post_id, author_name, author_email, content, status)
       VALUES (${comment.post_id}, ${comment.author_name}, ${comment.author_email}, ${comment.content}, ${comment.status})
@@ -398,7 +403,9 @@ export class Database {
   }
 
   // Newsletter
-  static async subscribeToNewsletter(email: string): Promise<NewsletterSubscription> {
+  static async subscribeToNewsletter(
+    email: string
+  ): Promise<NewsletterSubscription> {
     const query = `
       INSERT INTO newsletter_subscriptions (email, status, subscribed_at)
       VALUES ($1, 'active', NOW())
@@ -418,7 +425,9 @@ export class Database {
   }
 
   // Contact
-  static async createContactSubmission(submission: Omit<ContactSubmission, 'id' | 'created_at' | 'updated_at'>): Promise<ContactSubmission> {
+  static async createContactSubmission(
+    submission: Omit<ContactSubmission, 'id' | 'created_at' | 'updated_at'>
+  ): Promise<ContactSubmission> {
     const result = await sql`
       INSERT INTO contact_submissions (name, email, subject, message, status)
       VALUES (${submission.name}, ${submission.email}, ${submission.subject}, ${submission.message}, 'new')
@@ -429,7 +438,10 @@ export class Database {
   }
 
   // Search
-  static async searchPosts(query: string, limit: number = 10): Promise<BlogPost[]> {
+  static async searchPosts(
+    query: string,
+    limit: number = 10
+  ): Promise<BlogPost[]> {
     const searchQuery = `
       SELECT
         bp.*,
@@ -477,13 +489,13 @@ export class Database {
         name: post.category_name,
         slug: post.category_slug,
         color: post.category_color,
-        icon: post.category_icon
+        icon: post.category_icon,
       },
       author: {
         id: post.author_id,
         name: post.author_name,
-        avatar_url: post.author_avatar
-      }
+        avatar_url: post.author_avatar,
+      },
     })) as BlogPost[];
   }
 }

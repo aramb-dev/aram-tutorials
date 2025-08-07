@@ -1,7 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Youtube, Mail, Home, BookOpen, User, MessageCircle } from 'lucide-react';
+import {
+  Youtube,
+  Mail,
+  Home,
+  BookOpen,
+  User,
+  MessageCircle,
+} from 'lucide-react';
 
 export function GlobalFooter() {
   const currentYear = new Date().getFullYear();
@@ -16,10 +23,13 @@ export function GlobalFooter() {
               <div className="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">AT</span>
               </div>
-              <span className="font-bold text-lg text-brand-primary">Aram Tutorials</span>
+              <span className="font-bold text-lg text-brand-primary">
+                Aram Tutorials
+              </span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-4">
-              Comprehensive development tutorials and guides to help you master modern web technologies and build amazing applications.
+              Comprehensive development tutorials and guides to help you master
+              modern web technologies and build amazing applications.
             </p>
             <div className="flex gap-3">
               <a

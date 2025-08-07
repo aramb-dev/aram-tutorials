@@ -7,10 +7,26 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const popularTopics = [
-  { name: 'React', icon: Code, color: 'bg-brand-primary/20 text-brand-primary border-brand-primary/30' },
-  { name: 'Next.js', icon: Globe, color: 'bg-brand-light/20 text-brand-light border-brand-light/30' },
-  { name: 'Node.js', icon: Cpu, color: 'bg-brand-lighter/20 text-brand-lighter border-brand-lighter/30' },
-  { name: 'Database', icon: Database, color: 'bg-brand-lightest/20 text-brand-lightest border-brand-lightest/30' },
+  {
+    name: 'React',
+    icon: Code,
+    color: 'bg-brand-primary/20 text-brand-primary border-brand-primary/30',
+  },
+  {
+    name: 'Next.js',
+    icon: Globe,
+    color: 'bg-brand-light/20 text-brand-light border-brand-light/30',
+  },
+  {
+    name: 'Node.js',
+    icon: Cpu,
+    color: 'bg-brand-lighter/20 text-brand-lighter border-brand-lighter/30',
+  },
+  {
+    name: 'Database',
+    icon: Database,
+    color: 'bg-brand-lightest/20 text-brand-lightest border-brand-lightest/30',
+  },
 ];
 
 export function TutorialsHeader() {
@@ -47,7 +63,8 @@ export function TutorialsHeader() {
             opacity="0.3"
           />
         </svg>
-      </div>      {/* Content */}
+      </div>{' '}
+      {/* Content */}
       <div className="relative container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Brand Header */}
@@ -62,14 +79,17 @@ export function TutorialsHeader() {
               <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
                 Tutorials
               </h1>
-              <p className="text-brand-lighter font-medium text-lg">Tech Made Simple</p>
+              <p className="text-brand-lighter font-medium text-lg">
+                Tech Made Simple
+              </p>
             </div>
           </div>
-
           <p className="text-xl text-slate-200 mb-12 leading-relaxed max-w-3xl mx-auto">
-            Discover our curated collection of programming tutorials and web development guides.
-            From beginner-friendly introductions to advanced techniques, find exactly what you need to level up your skills.
-          </p>          {/* Enhanced Search Experience */}
+            Discover our curated collection of programming tutorials and web
+            development guides. From beginner-friendly introductions to advanced
+            techniques, find exactly what you need to level up your skills.
+          </p>{' '}
+          {/* Enhanced Search Experience */}
           <div className="max-w-2xl mx-auto mb-12">
             <div className="relative">
               <SearchInput
@@ -79,18 +99,22 @@ export function TutorialsHeader() {
                 className="w-full h-16 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/15 focus:border-brand-primary focus:outline-none focus:ring-0 backdrop-blur-sm rounded-xl pr-16"
               />
               <div className="absolute right-2 top-1/2 -translate-y-1/2">
-                <Button size="sm" className="h-12 w-12 bg-brand-primary hover:bg-brand-light rounded-lg text-white border-0 shadow-none">
+                <Button
+                  size="sm"
+                  className="h-12 w-12 bg-brand-primary hover:bg-brand-light rounded-lg text-white border-0 shadow-none"
+                >
                   <Search className="h-5 w-5" />
                 </Button>
               </div>
             </div>
           </div>
-
           {/* Interactive Topic Tags */}
           <div className="mb-8">
-            <p className="text-sm text-slate-200 mb-4">Popular topics to get you started:</p>
+            <p className="text-sm text-slate-200 mb-4">
+              Popular topics to get you started:
+            </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              {popularTopics.map((topic) => {
+              {popularTopics.map(topic => {
                 const IconComponent = topic.icon;
                 return (
                   <button
@@ -105,16 +129,24 @@ export function TutorialsHeader() {
               })}
             </div>
           </div>
-
           {/* Authentic Stats */}
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+            <Badge
+              variant="secondary"
+              className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm"
+            >
               21 Tutorials
             </Badge>
-            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+            <Badge
+              variant="secondary"
+              className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm"
+            >
               5,700+ Views
             </Badge>
-            <Badge variant="secondary" className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm">
+            <Badge
+              variant="secondary"
+              className="bg-brand-primary/30 text-white border-brand-primary/50 px-4 py-2 text-sm"
+            >
               Always Free
             </Badge>
           </div>

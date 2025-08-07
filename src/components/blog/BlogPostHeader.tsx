@@ -8,7 +8,7 @@ import {
   ArrowLeft,
   Share2,
   Bookmark,
-  Heart
+  Heart,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -36,7 +36,11 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
           {/* Navigation */}
           <div className="mb-8">
             <Link href="/tutorials">
-              <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:bg-white/10"
+              >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Tutorials
               </Button>
@@ -101,8 +105,12 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                     )}
 
                     <div>
-                      <p className="font-semibold text-white">{post.author.name}</p>
-                      <p className="text-sm text-slate-300">{post.author.bio}</p>
+                      <p className="font-semibold text-white">
+                        {post.author.name}
+                      </p>
+                      <p className="text-sm text-slate-300">
+                        {post.author.bio}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -113,23 +121,50 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                 <div className="flex items-center gap-4 text-sm text-slate-300">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
-                    <span>Published {formatDate((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString())}</span>
+                    <span>
+                      Published{' '}
+                      {formatDate(
+                        (
+                          post.published_at ||
+                          post.created_at ||
+                          (post as any).publishedAt ||
+                          (post as any).updatedAt ||
+                          new Date()
+                        ).toString()
+                      )}
+                    </span>
                   </div>
 
-                  {(post.updated_at || (post as any).updatedAt) !== (post.created_at || (post as any).publishedAt) && (
+                  {(post.updated_at || (post as any).updatedAt) !==
+                    (post.created_at || (post as any).publishedAt) && (
                     <div className="text-xs">
-                      Updated {formatRelativeTime((post.updated_at || (post as any).updatedAt || new Date()).toString())}
+                      Updated{' '}
+                      {formatRelativeTime(
+                        (
+                          post.updated_at ||
+                          (post as any).updatedAt ||
+                          new Date()
+                        ).toString()
+                      )}
                     </div>
                   )}
                 </div>
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2">
-                  <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:bg-white/10"
+                  >
                     <Bookmark className="h-4 w-4" />
                   </Button>
 
-                  <Button variant="ghost" size="sm" className="text-white hover:bg-white/10">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:bg-white/10"
+                  >
                     <Share2 className="h-4 w-4" />
                   </Button>
                 </div>
@@ -140,7 +175,7 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
             {post.tags && post.tags.length > 0 && (
               <div className="mt-8">
                 <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
+                  {post.tags.map(tag => (
                     <Link key={tag.id} href={`/tutorials?tag=${tag.slug}`}>
                       <Badge
                         variant="outline"

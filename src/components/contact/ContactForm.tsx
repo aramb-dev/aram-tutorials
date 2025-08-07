@@ -1,15 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Send, 
-  User, 
-  Mail, 
-  MessageSquare, 
+import {
+  Send,
+  User,
+  Mail,
+  MessageSquare,
   Tag,
   Check,
   AlertCircle,
-  Loader2
+  Loader2,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -38,72 +38,99 @@ export function ContactForm() {
     email: '',
     subject: '',
     category: '',
-    message: ''
+    message: '',
   });
-  
+
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const categories = [
-    { id: 'question', label: 'General Question', color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' },
-    { id: 'tutorial-request', label: 'Tutorial Request', color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' },
-    { id: 'collaboration', label: 'Collaboration', color: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' },
-    { id: 'feedback', label: 'Feedback', color: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200' },
-    { id: 'bug-report', label: 'Bug Report', color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' },
-    { id: 'other', label: 'Other', color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200' }
+    {
+      id: 'question',
+      label: 'General Question',
+      color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+    },
+    {
+      id: 'tutorial-request',
+      label: 'Tutorial Request',
+      color:
+        'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    },
+    {
+      id: 'collaboration',
+      label: 'Collaboration',
+      color:
+        'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    },
+    {
+      id: 'feedback',
+      label: 'Feedback',
+      color:
+        'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    },
+    {
+      id: 'bug-report',
+      label: 'Bug Report',
+      color: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+    },
+    {
+      id: 'other',
+      label: 'Other',
+      color: 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200',
+    },
   ];
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
-    
+
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters long';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // In a real app, you would send the form data to your API
       console.log('Form submitted:', formData);
-      
+
       setIsSubmitted(true);
       setFormData({
         name: '',
         email: '',
         subject: '',
         category: '',
-        message: ''
+        message: '',
       });
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -114,7 +141,7 @@ export function ContactForm() {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    
+
     // Clear error when user starts typing
     if (errors[field as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
@@ -123,7 +150,10 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <Card id="contact-form" className="border-green-200 bg-green-50 dark:bg-green-950 dark:border-green-800">
+      <Card
+        id="contact-form"
+        className="border-green-200 bg-green-50 dark:bg-green-950 dark:border-green-800"
+      >
         <CardContent className="p-8 text-center">
           <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-6">
             <Check className="h-8 w-8 text-green-600 dark:text-green-400" />
@@ -132,10 +162,11 @@ export function ContactForm() {
             Message Sent Successfully!
           </h3>
           <p className="text-green-700 dark:text-green-300 mb-6">
-            Thank you for reaching out! I'll get back to you within 24-48 hours. 
-            In the meantime, feel free to explore more tutorials or check out my latest posts.
+            Thank you for reaching out! I'll get back to you within 24-48 hours.
+            In the meantime, feel free to explore more tutorials or check out my
+            latest posts.
           </p>
-          <Button 
+          <Button
             onClick={() => setIsSubmitted(false)}
             variant="outline"
             className="border-green-300 text-green-700 hover:bg-green-100 dark:border-green-700 dark:text-green-300 dark:hover:bg-green-900"
@@ -155,17 +186,20 @@ export function ContactForm() {
           Send me a message
         </CardTitle>
         <p className="text-muted-foreground">
-          I'd love to hear from you! Whether you have a question, feedback, or just want to say hello, 
-          don't hesitate to reach out.
+          I'd love to hear from you! Whether you have a question, feedback, or
+          just want to say hello, don't hesitate to reach out.
         </p>
       </CardHeader>
-      
+
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name and Email Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-foreground mb-2"
+              >
                 <User className="h-4 w-4 inline mr-2" />
                 Full Name *
               </label>
@@ -174,8 +208,10 @@ export function ContactForm() {
                 type="text"
                 placeholder="Your full name"
                 value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className={errors.name ? 'border-red-500 focus:border-red-500' : ''}
+                onChange={e => handleInputChange('name', e.target.value)}
+                className={
+                  errors.name ? 'border-red-500 focus:border-red-500' : ''
+                }
               />
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -184,9 +220,12 @@ export function ContactForm() {
                 </p>
               )}
             </div>
-            
+
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-foreground mb-2"
+              >
                 <Mail className="h-4 w-4 inline mr-2" />
                 Email Address *
               </label>
@@ -195,8 +234,10 @@ export function ContactForm() {
                 type="email"
                 placeholder="your.email@example.com"
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
-                className={errors.email ? 'border-red-500 focus:border-red-500' : ''}
+                onChange={e => handleInputChange('email', e.target.value)}
+                className={
+                  errors.email ? 'border-red-500 focus:border-red-500' : ''
+                }
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -206,7 +247,7 @@ export function ContactForm() {
               )}
             </div>
           </div>
-          
+
           {/* Category Selection */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-3">
@@ -214,7 +255,7 @@ export function ContactForm() {
               Category (Optional)
             </label>
             <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
+              {categories.map(category => (
                 <button
                   key={category.id}
                   type="button"
@@ -230,10 +271,13 @@ export function ContactForm() {
               ))}
             </div>
           </div>
-          
+
           {/* Subject */}
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+            <label
+              htmlFor="subject"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
               Subject *
             </label>
             <Input
@@ -241,8 +285,10 @@ export function ContactForm() {
               type="text"
               placeholder="What's this about?"
               value={formData.subject}
-              onChange={(e) => handleInputChange('subject', e.target.value)}
-              className={errors.subject ? 'border-red-500 focus:border-red-500' : ''}
+              onChange={e => handleInputChange('subject', e.target.value)}
+              className={
+                errors.subject ? 'border-red-500 focus:border-red-500' : ''
+              }
             />
             {errors.subject && (
               <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -251,17 +297,20 @@ export function ContactForm() {
               </p>
             )}
           </div>
-          
+
           {/* Message */}
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
               Message *
             </label>
             <Textarea
               id="message"
               placeholder="Tell me more about your question, feedback, or idea..."
               value={formData.message}
-              onChange={(e) => handleInputChange('message', e.target.value)}
+              onChange={e => handleInputChange('message', e.target.value)}
               className={`min-h-[150px] ${errors.message ? 'border-red-500 focus:border-red-500' : ''}`}
             />
             <div className="flex justify-between items-center mt-2">
@@ -280,12 +329,12 @@ export function ContactForm() {
               </p>
             </div>
           </div>
-          
+
           {/* Submit Button */}
           <div className="pt-4">
-            <Button 
-              type="submit" 
-              size="lg" 
+            <Button
+              type="submit"
+              size="lg"
               disabled={isSubmitting}
               className="w-full md:w-auto"
             >
@@ -302,12 +351,13 @@ export function ContactForm() {
               )}
             </Button>
           </div>
-          
+
           {/* Privacy Notice */}
           <div className="pt-4 border-t">
             <p className="text-sm text-muted-foreground">
-              By submitting this form, you agree that I may contact you regarding your inquiry. 
-              Your information will never be shared with third parties.
+              By submitting this form, you agree that I may contact you
+              regarding your inquiry. Your information will never be shared with
+              third parties.
             </p>
           </div>
         </form>

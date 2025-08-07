@@ -19,18 +19,21 @@ export interface SearchInputProps {
 }
 
 const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
-  ({
-    placeholder = 'Search...',
-    value = '',
-    onChange,
-    onSearch,
-    onClear,
-    className,
-    debounceMs = 300,
-    showSearchButton = false,
-    autoFocus = false,
-    ...props
-  }, ref) => {
+  (
+    {
+      placeholder = 'Search...',
+      value = '',
+      onChange,
+      onSearch,
+      onClear,
+      className,
+      debounceMs = 300,
+      showSearchButton = false,
+      autoFocus = false,
+      ...props
+    },
+    ref
+  ) => {
     const [searchValue, setSearchValue] = useState(value);
     const [debouncedValue, setDebouncedValue] = useState(value);
 

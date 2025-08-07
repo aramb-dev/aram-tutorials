@@ -52,7 +52,8 @@ export function NewsletterSection() {
             Welcome to the Community!
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-6">
-            Thank you for subscribing! You'll receive our latest tutorials and programming tips directly in your inbox.
+            Thank you for subscribing! You'll receive our latest tutorials and
+            programming tips directly in your inbox.
           </p>
           <Button
             variant="outline"
@@ -80,8 +81,8 @@ export function NewsletterSection() {
         </h2>
 
         <p className="text-lg text-primary-foreground/90">
-          Get the latest tutorials, tips, and programming insights delivered straight to your inbox.
-          No spam, unsubscribe anytime.
+          Get the latest tutorials, tips, and programming insights delivered
+          straight to your inbox. No spam, unsubscribe anytime.
         </p>
       </div>
 
@@ -93,7 +94,7 @@ export function NewsletterSection() {
               type="email"
               placeholder="Enter your email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               className="bg-white/10 backdrop-blur-sm border-white/20 text-white placeholder:text-white/70 h-12"
               disabled={isLoading}
             />
@@ -115,9 +116,7 @@ export function NewsletterSection() {
           </Button>
         </div>
 
-        {error && (
-          <p className="text-red-300 text-sm">{error}</p>
-        )}
+        {error && <p className="text-red-300 text-sm">{error}</p>}
       </form>
 
       {/* Benefits */}

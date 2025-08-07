@@ -6,7 +6,7 @@ import {
   Cloud,
   GitBranch,
   Palette,
-  Zap
+  Zap,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -17,73 +17,115 @@ export function AboutSkills() {
       icon: Code2,
       title: 'Frontend Development',
       color: '#4A7C59',
-      skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Vue.js', 'HTML5', 'CSS3']
+      skills: [
+        'React',
+        'Next.js',
+        'TypeScript',
+        'JavaScript',
+        'Vue.js',
+        'HTML5',
+        'CSS3',
+      ],
     },
     {
       icon: Database,
       title: 'Backend Development',
       color: '#2E5E15',
-      skills: ['Node.js', 'Express.js', 'Python', 'Django', 'FastAPI', 'REST APIs', 'GraphQL']
+      skills: [
+        'Node.js',
+        'Express.js',
+        'Python',
+        'Django',
+        'FastAPI',
+        'REST APIs',
+        'GraphQL',
+      ],
     },
     {
       icon: Database,
       title: 'Databases',
       color: '#7BA05A',
-      skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Supabase', 'Firebase']
+      skills: [
+        'PostgreSQL',
+        'MongoDB',
+        'MySQL',
+        'Redis',
+        'Supabase',
+        'Firebase',
+      ],
     },
     {
       icon: Cloud,
       title: 'Cloud & DevOps',
       color: '#6B7280',
-      skills: ['AWS', 'Vercel', 'Docker', 'GitHub Actions', 'Netlify', 'Railway']
+      skills: [
+        'AWS',
+        'Vercel',
+        'Docker',
+        'GitHub Actions',
+        'Netlify',
+        'Railway',
+      ],
     },
     {
       icon: Smartphone,
       title: 'Mobile Development',
       color: '#A8C78A',
-      skills: ['React Native', 'Flutter', 'Expo', 'iOS', 'Android']
+      skills: ['React Native', 'Flutter', 'Expo', 'iOS', 'Android'],
     },
     {
       icon: GitBranch,
       title: 'Tools & Workflow',
       color: '#4A7C59',
-      skills: ['Git', 'GitHub', 'VS Code', 'Figma', 'Postman', 'Linux']
+      skills: ['Git', 'GitHub', 'VS Code', 'Figma', 'Postman', 'Linux'],
     },
     {
       icon: Palette,
       title: 'Design & UI/UX',
       color: '#7BA05A',
-      skills: ['Tailwind CSS', 'Figma', 'Adobe XD', 'Responsive Design', 'UI/UX Principles']
+      skills: [
+        'Tailwind CSS',
+        'Figma',
+        'Adobe XD',
+        'Responsive Design',
+        'UI/UX Principles',
+      ],
     },
     {
       icon: Zap,
       title: 'Other Technologies',
       color: '#2E5E15',
-      skills: ['Machine Learning', 'Data Analysis', 'Web Scraping', 'Automation', 'Testing']
-    }
+      skills: [
+        'Machine Learning',
+        'Data Analysis',
+        'Web Scraping',
+        'Automation',
+        'Testing',
+      ],
+    },
   ];
 
   const achievements = [
     {
       number: '50+',
       label: 'Tutorials Created',
-      description: 'Comprehensive guides and tutorials'
+      description: 'Comprehensive guides and tutorials',
     },
     {
       number: '1000+',
       label: 'Students Helped',
-      description: 'Learners across various platforms'
+      description: 'Learners across various platforms',
     },
     {
       number: '5+',
       label: 'Years Experience',
-      description: 'In software development'
+      description: 'In software development',
     },
     {
       number: '20+',
       label: 'Technologies',
-      description: 'Mastered and taught'
-    }
+      description: 'Mastered and taught',
+    },
   ];
 
   return (
@@ -94,8 +136,9 @@ export function AboutSkills() {
           Our Expertise
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Our team brings together years of experience across a wide range of technologies and frameworks.
-          Here's what we specialize in and love to teach.
+          Our team brings together years of experience across a wide range of
+          technologies and frameworks. Here's what we specialize in and love to
+          teach.
         </p>
       </div>
 
@@ -124,7 +167,10 @@ export function AboutSkills() {
           const IconComponent = category.icon;
 
           return (
-            <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
+            <Card
+              key={index}
+              className="h-full hover:shadow-lg transition-shadow duration-300"
+            >
               <CardContent className="p-6">
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
@@ -174,7 +220,8 @@ export function AboutSkills() {
               </div>
               <h4 className="font-semibold text-foreground">Learn by Doing</h4>
               <p className="text-sm text-muted-foreground">
-                We believe the best way to learn programming is through hands-on practice and real projects.
+                We believe the best way to learn programming is through hands-on
+                practice and real projects.
               </p>
             </div>
 
@@ -184,7 +231,8 @@ export function AboutSkills() {
               </div>
               <h4 className="font-semibold text-foreground">Stay Current</h4>
               <p className="text-sm text-muted-foreground">
-                Technology evolves rapidly. We continuously update our content to reflect the latest trends and best practices.
+                Technology evolves rapidly. We continuously update our content
+                to reflect the latest trends and best practices.
               </p>
             </div>
 
@@ -192,9 +240,12 @@ export function AboutSkills() {
               <div className="w-12 h-12 bg-brand-lighter/20 rounded-lg flex items-center justify-center mx-auto">
                 <Zap className="h-6 w-6 text-brand-lighter" />
               </div>
-              <h4 className="font-semibold text-foreground">Clear & Practical</h4>
+              <h4 className="font-semibold text-foreground">
+                Clear & Practical
+              </h4>
               <p className="text-sm text-muted-foreground">
-                Our tutorials focus on clear explanations and practical applications you can use immediately.
+                Our tutorials focus on clear explanations and practical
+                applications you can use immediately.
               </p>
             </div>
           </div>

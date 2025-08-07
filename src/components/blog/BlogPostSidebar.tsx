@@ -19,7 +19,7 @@ import {
   ChevronRight,
   Star,
   Award,
-  Coffee
+  Coffee,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -43,13 +43,22 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
 
     switch (platform) {
       case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
+          '_blank'
+        );
         break;
       case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+          '_blank'
+        );
         break;
       case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          '_blank'
+        );
         break;
       case 'copy':
         try {
@@ -68,7 +77,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
     { id: 'getting-started', title: 'Getting Started', level: 1 },
     { id: 'implementation', title: 'Implementation', level: 1 },
     { id: 'best-practices', title: 'Best Practices', level: 1 },
-    { id: 'conclusion', title: 'Conclusion', level: 1 }
+    { id: 'conclusion', title: 'Conclusion', level: 1 },
   ];
 
   const relatedPosts = [
@@ -76,20 +85,20 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
       id: '1',
       title: 'Advanced React Patterns',
       slug: 'advanced-react-patterns',
-      readTime: 8
+      readTime: 8,
     },
     {
       id: '2',
       title: 'TypeScript Best Practices',
       slug: 'typescript-best-practices',
-      readTime: 6
+      readTime: 6,
     },
     {
       id: '3',
       title: 'Next.js Performance Tips',
       slug: 'nextjs-performance-tips',
-      readTime: 10
-    }
+      readTime: 10,
+    },
   ];
 
   return (
@@ -104,7 +113,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-muted flex-shrink-0">
               <Image
                 src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background%2C%20high%20quality%20portrait&image_size=square"
-              alt="Aram Tutorials Team"
+                alt="Aram Tutorials Team"
                 fill
                 className="object-cover"
               />
@@ -114,7 +123,8 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
                 Aram Tutorials Team
               </h4>
               <p className="text-sm text-muted-foreground mb-3">
-                A team of developers passionate about making tech accessible through clear, practical tutorials.
+                A team of developers passionate about making tech accessible
+                through clear, practical tutorials.
               </p>
               <div className="flex items-center gap-4 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
@@ -147,22 +157,26 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
         <CardContent>
           <div className="space-y-3">
             <Button
-              variant={isLiked ? "default" : "outline"}
+              variant={isLiked ? 'default' : 'outline'}
               size="sm"
               className="w-full justify-start"
               onClick={() => setIsLiked(!isLiked)}
             >
-              <Heart className={`h-4 w-4 mr-2 ${isLiked ? 'fill-current' : ''}`} />
+              <Heart
+                className={`h-4 w-4 mr-2 ${isLiked ? 'fill-current' : ''}`}
+              />
               {isLiked ? 'Liked' : 'Like this post'}
             </Button>
 
             <Button
-              variant={isBookmarked ? "default" : "outline"}
+              variant={isBookmarked ? 'default' : 'outline'}
               size="sm"
               className="w-full justify-start"
               onClick={() => setIsBookmarked(!isBookmarked)}
             >
-              <Bookmark className={`h-4 w-4 mr-2 ${isBookmarked ? 'fill-current' : ''}`} />
+              <Bookmark
+                className={`h-4 w-4 mr-2 ${isBookmarked ? 'fill-current' : ''}`}
+              />
               {isBookmarked ? 'Bookmarked' : 'Bookmark'}
             </Button>
           </div>
@@ -233,7 +247,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
         </CardHeader>
         <CardContent>
           <nav className="space-y-2">
-            {tableOfContents.map((item) => (
+            {tableOfContents.map(item => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -261,7 +275,9 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
                 <Eye className="h-4 w-4" />
                 <span>Views</span>
               </div>
-              <span className="font-medium">{post.views?.toLocaleString() || '1,234'}</span>
+              <span className="font-medium">
+                {post.views?.toLocaleString() || '1,234'}
+              </span>
             </div>
 
             <div className="flex items-center justify-between text-sm">
@@ -294,10 +310,18 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
                 <span>Published</span>
               </div>
               <span className="font-medium">
-                {new Date((post.published_at || post.created_at || (post as any).publishedAt || (post as any).updatedAt || new Date()).toString()).toLocaleDateString('en-US', {
+                {new Date(
+                  (
+                    post.published_at ||
+                    post.created_at ||
+                    (post as any).publishedAt ||
+                    (post as any).updatedAt ||
+                    new Date()
+                  ).toString()
+                ).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
-                  year: 'numeric'
+                  year: 'numeric',
                 })}
               </span>
             </div>
@@ -312,7 +336,7 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {relatedPosts.map((relatedPost) => (
+            {relatedPosts.map(relatedPost => (
               <Link
                 key={relatedPost.id}
                 href={`/tutorials/${relatedPost.slug}`}
@@ -351,7 +375,8 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground mb-4">
-            If you found this tutorial helpful, consider supporting my work to help me create more quality content.
+            If you found this tutorial helpful, consider supporting my work to
+            help me create more quality content.
           </p>
           <Button className="w-full" size="sm">
             <Heart className="h-4 w-4 mr-2" />

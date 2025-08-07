@@ -52,9 +52,7 @@ export function AboutHero() {
                   size="lg"
                   className="bg-brand-lightest text-primary hover:bg-brand-lighter font-semibold"
                 >
-                  <Link href="/contact">
-                    Get in Touch
-                  </Link>
+                  <Link href="/contact">Get in Touch</Link>
                 </Button>
 
                 <Button
@@ -63,9 +61,7 @@ export function AboutHero() {
                   size="lg"
                   className="bg-white/15 text-white border-white/20 hover:bg-white/25 hover:text-white backdrop-blur-sm font-semibold"
                 >
-                  <Link href="/tutorials">
-                    View Our Tutorials
-                  </Link>
+                  <Link href="/tutorials">View Our Tutorials</Link>
                 </Button>
               </div>
             </div>

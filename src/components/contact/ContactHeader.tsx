@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  Mail,
-  MessageCircle,
-  Users,
-  Lightbulb,
-  ArrowDown
-} from 'lucide-react';
+import { Mail, MessageCircle, Users, Lightbulb, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -22,27 +16,30 @@ export function ContactHeader() {
     {
       icon: MessageCircle,
       value: '500+',
-      label: 'Questions Answered'
+      label: 'Questions Answered',
     },
     {
       icon: Users,
       value: '1,000+',
-      label: 'Developers Helped'
+      label: 'Developers Helped',
     },
     {
       icon: Lightbulb,
       value: '50+',
-      label: 'Tutorial Ideas from Community'
-    }
+      label: 'Tutorial Ideas from Community',
+    },
   ];
 
   return (
     <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
 
       {/* Gradient Overlay */}
@@ -75,8 +72,9 @@ export function ContactHeader() {
 
           {/* Subtext */}
           <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
-            Whether you're a beginner just starting your coding journey or an experienced developer
-            looking to learn something new, I'm here to help make tech accessible for everyone.
+            Whether you're a beginner just starting your coding journey or an
+            experienced developer looking to learn something new, I'm here to
+            help make tech accessible for everyone.
           </p>
 
           {/* CTA Button */}
@@ -107,9 +105,7 @@ export function ContactHeader() {
                   <div className="text-2xl font-bold text-white mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-slate-300 text-sm">
-                    {stat.label}
-                  </div>
+                  <div className="text-slate-300 text-sm">{stat.label}</div>
                 </div>
               );
             })}

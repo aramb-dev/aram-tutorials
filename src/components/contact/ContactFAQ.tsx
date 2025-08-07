@@ -10,7 +10,7 @@ import {
   Users,
   Code,
   Lightbulb,
-  Clock
+  Clock,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -31,62 +31,72 @@ export function ContactFAQ() {
       id: '1',
       category: 'general',
       question: 'How quickly do you respond to messages?',
-      answer: 'I typically respond to emails within 24-48 hours during weekdays. For Discord messages, I usually respond within 2-6 hours. If your matter is urgent, please mention it in the subject line and I\'ll prioritize it for same-day response.'
+      answer:
+        "I typically respond to emails within 24-48 hours during weekdays. For Discord messages, I usually respond within 2-6 hours. If your matter is urgent, please mention it in the subject line and I'll prioritize it for same-day response.",
     },
     {
       id: '2',
       category: 'tutorials',
       question: 'Can I request a specific tutorial topic?',
-      answer: 'Absolutely! I love hearing tutorial requests from the community. Please provide as much detail as possible about what you\'d like to learn, your current skill level, and any specific technologies or frameworks you\'re interested in. I prioritize tutorials based on community demand and relevance.'
+      answer:
+        "Absolutely! I love hearing tutorial requests from the community. Please provide as much detail as possible about what you'd like to learn, your current skill level, and any specific technologies or frameworks you're interested in. I prioritize tutorials based on community demand and relevance.",
     },
     {
       id: '3',
       category: 'tutorials',
       question: 'Do you offer personalized coding help?',
-      answer: 'Yes, I offer limited one-on-one mentoring sessions for complex projects or specific learning goals. You can schedule a 30-minute consultation through the contact form. For quick questions, the Discord community is usually the fastest way to get help.'
+      answer:
+        'Yes, I offer limited one-on-one mentoring sessions for complex projects or specific learning goals. You can schedule a 30-minute consultation through the contact form. For quick questions, the Discord community is usually the fastest way to get help.',
     },
     {
       id: '4',
       category: 'collaboration',
       question: 'Are you available for freelance projects?',
-      answer: 'I occasionally take on interesting freelance projects, especially those that align with my expertise in React, Next.js, and modern web development. Please reach out with project details, timeline, and budget for consideration.'
+      answer:
+        'I occasionally take on interesting freelance projects, especially those that align with my expertise in React, Next.js, and modern web development. Please reach out with project details, timeline, and budget for consideration.',
     },
     {
       id: '5',
       category: 'collaboration',
       question: 'Can we collaborate on content creation?',
-      answer: 'I\'m always open to collaborating with other developers and content creators! Whether it\'s guest posts, joint tutorials, podcast appearances, or video collaborations, I\'d love to explore opportunities. Please share your ideas and how you envision working together.'
+      answer:
+        "I'm always open to collaborating with other developers and content creators! Whether it's guest posts, joint tutorials, podcast appearances, or video collaborations, I'd love to explore opportunities. Please share your ideas and how you envision working together.",
     },
     {
       id: '6',
       category: 'technical',
       question: 'What technologies do you specialize in?',
-      answer: 'My main expertise includes React, Next.js, TypeScript, Node.js, and modern web development practices. I also work with databases (PostgreSQL, MongoDB), cloud platforms (Vercel, AWS), and various CSS frameworks. Check my tutorials page for a complete overview of topics I cover.'
+      answer:
+        'My main expertise includes React, Next.js, TypeScript, Node.js, and modern web development practices. I also work with databases (PostgreSQL, MongoDB), cloud platforms (Vercel, AWS), and various CSS frameworks. Check my tutorials page for a complete overview of topics I cover.',
     },
     {
       id: '7',
       category: 'general',
       question: 'Do you offer code reviews?',
-      answer: 'I provide code reviews on a case-by-case basis, usually for educational purposes or community projects. Please share your code repository, specific areas you\'d like feedback on, and the context of your project. Note that detailed code reviews may require scheduling a consultation session.'
+      answer:
+        "I provide code reviews on a case-by-case basis, usually for educational purposes or community projects. Please share your code repository, specific areas you'd like feedback on, and the context of your project. Note that detailed code reviews may require scheduling a consultation session.",
     },
     {
       id: '8',
       category: 'tutorials',
       question: 'Can I translate your tutorials to other languages?',
-      answer: 'I appreciate the interest in making content more accessible! Please reach out if you\'d like to translate any of my tutorials. I\'m happy to discuss attribution, hosting options, and how we can work together to reach more developers globally.'
+      answer:
+        "I appreciate the interest in making content more accessible! Please reach out if you'd like to translate any of my tutorials. I'm happy to discuss attribution, hosting options, and how we can work together to reach more developers globally.",
     },
     {
       id: '9',
       category: 'general',
       question: 'How can I support your work?',
-      answer: 'There are several ways to support my work: sharing tutorials with others, providing feedback, suggesting improvements, contributing to discussions in the community, or supporting me financially through coffee donations or GitHub sponsorship. Every bit of support helps me create better content!'
+      answer:
+        'There are several ways to support my work: sharing tutorials with others, providing feedback, suggesting improvements, contributing to discussions in the community, or supporting me financially through coffee donations or GitHub sponsorship. Every bit of support helps me create better content!',
     },
     {
       id: '10',
       category: 'technical',
       question: 'Do you provide debugging help?',
-      answer: 'For quick debugging questions, the Discord community is your best bet. For complex issues, please provide a minimal reproducible example, error messages, and what you\'ve already tried. I\'m happy to help, but detailed debugging sessions may require a scheduled consultation.'
-    }
+      answer:
+        "For quick debugging questions, the Discord community is your best bet. For complex issues, please provide a minimal reproducible example, error messages, and what you've already tried. I'm happy to help, but detailed debugging sessions may require a scheduled consultation.",
+    },
   ];
 
   const categories = [
@@ -94,20 +104,19 @@ export function ContactFAQ() {
     { id: 'general', label: 'General', icon: MessageCircle },
     { id: 'tutorials', label: 'Tutorials', icon: BookOpen },
     { id: 'collaboration', label: 'Collaboration', icon: Users },
-    { id: 'technical', label: 'Technical', icon: Code }
+    { id: 'technical', label: 'Technical', icon: Code },
   ];
 
   const toggleItem = (id: string) => {
     setOpenItems(prev =>
-      prev.includes(id)
-        ? prev.filter(item => item !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
     );
   };
 
-  const filteredFAQs = activeCategory === 'all'
-    ? faqItems
-    : faqItems.filter(item => item.category === activeCategory);
+  const filteredFAQs =
+    activeCategory === 'all'
+      ? faqItems
+      : faqItems.filter(item => item.category === activeCategory);
 
   return (
     <section>
@@ -117,19 +126,20 @@ export function ContactFAQ() {
           Frequently Asked Questions
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Find answers to common questions about tutorials, collaboration, and getting in touch.
-          Can't find what you're looking for? Feel free to reach out!
+          Find answers to common questions about tutorials, collaboration, and
+          getting in touch. Can't find what you're looking for? Feel free to
+          reach out!
         </p>
       </div>
 
       {/* Category Filter */}
       <div className="flex flex-wrap justify-center gap-2 mb-8">
-        {categories.map((category) => {
+        {categories.map(category => {
           const IconComponent = category.icon;
           return (
             <Button
               key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
+              variant={activeCategory === category.id ? 'default' : 'outline'}
               size="sm"
               onClick={() => setActiveCategory(category.id)}
               className="flex items-center gap-2"
@@ -144,7 +154,7 @@ export function ContactFAQ() {
       {/* FAQ Items */}
       <div className="max-w-4xl mx-auto">
         <div className="space-y-4">
-          {filteredFAQs.map((item) => {
+          {filteredFAQs.map(item => {
             const isOpen = openItems.includes(item.id);
 
             return (
@@ -208,17 +218,21 @@ export function ContactFAQ() {
           </h3>
 
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Don't hesitate to reach out!
-            I'm always happy to help and answer any questions you might have.
+            Can't find the answer you're looking for? Don't hesitate to reach
+            out! I'm always happy to help and answer any questions you might
+            have.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" onClick={() => {
-              const formElement = document.getElementById('contact-form');
-              if (formElement) {
-                formElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}>
+            <Button
+              size="lg"
+              onClick={() => {
+                const formElement = document.getElementById('contact-form');
+                if (formElement) {
+                  formElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               <MessageCircle className="h-5 w-5 mr-2" />
               Send a Message
             </Button>

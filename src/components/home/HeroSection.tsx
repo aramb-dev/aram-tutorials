@@ -8,7 +8,10 @@ export function HeroSection() {
     <section className="relative overflow-hidden bg-gradient-to-br from-background via-background to-brand-primary/5 py-20 sm:py-32">
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+        <div
+          className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
+          aria-hidden="true"
+        >
           <div
             className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-brand-primary/20 to-brand-lighter/10 opacity-30"
             style={{
@@ -26,8 +29,9 @@ export function HeroSection() {
             <span className="text-brand-primary"> Master</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Comprehensive tutorials and guides to help you master the tools and technologies you use every day.
-            From development environments to productivity workflows.
+            Comprehensive tutorials and guides to help you master the tools and
+            technologies you use every day. From development environments to
+            productivity workflows.
           </p>
 
           <div className="mt-8 max-w-md mx-auto">
@@ -35,15 +39,17 @@ export function HeroSection() {
           </div>
 
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Button asChild size="lg" className="bg-brand-primary hover:bg-brand-light">
+            <Button
+              asChild
+              size="lg"
+              className="bg-brand-primary hover:bg-brand-light"
+            >
               <Link href="/tutorials">
                 Browse Tutorials <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/about">
-                Learn More
-              </Link>
+              <Link href="/about">Learn More</Link>
             </Button>
           </div>
         </div>
@@ -59,7 +65,8 @@ export function HeroSection() {
                 Comprehensive Guides
               </dt>
               <dd className="mt-2 text-base leading-7 text-muted-foreground">
-                Step-by-step tutorials covering everything from basic setup to advanced configurations.
+                Step-by-step tutorials covering everything from basic setup to
+                advanced configurations.
               </dd>
             </div>
             <div className="relative pl-16">
@@ -70,7 +77,8 @@ export function HeroSection() {
                 Real-World Examples
               </dt>
               <dd className="mt-2 text-base leading-7 text-muted-foreground">
-                Practical examples and code snippets you can use immediately in your projects.
+                Practical examples and code snippets you can use immediately in
+                your projects.
               </dd>
             </div>
             <div className="relative pl-16">
@@ -81,7 +89,8 @@ export function HeroSection() {
                 Expert Tips
               </dt>
               <dd className="mt-2 text-base leading-7 text-muted-foreground">
-                Pro tips and best practices from experienced developers and system administrators.
+                Pro tips and best practices from experienced developers and
+                system administrators.
               </dd>
             </div>
           </dl>

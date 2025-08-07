@@ -1,4 +1,13 @@
-import { ArrowRight, Folder, Laptop, Monitor, Smartphone, Code, Package, Search } from 'lucide-react';
+import {
+  ArrowRight,
+  Folder,
+  Laptop,
+  Monitor,
+  Smartphone,
+  Code,
+  Package,
+  Search,
+} from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,10 +28,11 @@ const categoriesWithCounts = [
   {
     slug: 'mac',
     name: 'macOS',
-    description: 'System optimization, productivity tips, and essential workflows',
+    description:
+      'System optimization, productivity tips, and essential workflows',
     color: '#4A7C59',
     icon: 'laptop',
-    count: 4
+    count: 4,
   },
   {
     slug: 'windows',
@@ -30,7 +40,7 @@ const categoriesWithCounts = [
     description: 'Configuration, troubleshooting, and power user techniques',
     color: '#7BA05A',
     icon: 'monitor',
-    count: 3
+    count: 3,
   },
   {
     slug: 'android',
@@ -38,7 +48,7 @@ const categoriesWithCounts = [
     description: 'Device setup, customization, and mobile productivity',
     color: '#A8C78A',
     icon: 'smartphone',
-    count: 2
+    count: 2,
   },
   {
     slug: 'vscode',
@@ -46,7 +56,7 @@ const categoriesWithCounts = [
     description: 'Editor mastery, extensions, and development workflows',
     color: '#2E5E15',
     icon: 'code',
-    count: 5
+    count: 5,
   },
   {
     slug: 'homebrew',
@@ -54,7 +64,7 @@ const categoriesWithCounts = [
     description: 'Package management and command-line efficiency',
     color: '#6B7280',
     icon: 'package',
-    count: 3
+    count: 3,
   },
   {
     slug: 'google',
@@ -62,8 +72,8 @@ const categoriesWithCounts = [
     description: 'Productivity optimization and collaboration workflows',
     color: '#4A7C59',
     icon: 'search',
-    count: 4
-  }
+    count: 4,
+  },
 ] as const;
 
 export function CategoriesSection() {
@@ -81,14 +91,16 @@ export function CategoriesSection() {
         </h2>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Find tutorials organized by technology and topic to accelerate your learning journey.
+          Find tutorials organized by technology and topic to accelerate your
+          learning journey.
         </p>
       </div>
 
       {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {categoriesWithCounts.map((category, index) => {
-          const IconComponent = iconMap[category.icon as keyof typeof iconMap] || Code;
+          const IconComponent =
+            iconMap[category.icon as keyof typeof iconMap] || Code;
 
           return (
             <Link
@@ -101,7 +113,10 @@ export function CategoriesSection() {
                   {/* Category Icon */}
                   <div
                     className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: `${category.color}15`, color: category.color }}
+                    style={{
+                      backgroundColor: `${category.color}15`,
+                      color: category.color,
+                    }}
                   >
                     <IconComponent className="h-8 w-8" />
                   </div>

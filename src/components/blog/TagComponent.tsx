@@ -13,7 +13,7 @@ const TagComponent: React.FC<TagProps> = ({
   variant = 'outline',
   removable = false,
   onRemove,
-  className
+  className,
 }) => {
   const tagUrl = generateTagUrl(tag.slug);
 
@@ -24,10 +24,7 @@ const TagComponent: React.FC<TagProps> = ({
   };
 
   const badgeContent = (
-    <Badge
-      variant={variant}
-      className={cn(className, removable && "pr-1")}
-    >
+    <Badge variant={variant} className={cn(className, removable && 'pr-1')}>
       #{tag.name}
       {removable && (
         <button

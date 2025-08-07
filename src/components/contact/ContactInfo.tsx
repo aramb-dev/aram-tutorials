@@ -7,7 +7,7 @@ import {
   ExternalLink,
   Coffee,
   MessageCircle,
-  Phone
+  Phone,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,8 +20,8 @@ export function ContactInfo() {
       label: 'Email',
       value: 'aramtutorials@gmail.com',
       href: 'mailto:aramtutorials@gmail.com',
-      description: 'Best for detailed questions and collaboration'
-    }
+      description: 'Best for detailed questions and collaboration',
+    },
   ];
 
   const socialLinks = [
@@ -29,8 +29,8 @@ export function ContactInfo() {
       icon: Youtube,
       label: 'YouTube',
       href: 'https://YouTube.com/@AramTutorials',
-      color: 'hover:text-red-600'
-    }
+      color: 'hover:text-red-600',
+    },
   ];
 
   return (
@@ -58,7 +58,9 @@ export function ContactInfo() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium text-foreground">{method.label}</span>
+                      <span className="font-medium text-foreground">
+                        {method.label}
+                      </span>
                       <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <p className="text-sm text-primary font-medium mb-1">
@@ -114,7 +116,8 @@ export function ContactInfo() {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground mb-4">
-            If our tutorials have helped you, consider supporting our work to help us create more quality content.
+            If our tutorials have helped you, consider supporting our work to
+            help us create more quality content.
           </p>
 
           <div className="space-y-3">
@@ -131,7 +134,8 @@ export function ContactInfo() {
 
           <div className="mt-4 p-3 bg-background/50 rounded-lg">
             <p className="text-xs text-muted-foreground text-center">
-              Your support helps us dedicate more time to creating free, high-quality tutorials for the community.
+              Your support helps us dedicate more time to creating free,
+              high-quality tutorials for the community.
             </p>
           </div>
         </CardContent>
@@ -146,19 +150,27 @@ export function ContactInfo() {
           <div className="grid grid-cols-2 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-primary">21</div>
-              <div className="text-xs text-muted-foreground">Tutorials Created</div>
+              <div className="text-xs text-muted-foreground">
+                Tutorials Created
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">5.7K+</div>
-              <div className="text-xs text-muted-foreground">Community Views</div>
+              <div className="text-xs text-muted-foreground">
+                Community Views
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">6+</div>
-              <div className="text-xs text-muted-foreground">Years Experience</div>
+              <div className="text-xs text-muted-foreground">
+                Years Experience
+              </div>
             </div>
             <div>
               <div className="text-2xl font-bold text-primary">6</div>
-              <div className="text-xs text-muted-foreground">Core Technologies</div>
+              <div className="text-xs text-muted-foreground">
+                Core Technologies
+              </div>
             </div>
           </div>
         </CardContent>

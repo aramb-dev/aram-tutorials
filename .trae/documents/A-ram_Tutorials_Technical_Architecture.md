@@ -8,20 +8,20 @@ graph TD
     B --> C[Neon Database Client]
     C --> D[Neon PostgreSQL]
     B --> E[External APIs]
-    
+
     subgraph "Frontend Layer"
         B
         F[TailwindCSS]
         G[React Components]
         H[NextAuth.js]
     end
-    
+
     subgraph "Database Layer (Neon)"
         D
         I[Connection Pooling]
         J[Serverless PostgreSQL]
     end
-    
+
     subgraph "External Services"
         E
         K[YouTube API]
@@ -33,21 +33,21 @@ graph TD
 
 ## 2. Technology Description
 
-* **Frontend**: Next.js\@14 + React\@18 + TailwindCSS\@3 + TypeScript
+- **Frontend**: Next.js\@14 + React\@18 + TailwindCSS\@3 + TypeScript
 
 \*- **Database**: Neon PostgreSQL with connection pooling
 
-* **Authentication**: NextAuth.js
+- **Authentication**: NextAuth.js
 
-* **File Storage**: Vercel Blob Storage
+- **File Storage**: Vercel Blob Storage
 
-- **Styling**: TailwindCSS with custom design system
+* **Styling**: TailwindCSS with custom design system
 
-- **Deployment**: Vercel
+* **Deployment**: Vercel
 
-- **Analytics**: Plausible Analytics
+* **Analytics**: Plausible Analytics
 
-- **Content Management**: Markdown-based with frontmatter
+* **Content Management**: Markdown-based with frontmatter
 
 ## 3. Route Definitions
 
@@ -146,7 +146,7 @@ graph TD
     B --> C[Service Layer]
     C --> D[Neon Database Client]
     D --> E[(Neon PostgreSQL)]
-    
+
     subgraph "Next.js Application"
         B
         C
@@ -154,14 +154,14 @@ graph TD
         G[Server-Side Rendering]
         H[NextAuth.js]
     end
-    
+
     subgraph "External Services"
         I[YouTube API]
         J[Newsletter Service]
         K[Analytics Service]
         L[Vercel Blob Storage]
     end
-    
+
     C --> I
     C --> J
     C --> L
@@ -179,7 +179,7 @@ erDiagram
     BLOG_POSTS ||--o{ COMMENTS : has_many
     USERS ||--o{ COMMENTS : writes
     USERS ||--o{ NEWSLETTER_SUBSCRIPTIONS : has_one
-    
+
     BLOG_POSTS {
         uuid id PK
         string title
@@ -194,7 +194,7 @@ erDiagram
         timestamp updated_at
         uuid category_id FK
     }
-    
+
     CATEGORIES {
         uuid id PK
         string name
@@ -204,14 +204,14 @@ erDiagram
         string color
         timestamp created_at
     }
-    
+
     TAGS {
         uuid id PK
         string name
         string slug
         timestamp created_at
     }
-    
+
     COMMENTS {
         uuid id PK
         uuid post_id FK
@@ -220,21 +220,21 @@ erDiagram
         boolean approved
         timestamp created_at
     }
-    
+
     USERS {
         uuid id PK
         string email
         string name
         timestamp created_at
     }
-    
+
     NEWSLETTER_SUBSCRIPTIONS {
         uuid id PK
         string email
         boolean active
         timestamp subscribed_at
     }
-    
+
     CONTACT_SUBMISSIONS {
         uuid id PK
         string name
@@ -342,4 +342,3 @@ INSERT INTO tags (name, slug) VALUES
 ('troubleshooting', 'troubleshooting'),
 ('tips', 'tips');
 ```
-

@@ -9,7 +9,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Search,
-  BookOpen
+  BookOpen,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -36,7 +36,7 @@ export function TutorialsList({
   tag,
   search,
   sort = 'newest',
-  page = 1
+  page = 1,
 }: TutorialsListProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -48,9 +48,7 @@ export function TutorialsList({
 
     // Apply category filter
     if (category) {
-      filtered = filtered.filter(post =>
-        post.category.slug === category
-      );
+      filtered = filtered.filter(post => post.category.slug === category);
     }
 
     // Apply tag filter
@@ -63,18 +61,23 @@ export function TutorialsList({
     // Apply search filter
     if (search) {
       const searchLower = search.toLowerCase();
-      filtered = filtered.filter(post =>
-        post.title.toLowerCase().includes(searchLower) ||
-        post.excerpt.toLowerCase().includes(searchLower) ||
-        post.content.toLowerCase().includes(searchLower) ||
-        post.tags.some(tag => tag.name.toLowerCase().includes(searchLower))
+      filtered = filtered.filter(
+        post =>
+          post.title.toLowerCase().includes(searchLower) ||
+          post.excerpt.toLowerCase().includes(searchLower) ||
+          post.content.toLowerCase().includes(searchLower) ||
+          post.tags.some(tag => tag.name.toLowerCase().includes(searchLower))
       );
     }
 
     // Apply sorting
     switch (sort) {
       case 'oldest':
-        filtered.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
+        filtered.sort(
+          (a, b) =>
+            new Date(a.publishedAt).getTime() -
+            new Date(b.publishedAt).getTime()
+        );
         break;
       case 'popular':
         filtered.sort((a, b) => b.views - a.views);
@@ -84,7 +87,11 @@ export function TutorialsList({
         break;
       case 'newest':
       default:
-        filtered.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+        filtered.sort(
+          (a, b) =>
+            new Date(b.publishedAt).getTime() -
+            new Date(a.publishedAt).getTime()
+        );
         break;
     }
 
@@ -115,7 +122,7 @@ export function TutorialsList({
     { value: 'newest', label: 'Newest First', icon: SortDesc },
     { value: 'oldest', label: 'Oldest First', icon: SortAsc },
     { value: 'popular', label: 'Most Popular', icon: SortDesc },
-    { value: 'alphabetical', label: 'A-Z', icon: SortAsc }
+    { value: 'alphabetical', label: 'A-Z', icon: SortAsc },
   ];
 
   return (
@@ -127,9 +134,11 @@ export function TutorialsList({
             {search ? `Search Results for "${search}"` : 'All Tutorials'}
           </h2>
           <p className="text-muted-foreground mt-1">
-            {totalPosts === 0 ? 'No tutorials found' :
-             totalPosts === 1 ? '1 tutorial found' :
-             `${totalPosts} tutorials found`}
+            {totalPosts === 0
+              ? 'No tutorials found'
+              : totalPosts === 1
+                ? '1 tutorial found'
+                : `${totalPosts} tutorials found`}
             {(category || tag) && (
               <span>
                 {category && ` in ${category}`}
@@ -145,7 +154,7 @@ export function TutorialsList({
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Sort by:</span>
             <div className="flex gap-1">
-              {sortOptions.map((option) => {
+              {sortOptions.map(option => {
                 const IconComponent = option.icon;
                 return (
                   <Button
@@ -196,15 +205,11 @@ export function TutorialsList({
               No tutorials found
             </h3>
             <p className="text-muted-foreground mb-4">
-              {search ?
-                `We couldn't find any tutorials matching "${search}". Try adjusting your search terms or filters.` :
-                'No tutorials match your current filters. Try adjusting your selection.'
-              }
+              {search
+                ? `We couldn't find any tutorials matching "${search}". Try adjusting your search terms or filters.`
+                : 'No tutorials match your current filters. Try adjusting your selection.'}
             </p>
-            <Button
-              variant="outline"
-              onClick={() => router.push('/tutorials')}
-            >
+            <Button variant="outline" onClick={() => router.push('/tutorials')}>
               <BookOpen className="h-4 w-4 mr-2" />
               Browse All Tutorials
             </Button>
@@ -213,12 +218,14 @@ export function TutorialsList({
       ) : (
         <>
           {/* Tutorials Grid/List */}
-          <div className={`grid gap-6 ${
-            viewMode === 'grid'
-              ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
-              : 'grid-cols-1'
-          }`}>
-            {currentPosts.map((post) => (
+          <div
+            className={`grid gap-6 ${
+              viewMode === 'grid'
+                ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3'
+                : 'grid-cols-1'
+            }`}
+          >
+            {currentPosts.map(post => (
               <BlogCard
                 key={post.id}
                 post={post as any}
@@ -243,37 +250,42 @@ export function TutorialsList({
               </Button>
 
               <div className="flex items-center gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-                  // Show first page, last page, current page, and pages around current
-                  const showPage =
-                    pageNum === 1 ||
-                    pageNum === totalPages ||
-                    (pageNum >= page - 1 && pageNum <= page + 1);
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  pageNum => {
+                    // Show first page, last page, current page, and pages around current
+                    const showPage =
+                      pageNum === 1 ||
+                      pageNum === totalPages ||
+                      (pageNum >= page - 1 && pageNum <= page + 1);
 
-                  if (!showPage) {
-                    // Show ellipsis
-                    if (pageNum === page - 2 || pageNum === page + 2) {
-                      return (
-                        <span key={pageNum} className="px-2 text-muted-foreground">
-                          ...
-                        </span>
-                      );
+                    if (!showPage) {
+                      // Show ellipsis
+                      if (pageNum === page - 2 || pageNum === page + 2) {
+                        return (
+                          <span
+                            key={pageNum}
+                            className="px-2 text-muted-foreground"
+                          >
+                            ...
+                          </span>
+                        );
+                      }
+                      return null;
                     }
-                    return null;
-                  }
 
-                  return (
-                    <Button
-                      key={pageNum}
-                      variant={page === pageNum ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => updatePage(pageNum)}
-                      className="w-8 h-8 p-0"
-                    >
-                      {pageNum}
-                    </Button>
-                  );
-                })}
+                    return (
+                      <Button
+                        key={pageNum}
+                        variant={page === pageNum ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => updatePage(pageNum)}
+                        className="w-8 h-8 p-0"
+                      >
+                        {pageNum}
+                      </Button>
+                    );
+                  }
+                )}
               </div>
 
               <Button
@@ -290,7 +302,8 @@ export function TutorialsList({
 
           {/* Results Summary */}
           <div className="text-center text-sm text-muted-foreground">
-            Showing {startIndex + 1}-{Math.min(endIndex, totalPosts)} of {totalPosts} tutorials
+            Showing {startIndex + 1}-{Math.min(endIndex, totalPosts)} of{' '}
+            {totalPosts} tutorials
           </div>
         </>
       )}
