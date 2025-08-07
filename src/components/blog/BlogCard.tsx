@@ -64,7 +64,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {showCategory && post.category && (
             <Badge
               className="absolute top-4 right-4"
-              style={{ backgroundColor: categoryColor }}
+              style={{ backgroundColor: categoryColor?.bg }}
             >
               {post.category.name}
             </Badge>
@@ -173,7 +173,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
                   <div className="flex items-center space-x-3 mt-2 text-xs text-muted-foreground">
                     {showCategory && post.category && (
-                      <Badge style={{ backgroundColor: categoryColor }}>
+                      <Badge style={{ backgroundColor: categoryColor?.bg }}>
                         {post.category.name}
                       </Badge>
                     )}
@@ -222,7 +222,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         {showCategory && post.category && (
           <Badge
             className="absolute top-3 right-3"
-            style={{ backgroundColor: categoryColor }}
+            style={{ backgroundColor: categoryColor?.bg }}
           >
             {post.category.name}
           </Badge>

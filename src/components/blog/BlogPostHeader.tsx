@@ -50,7 +50,7 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
                 <Link href={`/tutorials?category=${post.category.slug}`}>
                   <Badge
                     className="hover:opacity-80 transition-opacity"
-                    style={{ backgroundColor: categoryColor }}
+                    style={{ backgroundColor: categoryColor.bg }}
                   >
                     {post.category.name}
                   </Badge>
