@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Youtube, Twitter, Linkedin, Mail, Home, BookOpen, User, MessageCircle } from 'lucide-react';
+import { Youtube, Mail, Home, BookOpen, User, MessageCircle } from 'lucide-react';
 
 export function GlobalFooter() {
   const currentYear = new Date().getFullYear();
@@ -30,24 +30,6 @@ export function GlobalFooter() {
                 aria-label="Subscribe to our YouTube channel"
               >
                 <Youtube className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-brand-primary transition-colors"
-                aria-label="Follow us on Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-brand-primary transition-colors"
-                aria-label="Connect on LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href="mailto:aramtutorials@gmail.com"

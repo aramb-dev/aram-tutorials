@@ -3,13 +3,8 @@
 import {
   Mail,
   MapPin,
-  Clock,
-  Github,
-  Twitter,
-  Linkedin,
   Youtube,
   ExternalLink,
-  Calendar,
   Coffee,
   MessageCircle,
   Phone
@@ -26,20 +21,6 @@ export function ContactInfo() {
       value: 'aramtutorials@gmail.com',
       href: 'mailto:aramtutorials@gmail.com',
       description: 'Best for detailed questions and collaboration'
-    },
-    {
-      icon: MessageCircle,
-      label: 'Discord',
-      value: 'Join our community',
-      href: '#',
-      description: 'Quick questions and community discussions'
-    },
-    {
-      icon: Calendar,
-      label: 'Schedule a Call',
-      value: 'Book 30-min session',
-      href: '#',
-      description: 'For complex projects or mentoring'
     }
   ];
 
@@ -49,26 +30,8 @@ export function ContactInfo() {
       label: 'YouTube',
       href: 'https://YouTube.com/@AramTutorials',
       color: 'hover:text-red-600'
-    },
-    {
-      icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com/aramtutorials',
-      color: 'hover:text-blue-500'
-    },
-    {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/aramtutorials',
-      color: 'hover:text-blue-600'
     }
   ];
-
-  const responseTime = {
-    email: '24-48 hours',
-    discord: '2-6 hours',
-    urgent: 'Same day'
-  };
 
   return (
     <div className="space-y-6">
@@ -109,80 +72,6 @@ export function ContactInfo() {
               </a>
             );
           })}
-        </CardContent>
-      </Card>
-
-      {/* Response Times */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Clock className="h-5 w-5" />
-            Response Times
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Email inquiries</span>
-              <Badge variant="outline">{responseTime.email}</Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Discord messages</span>
-              <Badge variant="outline">{responseTime.discord}</Badge>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">Urgent matters</span>
-              <Badge variant="default">{responseTime.urgent}</Badge>
-            </div>
-          </div>
-
-          <div className="mt-4 p-3 bg-muted/30 rounded-lg">
-            <p className="text-xs text-muted-foreground">
-              <strong>Note:</strong> Our team operates across multiple timezones. We typically respond faster during
-              weekdays (9 AM - 6 PM UTC).
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Location & Availability */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            Location & Availability
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-              </div>
-              <div>
-                <p className="font-medium text-foreground">Team Available</p>
-                <p className="text-sm text-muted-foreground">Global Team (Multiple Timezones)</p>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <h4 className="font-medium text-sm">Working Hours</h4>
-              <div className="text-sm text-muted-foreground space-y-1">
-                <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Limited availability</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </CardContent>
       </Card>
 
