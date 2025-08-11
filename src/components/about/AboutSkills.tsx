@@ -1,15 +1,13 @@
 import {
+  Cloud,
   Code2,
   Database,
-  Globe,
-  Smartphone,
-  Cloud,
   GitBranch,
+  Globe,
   Palette,
+  Smartphone,
   Zap,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 export function AboutSkills() {
   const skillCategories = [
@@ -130,82 +128,6 @@ export function AboutSkills() {
 
   return (
     <div className="space-y-12">
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-          Our Expertise
-        </h2>
-        <p className="text-lg text-muted-foreground leading-relaxed">
-          Our team brings together years of experience across a wide range of
-          technologies and frameworks. Here's what we specialize in and love to
-          teach.
-        </p>
-      </div>
-
-      {/* Achievements */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {achievements.map((achievement, index) => (
-          <Card key={index} className="text-center">
-            <CardContent className="p-6">
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                {achievement.number}
-              </div>
-              <div className="text-sm font-semibold text-foreground mb-1">
-                {achievement.label}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {achievement.description}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Skills Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {skillCategories.map((category, index) => {
-          const IconComponent = category.icon;
-
-          return (
-            <Card
-              key={index}
-              className="h-full hover:shadow-lg transition-shadow duration-300"
-            >
-              <CardContent className="p-6">
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="p-2 rounded-lg"
-                    style={{ backgroundColor: `${category.color}15` }}
-                  >
-                    <IconComponent
-                      className="h-5 w-5"
-                      style={{ color: category.color }}
-                    />
-                  </div>
-                  <h3 className="font-semibold text-foreground text-sm">
-                    {category.title}
-                  </h3>
-                </div>
-
-                {/* Skills */}
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      variant="secondary"
-                      className="text-xs"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
       {/* Learning Philosophy */}
       <div className="bg-gradient-to-r from-primary/5 to-brand-light/5 rounded-2xl p-8 md:p-12">
         <div className="max-w-4xl mx-auto text-center">
