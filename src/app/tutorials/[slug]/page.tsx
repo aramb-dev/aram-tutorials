@@ -4,7 +4,7 @@ import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { MOCK_BLOG_POSTS } from '@/lib/constants';
+import { Database } from '@/lib/db';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -20,7 +20,7 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug);
+  const post = await Database.getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -32,8 +32,7 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Aram Tutorials`,
     description: post.excerpt,
-    keywords: post.tags.map(tag => tag.name),
-    authors: [{ name: post.author.name }],
+    keywords: post.tags?.map(tag => tag.name) || [],
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -41,22 +40,24 @@ export async function generateMetadata({
       url: `https://tutorials.aramb.dev/tutorials/${post.slug}`,
       images: [
         {
-          url: 'https://tutorials.aramb.dev/og-default.jpg',
+          url:
+            post.featured_image || 'https://tutorials.aramb.dev/og-default.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
         },
       ],
-      publishedTime: post.publishedAt.toISOString(),
-      modifiedTime: post.updatedAt.toISOString(),
-      authors: [post.author.name],
-      tags: post.tags.map(tag => tag.name),
+      publishedTime: post.published_at?.toISOString(),
+      modifiedTime: post.updated_at.toISOString(),
+      tags: post.tags?.map(tag => tag.name) || [],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: ['https://tutorials.aramb.dev/og-default.jpg'],
+      images: [
+        post.featured_image || 'https://tutorials.aramb.dev/og-default.jpg',
+      ],
       creator: '@aram_dev',
     },
     alternates: {
@@ -67,31 +68,29 @@ export async function generateMetadata({
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
-  return MOCK_BLOG_POSTS.map(post => ({
+  const posts = await Database.getAllPosts({ limit: 100 });
+  return posts.data.map(post => ({
     slug: post.slug,
   }));
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = MOCK_BLOG_POSTS.find(p => p.slug === slug);
+  const post = await Database.getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  // Type assertion to match component expectations
-  const typedPost = post as unknown as import('@/types').BlogPost;
-
-  // Get related posts (same category, excluding current post)
-  const relatedPosts = MOCK_BLOG_POSTS.filter(
-    p => p.id !== typedPost.id && p.category.slug === typedPost.category?.slug
-  ).slice(0, 3);
+  // Get related posts from the same category
+  const relatedPosts = post.category
+    ? await Database.getRelatedPosts(post.id, post.category_id, 3)
+    : [];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Blog Post Header */}
-      <BlogPostHeader post={typedPost} />
+      <BlogPostHeader post={post} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
@@ -105,7 +104,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="lg" text="Loading content..." />
                 }
               >
-                <BlogPostContent post={typedPost} />
+                <BlogPostContent post={post} />
               </Suspense>
 
               {/* Comments Section */}
@@ -114,7 +113,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="md" text="Loading comments..." />
                 }
               >
-                <BlogPostComments postId={typedPost.id} />
+                <BlogPostComments postId={post.id} />
               </Suspense>
             </article>
           </div>
@@ -127,7 +126,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <LoadingSpinner size="sm" text="Loading sidebar..." />
                 }
               >
-                <BlogPostSidebar post={typedPost} />
+                <BlogPostSidebar post={post} />
               </Suspense>
             </div>
           </div>
@@ -142,9 +141,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               }
             >
               <RelatedPosts
-                currentPostId={typedPost.id}
-                category={typedPost.category?.name}
-                tags={typedPost.tags?.map(tag => tag.name)}
+                currentPostId={post.id}
+                category={post.category?.name}
+                tags={post.tags?.map(tag => tag.name)}
               />
             </Suspense>
           </div>

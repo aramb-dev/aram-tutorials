@@ -85,7 +85,7 @@ export function TutorialsHeader() {
 
           {/* Enhanced Search Experience */}
           <div className="max-w-2xl mx-auto mb-12">
-            <TutorialsSearch />
+            <TutorialsSearch isDark={true} />
           </div>
 
           {/* Interactive Topic Tags */}

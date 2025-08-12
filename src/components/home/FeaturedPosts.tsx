@@ -34,7 +34,7 @@ export async function FeaturedPosts() {
             {featuredPosts.map(post => (
               <BlogCard
                 key={post.id}
-                post={post as any}
+                post={post}
                 variant="featured"
                 showExcerpt
                 showCategory
