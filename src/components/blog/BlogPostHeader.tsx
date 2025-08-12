@@ -51,12 +51,12 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
             <div className="flex items-center gap-4 text-sm text-slate-300 mb-6">
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{post.reading_time} min read</span>
+                <span>{post.reading_time || 5} min read</span>
               </div>
 
               <div className="flex items-center gap-1">
                 <Eye className="h-4 w-4" />
-                <span>{post.views.toLocaleString()} views</span>
+                <span>{(post.views || 0).toLocaleString()} views</span>
               </div>
             </div>
 

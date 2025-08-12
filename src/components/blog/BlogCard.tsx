@@ -127,7 +127,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               {showReadingTime && (
                 <div className="flex items-center space-x-1">
                   <Clock className="h-4 w-4" />
-                  <span>{post.reading_time} min read</span>
+                  <span>{post.reading_time || 5} min read</span>
                 </div>
               )}
             </div>
@@ -136,7 +136,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               {showViews && (
                 <div className="flex items-center space-x-1">
                   <Eye className="h-4 w-4" />
-                  <span>{post.views.toLocaleString()}</span>
+                  <span>{(post.views || 0).toLocaleString()}</span>
                 </div>
               )}
               <div className="flex items-center space-x-1">
@@ -320,7 +320,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {showViews && (
               <div className="flex items-center space-x-1">
                 <Eye className="h-3 w-3" />
-                <span>{post.views}</span>
+                <span>{post.views || 0}</span>
               </div>
             )}
             <span>
