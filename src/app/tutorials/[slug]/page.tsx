@@ -38,10 +38,10 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `https://aramtutorials.com/tutorials/${post.slug}`,
+      url: `https://tutorials.aramb.dev/tutorials/${post.slug}`,
       images: [
         {
-          url: 'https://aramtutorials.com/og-default.jpg',
+          url: 'https://tutorials.aramb.dev/og-default.jpg',
           width: 1200,
           height: 630,
           alt: post.title,
@@ -56,11 +56,11 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: ['https://aramtutorials.com/og-default.jpg'],
+      images: ['https://tutorials.aramb.dev/og-default.jpg'],
       creator: '@aram_dev',
     },
     alternates: {
-      canonical: `https://aramtutorials.com/tutorials/${post.slug}`,
+      canonical: `https://tutorials.aramb.dev/tutorials/${post.slug}`,
     },
   };
 }

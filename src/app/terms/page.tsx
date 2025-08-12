@@ -229,7 +229,7 @@ export default function TermsOfServicePage() {
                       href="/contact"
                       className="text-primary hover:underline"
                     >
-                      aramtutorials.com/contact
+                      tutorials.aramb.dev/contact
                     </Link>
                   </p>
                 </div>

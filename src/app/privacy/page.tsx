@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
                   &quot;us&quot;), we are committed to protecting your privacy.
                   This Privacy Policy explains how we collect, use, disclose,
                   and safeguard your information when you visit our website
-                  aramtutorials.com and use our services.
+                  tutorials.aramb.dev and use our services.
                 </p>
               </section>
 
@@ -183,7 +183,7 @@ export default function PrivacyPolicyPage() {
                       href="/contact"
                       className="text-primary hover:underline"
                     >
-                      aramtutorials.com/contact
+                      tutorials.aramb.dev/contact
                     </Link>
                   </p>
                 </div>

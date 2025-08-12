@@ -137,7 +137,7 @@ CREATE TRIGGER update_contact_submissions_updated_at BEFORE UPDATE ON contact_su
 
 -- Insert default author
 INSERT INTO users (id, email, name, bio) VALUES 
-('550e8400-e29b-41d4-a716-446655440000', 'contact@aram-tutorials.com', 'Aram Tutorials Team', 'Passionate tech educators and developers helping people master technology through clear, practical tutorials.');
+('550e8400-e29b-41d4-a716-446655440000', 'aramtutorials@gmail.com', 'Aram Tutorials Team', 'Passionate tech educators and developers helping people master technology through clear, practical tutorials.');
 
 -- Insert categories
 INSERT INTO categories (name, slug, description, color, icon) VALUES 

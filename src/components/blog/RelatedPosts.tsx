@@ -49,7 +49,7 @@ export function RelatedPosts({
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
-        email: 'contact@aramtutorials.com',
+        email: 'aramtutorials@gmail.com',
         avatar_url:
           'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),
@@ -108,7 +108,7 @@ export function RelatedPosts({
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
-        email: 'contact@aramtutorials.com',
+        email: 'aramtutorials@gmail.com',
         avatar_url:
           'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),
@@ -167,7 +167,7 @@ export function RelatedPosts({
       author: {
         id: '1',
         name: 'Aram Tutorials Team',
-        email: 'contact@aramtutorials.com',
+        email: 'aramtutorials@gmail.com',
         avatar_url:
           'https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background&image_size=square',
         created_at: new Date('2024-01-01T00:00:00Z'),

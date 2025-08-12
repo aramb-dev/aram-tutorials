@@ -5,10 +5,10 @@ export const SITE_CONFIG = {
   name: 'Aram Tutorials',
   description: 'Tech Made Simple – One Tutorial at a Time',
   tagline: 'Tech Made Simple – One Tutorial at a Time',
-  url: 'https://aram-tutorials.com',
+  url: 'https://tutorials.aramb.dev',
   author: {
     name: 'Aram Tutorials Team',
-    email: 'contact@aram-tutorials.com',
+    email: 'aramtutorials@gmail.com',
     bio: 'A dedicated team of tech educators and developers helping people master technology through clear, practical tutorials.',
     avatar: '/images/team-avatar.jpg',
     social: {
@@ -389,7 +389,7 @@ export const MOCK_BLOG_POSTS = [
     author: {
       id: '1',
       name: 'Aram Tutorials Team',
-      email: 'contact@aramtutorials.com',
+      email: 'aramtutorials@gmail.com',
       avatar: '/images/avatar.jpg',
       bio: 'Full-stack developer and tech educator',
     },
@@ -429,7 +429,7 @@ export const MOCK_BLOG_POSTS = [
     author: {
       id: '1',
       name: 'Aram Tutorials Team',
-      email: 'contact@aramtutorials.com',
+      email: 'aramtutorials@gmail.com',
       avatar: '/images/avatar.jpg',
       bio: 'Full-stack developer and tech educator',
     },
@@ -469,7 +469,7 @@ export const MOCK_BLOG_POSTS = [
     author: {
       id: '1',
       name: 'Aram Tutorials Team',
-      email: 'contact@aramtutorials.com',
+      email: 'aramtutorials@gmail.com',
       avatar: '/images/avatar.jpg',
       bio: 'Full-stack developer and tech educator',
     },

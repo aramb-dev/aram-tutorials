@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     description:
       'Browse our comprehensive collection of programming tutorials and web development guides.',
     type: 'website',
-    url: 'https://aramtutorials.com/tutorials',
+    url: 'https://tutorials.aramb.dev/tutorials',
     images: [
       {
-        url: 'https://aramtutorials.com/og-tutorials.jpg',
+        url: 'https://tutorials.aramb.dev/og-tutorials.jpg',
         width: 1200,
         height: 630,
         alt: 'Aram Tutorials - Programming Tutorials',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'Tutorials | Aram Tutorials - Tech Made Simple',
     description:
       'Browse our comprehensive collection of programming tutorials and web development guides.',
-    images: ['https://aramtutorials.com/og-tutorials.jpg'],
+    images: ['https://tutorials.aramb.dev/og-tutorials.jpg'],
   },
 };
 
