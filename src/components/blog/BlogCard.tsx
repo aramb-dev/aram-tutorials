@@ -1,19 +1,17 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Clock, Eye, User, Calendar } from 'lucide-react';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import {
-  formatDate,
   formatRelativeTime,
   generateBlogPostUrl,
   getCategoryColor,
 } from '@/lib/utils';
 import type { BlogPost } from '@/types';
-import { IMAGES } from '@/lib/constants';
+import { Calendar, Clock, Eye, User } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 export interface BlogCardProps {
   post: BlogPost;
@@ -203,7 +201,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
                     {showReadingTime && (
                       <div className="flex items-center space-x-1">
                         <Clock className="h-3 w-3" />
-                        <span>{post.reading_time}m</span>
+                        <span>{post.reading_time || 5}m</span>
                       </div>
                     )}
                     <span>
@@ -311,7 +309,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {showReadingTime && (
               <div className="flex items-center space-x-1">
                 <Clock className="h-3 w-3" />
-                <span>{post.reading_time}m</span>
+                <span>{post.reading_time || 5}m</span>
               </div>
             )}
           </div>
