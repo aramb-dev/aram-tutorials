@@ -4,24 +4,24 @@ This document outlines the development tasks for the A-ram Tutorials project, sy
 
 ## Phase 1: Project Setup and Foundation
 
-- [ ] **1.1. Initialize Next.js 14 project with TypeScript and Tailwind CSS:** Set up the basic project structure using the `create-next-app` CLI tool.
-- [ ] **1.2. Configure ESLint, Prettier, and Husky:** Enforce code quality and consistency with automated linting, formatting, and pre-commit hooks.
-- [ ] **1.3. Set up project structure:** Create directories for `components`, `lib`, `styles`, `types`, and other necessary folders.
-- [ ] **1.4. Install core dependencies:** Add `next`, `react`, `react-dom`, and `tailwindcss` to the project.
-- [ ] **1.5. Set up Neon PostgreSQL database:** Create a new Neon project, obtain the connection string, and connect it to the Next.js application.
+- [x] **1.1. Initialize Next.js 14 project with TypeScript and Tailwind CSS:** Set up the basic project structure using the `create-next-app` CLI tool.
+- [x] **1.2. Configure ESLint, Prettier, and Husky:** Enforce code quality and consistency with automated linting, formatting, and pre-commit hooks.
+- [x] **1.3. Set up project structure:** Create directories for `components`, `lib`, `styles`, `types`, and other necessary folders.
+- [x] **1.4. Install core dependencies:** Add `next`, `react`, `react-dom`, and `tailwindcss` to the project.
+- [x] **1.5. Set up Neon PostgreSQL database:** Create a new Neon project, obtain the connection string, and connect it to the Next.js application.
 - [ ] **1.6. Configure Vercel for deployment:** Set up a new Vercel project, link the GitHub repository, and configure environment variables.
 
 ## Phase 2: Database and Content
 
-- [ ] **2.1. Implement database schema:** Write and execute the SQL scripts to create the tables defined in the Technical Architecture document.
-- [ ] **2.2. Create tables:**
-  - [ ] `blog_posts`
-  - [ ] `categories`
-  - [ ] `tags`
-  - [ ] `post_tags`
-  - [ ] `newsletter_subscriptions`
-  - [ ] `contact_submissions`
-- [ ] **2.3. Populate initial data:** Insert the initial `categories` and `tags` into the database.
+- [x] **2.1. Implement database schema:** Write and execute the SQL scripts to create the tables defined in the Technical Architecture document.
+- [x] **2.2. Create tables:**
+  - [x] `blog_posts`
+  - [x] `categories`
+  - [x] `tags`
+  - [x] `post_tags`
+  - [x] `newsletter_subscriptions`
+  - [x] `contact_submissions`
+- [x] **2.3. Populate initial data:** Insert the initial `categories` and `tags` into the database.
 - [ ] **2.4. Set up Markdown-based content management:** Configure the project to read blog posts from `.md` files with frontmatter.
 
 ## Phase 3: UI Components and Design System
