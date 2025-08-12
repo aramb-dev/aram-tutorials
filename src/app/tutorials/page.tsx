@@ -1,9 +1,9 @@
-import { Metadata } from 'next';
-import { Suspense } from 'react';
-import { TutorialsHeader } from '@/components/tutorials/TutorialsHeader';
 import { TutorialsFilters } from '@/components/tutorials/TutorialsFilters';
+import { TutorialsHeader } from '@/components/tutorials/TutorialsHeader';
 import { TutorialsList } from '@/components/tutorials/TutorialsList';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Tutorials | Aram Tutorials - Tech Made Simple',

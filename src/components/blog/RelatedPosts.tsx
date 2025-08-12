@@ -1,19 +1,18 @@
 'use client';
 
-import Link from 'next/link';
+import { BlogCard } from '@/components/blog/BlogCard';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import type { BlogPost } from '@/types';
 import {
   ArrowRight,
+  BookOpen,
   Clock,
   Eye,
-  TrendingUp,
   Star,
-  BookOpen,
+  TrendingUp,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { BlogCard } from '@/components/blog/BlogCard';
-import type { BlogPost } from '@/types';
+import Link from 'next/link';
 
 interface RelatedPostsProps {
   currentPostId: string;

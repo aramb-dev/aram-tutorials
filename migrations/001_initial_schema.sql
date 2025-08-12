@@ -136,11 +136,11 @@ CREATE TRIGGER update_contact_submissions_updated_at BEFORE UPDATE ON contact_su
 -- Insert initial data
 
 -- Insert default author
-INSERT INTO users (id, email, name, bio) VALUES 
+INSERT INTO users (id, email, name, bio) VALUES
 ('550e8400-e29b-41d4-a716-446655440000', 'aramtutorials@gmail.com', 'Aram Tutorials Team', 'Passionate tech educators and developers helping people master technology through clear, practical tutorials.');
 
 -- Insert categories
-INSERT INTO categories (name, slug, description, color, icon) VALUES 
+INSERT INTO categories (name, slug, description, color, icon) VALUES
 ('Mac', 'mac', 'macOS tutorials, tips, and tricks for Mac users', '#007AFF', 'laptop'),
 ('Windows', 'windows', 'Windows tutorials, guides, and productivity tips', '#0078D4', 'monitor'),
 ('Android', 'android', 'Android tutorials, app guides, and mobile tips', '#3DDC84', 'smartphone'),
@@ -149,7 +149,7 @@ INSERT INTO categories (name, slug, description, color, icon) VALUES
 ('Google', 'google', 'Google services, apps, and productivity tutorials', '#4285F4', 'search');
 
 -- Insert some initial tags
-INSERT INTO tags (name, slug) VALUES 
+INSERT INTO tags (name, slug) VALUES
 ('Beginner', 'beginner'),
 ('Advanced', 'advanced'),
 ('Tutorial', 'tutorial'),
@@ -163,17 +163,17 @@ INSERT INTO tags (name, slug) VALUES
 
 -- Insert sample blog posts
 INSERT INTO blog_posts (
-    title, 
-    slug, 
-    excerpt, 
-    content, 
-    author_id, 
-    category_id, 
-    status, 
-    is_featured, 
-    reading_time, 
+    title,
+    slug,
+    excerpt,
+    content,
+    author_id,
+    category_id,
+    status,
+    is_featured,
+    reading_time,
     published_at
-) VALUES 
+) VALUES
 (
     'Getting Started with Homebrew on macOS',
     'getting-started-homebrew-macos',
@@ -213,11 +213,11 @@ INSERT INTO blog_posts (
 
 -- Link posts with tags
 INSERT INTO blog_post_tags (post_id, tag_id)
-SELECT 
+SELECT
     bp.id,
     t.id
 FROM blog_posts bp, tags t
-WHERE 
+WHERE
     (bp.slug = 'getting-started-homebrew-macos' AND t.slug IN ('beginner', 'tutorial', 'setup')) OR
     (bp.slug = 'essential-vscode-extensions-developers' AND t.slug IN ('productivity', 'tutorial', 'configuration')) OR
     (bp.slug = 'customize-android-home-screen' AND t.slug IN ('tutorial', 'tips', 'customization'));
@@ -228,7 +228,7 @@ ON CONFLICT (slug) DO NOTHING;
 
 -- Update the blog_post_tags for the Android post
 INSERT INTO blog_post_tags (post_id, tag_id)
-SELECT 
+SELECT
     bp.id,
     t.id
 FROM blog_posts bp, tags t
