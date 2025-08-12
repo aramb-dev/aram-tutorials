@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { Database } from '@/lib/db';
+import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
 const newsletterSchema = z.object({
@@ -9,37 +9,37 @@ const newsletterSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+
     // Validate the request body
     const { email } = newsletterSchema.parse(body);
-    
+
     // Subscribe to newsletter
     await Database.subscribeToNewsletter(email);
-    
+
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Successfully subscribed to the newsletter!' 
+      {
+        success: true,
+        message: 'Successfully subscribed to the newsletter!',
       },
       { status: 200 }
     );
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Invalid email address', 
-          errors: error.issues 
+        {
+          success: false,
+          message: 'Invalid email address',
+          errors: error.issues,
         },
         { status: 400 }
       );
     }
-    
+
     console.error('Newsletter subscription error:', error);
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'Something went wrong. Please try again later.' 
+      {
+        success: false,
+        message: 'Something went wrong. Please try again later.',
       },
       { status: 500 }
     );

@@ -26,53 +26,53 @@ This document outlines the development tasks for the A-ram Tutorials project, sy
 
 ## Phase 3: UI Components and Design System
 
-- [ ] **3.1. Implement the design system:** Define the color palette, typography, and button styles in Tailwind CSS configuration.
-- [ ] **3.2. Create a `components/ui` directory:** Organize shared, reusable UI components.
-- [ ] **3.3. Build core UI components:**
-  - [ ] `Button`
-  - [ ] `Card`
-  - [ ] `Input`
-  - [ ] `Badge`
-  - [ ] `Header`
-  - [ ] `Footer`
+- [x] **3.1. Implement the design system:** Define the color palette, typography, and button styles in Tailwind CSS configuration.
+- [x] **3.2. Create a `components/ui` directory:** Organize shared, reusable UI components.
+- [x] **3.3. Build core UI components:**
+  - [x] `Button`
+  - [x] `Card`
+  - [x] `Input`
+  - [x] `Badge`
+  - [x] `Header`
+  - [x] `Footer`
 - [ ] **3.4. Implement a dark mode toggle:** Allow users to switch between light and dark themes.
 
 ## Phase 4: Page and Feature Implementation
 
-- [ ] **4.1. Homepage (`/`)**
-  - [ ] Create `HeroSection` with the brand tagline and a call-to-action button.
-  - [ ] Implement the `FeaturedTutorial` section to highlight a key post.
-  - [ ] Build the `RecentPostsGrid` to display the 6-8 latest tutorials.
-  - [ ] Create the `CategoriesSection` with visually distinct tiles for each category.
-  - [ ] Implement the `NewsletterOptIn` form.
-- [ ] **4.2. About Page (`/about`)**
-  - [ ] Create the `CreatorBio` section with a personal introduction.
-  - [ ] Add the `MissionStatement` explaining the platform's purpose.
-  - [ ] Integrate a link to the YouTube channel and display the subscriber count.
-- [ ] **4.3. Blog/Tutorials Page (`/blog`)**
-  - [ ] Implement a `TutorialGrid` with pagination or infinite scroll.
-  - [ ] Build a `FilterSystem` to allow users to filter posts by category and tag.
-  - [ ] Design `PostPreviewCards` that display post metadata.
-- [ ] **4.4. Single Blog Post Page (`/blog/[slug]`)**
-  - [ ] Create the `ArticleHeader` with title, author, date, and reading time.
-  - [ ] Implement the `ContentArea` to render rich text, code snippets, and images.
-  - [ ] Auto-generate a `TableOfContents` for long-form articles.
-  - [ ] Build a `RelatedPosts` section to suggest similar content.
-  - [ ] Add `SocialSharing` buttons for major platforms.
-  - [ ] Integrate a commenting system like Disqus or a native solution.
-- [ ] **4.5. Contact Page (`/contact`)**
-  - [ ] Build a `ContactForm` with proper validation and spam protection.
-  - [ ] Display the direct contact email address.
-  - [ ] Embed a Google Form for users to suggest new tutorial topics.
-- [ ] **4.6. Legal Pages**
+- [x] **4.1. Homepage (`/`)**
+  - [x] Create `HeroSection` with the brand tagline and a call-to-action button.
+  - [x] Implement the `FeaturedTutorial` section to highlight a key post.
+  - [x] Build the `RecentPostsGrid` to display the 6-8 latest tutorials.
+  - [x] Create the `CategoriesSection` with visually distinct tiles for each category.
+  - [x] Implement the `NewsletterOptIn` form.
+- [x] **4.2. About Page (`/about`)**
+  - [x] Create the `CreatorBio` section with a personal introduction.
+  - [x] Add the `MissionStatement` explaining the platform's purpose.
+  - [x] Integrate a link to the YouTube channel and display the subscriber count.
+- [x] **4.3. Blog/Tutorials Page (`/blog`)**
+  - [x] Implement a `TutorialGrid` with pagination or infinite scroll.
+  - [x] Build a `FilterSystem` to allow users to filter posts by category and tag.
+  - [x] Design `PostPreviewCards` that display post metadata.
+- [x] **4.4. Single Blog Post Page (`/blog/[slug]`)**
+  - [x] Create the `ArticleHeader` with title, author, date, and reading time.
+  - [x] Implement the `ContentArea` to render rich text, code snippets, and images.
+  - [x] Auto-generate a `TableOfContents` for long-form articles.
+  - [x] Build a `RelatedPosts` section to suggest similar content.
+  - [x] Add `SocialSharing` buttons for major platforms.
+  - [x] Integrate a commenting system like Disqus or a native solution.
+- [x] **4.5. Contact Page (`/contact`)**
+  - [x] Build a `ContactForm` with proper validation and spam protection.
+  - [x] Display the direct contact email address.
+  - [x] Embed a Google Form for users to suggest new tutorial topics.
+- [x] **4.6. Legal Pages**
   - [ ] Create the `PrivacyPolicy` page at `/privacy`.
   - [ ] Create the `TermsOfService` page at `/terms`.
 
 ## Phase 5: API and Backend Logic
 
-- [ ] **5.1. Create API route for `ContactForm` submission (`/api/contact`):** Handle form data and save it to the database.
-- [ ] **5.2. Create API route for `Newsletter` subscription (`/api/newsletter`):** Add new subscribers to the database.
-- [ ] **5.3. Implement API route for blog post search (`/api/search`):** Allow users to search for posts by keyword and category.
+- [x] **5.1. Create API route for `ContactForm` submission (`/api/contact`):** Handle form data and save it to the database.
+- [x] **5.2. Create API route for `Newsletter` subscription (`/api/newsletter`):** Add new subscribers to the database.
+- [x] **5.3. Implement API route for blog post search (`/api/search`):** Allow users to search for posts by keyword and category.
 - [ ] **5.4. Set up NextAuth.js:** Configure basic authentication for potential future admin features.
 
 ## Phase 6: Finalization and Deployment
