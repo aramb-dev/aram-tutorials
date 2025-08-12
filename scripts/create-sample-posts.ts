@@ -23,7 +23,8 @@ async function createSamplePosts() {
     {
       title: 'How to Install Homebrew on macOS',
       slug: 'how-to-install-homebrew-macos',
-      excerpt: 'Learn how to install Homebrew, the essential package manager for macOS, with this step-by-step guide.',
+      excerpt:
+        'Learn how to install Homebrew, the essential package manager for macOS, with this step-by-step guide.',
       content: `# How to Install Homebrew on macOS
 
 Homebrew is an essential package manager for macOS that makes installing and managing software incredibly easy. In this tutorial, we'll walk through the installation process step by step.
@@ -70,7 +71,8 @@ brew doctor
 \`\`\`
 
 That's it! You now have Homebrew installed and ready to use.`,
-      featuredImage: 'https://images.unsplash.com/photo-1484589065579-248aad0d8b13?w=800',
+      featuredImage:
+        'https://images.unsplash.com/photo-1484589065579-248aad0d8b13?w=800',
       youtubeUrl: null,
       readingTime: 3,
       published: true,
@@ -80,7 +82,8 @@ That's it! You now have Homebrew installed and ready to use.`,
     {
       title: 'Setting up VS Code for Web Development',
       slug: 'vscode-web-development-setup',
-      excerpt: 'Configure Visual Studio Code with the best extensions and settings for modern web development.',
+      excerpt:
+        'Configure Visual Studio Code with the best extensions and settings for modern web development.',
       content: `# Setting up VS Code for Web Development
 
 Visual Studio Code is one of the most popular code editors for web development. Let's set it up with the best extensions and configurations.
@@ -120,7 +123,8 @@ Add these to your VS Code settings.json:
 - \`Ctrl+\`\` - Toggle Terminal
 
 Your VS Code is now optimized for web development!`,
-      featuredImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
+      featuredImage:
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
       youtubeUrl: 'https://youtube.com/watch?v=example',
       readingTime: 5,
       published: true,
@@ -130,7 +134,8 @@ Your VS Code is now optimized for web development!`,
     {
       title: 'Android Developer Options Guide',
       slug: 'android-developer-options-guide',
-      excerpt: 'Unlock hidden features and debugging tools on your Android device with developer options.',
+      excerpt:
+        'Unlock hidden features and debugging tools on your Android device with developer options.',
       content: `# Android Developer Options Guide
 
 Developer options on Android provide access to system-level features and debugging tools. Here's how to enable and use them.
@@ -164,7 +169,8 @@ Helps test app behavior when activities are destroyed.
 ⚠️ Only enable options you understand. Some settings can affect device performance or stability.
 
 Developer options give you powerful control over your Android device!`,
-      featuredImage: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800',
+      featuredImage:
+        'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800',
       youtubeUrl: null,
       readingTime: 4,
       published: true,
@@ -176,7 +182,7 @@ Developer options give you powerful control over your Android device!`,
   // Create blog posts
   for (const postData of samplePosts) {
     const { tags: postTags, ...postWithoutTags } = postData;
-    
+
     const post = await prisma.blogPost.create({
       data: postWithoutTags,
     });
@@ -200,7 +206,7 @@ Developer options give you powerful control over your Android device!`,
 }
 
 createSamplePosts()
-  .catch((e) => {
+  .catch(e => {
     console.error(e);
     process.exit(1);
   })
