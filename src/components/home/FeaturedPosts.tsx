@@ -1,15 +1,12 @@
-import { Star, TrendingUp } from 'lucide-react';
-import Link from 'next/link';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
-import { MOCK_BLOG_POSTS } from '@/lib/constants';
+import { Database } from '@/lib/db';
+import { Star, TrendingUp } from 'lucide-react';
+import Link from 'next/link';
 
-export function FeaturedPosts() {
-  // Get featured posts (first 3 for demo)
-  const featuredPosts = MOCK_BLOG_POSTS.filter(post => post.featured).slice(
-    0,
-    3
-  );
+export async function FeaturedPosts() {
+  // Get featured posts from database
+  const featuredPosts = await Database.getFeaturedPosts(3);
 
   return (
     <div className="space-y-8">
@@ -44,7 +41,6 @@ export function FeaturedPosts() {
                 showTags
                 showAuthor
                 showReadingTime
-                showViews
               />
             ))}
           </div>

@@ -1,10 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, BookOpen, Code, Cpu, Database, Globe } from 'lucide-react';
-import { SearchInput } from '@/components/ui/SearchInput';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { BookOpen, Code, Cpu, Database, Globe } from 'lucide-react';
+import { TutorialsSearch } from './TutorialsSearch';
 
 const popularTopics = [
   {
@@ -30,13 +28,6 @@ const popularTopics = [
 ];
 
 export function TutorialsHeader() {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleTopicClick = (topic: string) => {
-    setSearchQuery(topic);
-    // TODO: Integrate with actual search functionality
-  };
-
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-brand-darker via-brand-dark to-brand-darker text-white">
       {/* Dynamic Brand Background Pattern */}
@@ -63,7 +54,8 @@ export function TutorialsHeader() {
             opacity="0.3"
           />
         </svg>
-      </div>{' '}
+      </div>
+
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
@@ -84,30 +76,18 @@ export function TutorialsHeader() {
               </p>
             </div>
           </div>
+
           <p className="text-xl text-slate-200 mb-12 leading-relaxed max-w-3xl mx-auto">
             Discover our curated collection of programming tutorials and web
             development guides. From beginner-friendly introductions to advanced
             techniques, find exactly what you need to level up your skills.
-          </p>{' '}
+          </p>
+
           {/* Enhanced Search Experience */}
           <div className="max-w-2xl mx-auto mb-12">
-            <div className="relative">
-              <SearchInput
-                value={searchQuery}
-                onChange={setSearchQuery}
-                placeholder="Search tutorials, topics, or technologies..."
-                className="w-full h-16 text-lg bg-white/10 border-white/20 text-white placeholder:text-slate-300 focus:bg-white/15 focus:border-brand-primary focus:outline-none focus:ring-0 backdrop-blur-sm rounded-xl pr-16"
-              />
-              <div className="absolute right-2 top-1/2 -translate-y-1/2">
-                <Button
-                  size="sm"
-                  className="h-12 w-12 bg-brand-primary hover:bg-brand-light rounded-lg text-white border-0 shadow-none"
-                >
-                  <Search className="h-5 w-5" />
-                </Button>
-              </div>
-            </div>
+            <TutorialsSearch />
           </div>
+
           {/* Interactive Topic Tags */}
           <div className="mb-8">
             <p className="text-sm text-slate-200 mb-4">
@@ -119,7 +99,6 @@ export function TutorialsHeader() {
                 return (
                   <button
                     key={topic.name}
-                    onClick={() => handleTopicClick(topic.name)}
                     className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 hover:scale-105 hover:shadow-lg backdrop-blur-sm ${topic.color}`}
                   >
                     <IconComponent className="h-4 w-4" />
@@ -129,6 +108,7 @@ export function TutorialsHeader() {
               })}
             </div>
           </div>
+
           {/* Authentic Stats */}
           <div className="flex flex-wrap items-center justify-center gap-6">
             <Badge

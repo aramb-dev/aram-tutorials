@@ -1,3 +1,4 @@
+import type { BlogPost } from '@/types';
 import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {
@@ -7,6 +8,41 @@ const globalForPrisma = globalThis as unknown as {
 export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+// Helper function to transform database post to BlogPost type
+function transformPost(post: any): BlogPost {
+  return {
+    id: post.id,
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    content: post.content,
+    featured_image: post.featuredImage,
+    author_id: post.authorId,
+    category_id: post.categoryId,
+    status: post.published ? 'published' : 'draft',
+    is_featured: post.featured,
+    reading_time: post.readingTime,
+    views: post.views,
+    published_at: post.publishedAt,
+    created_at: post.createdAt,
+    updated_at: post.updatedAt,
+    // Relations
+    category: post.category
+      ? {
+          id: post.category.id,
+          name: post.category.name,
+          slug: post.category.slug,
+          description: post.category.description,
+          color: post.category.color || '#6B7280',
+          icon: post.category.icon,
+          created_at: post.category.createdAt,
+          updated_at: post.category.updatedAt,
+        }
+      : undefined,
+    tags: post.tags || [],
+  };
+}
 
 // Database utility functions
 export class Database {
@@ -60,10 +96,12 @@ export class Database {
     const totalPages = Math.ceil(total / limit);
 
     return {
-      data: posts.map(post => ({
-        ...post,
-        tags: post.tags.map(pt => pt.tag),
-      })),
+      data: posts.map(post =>
+        transformPost({
+          ...post,
+          tags: post.tags.map(pt => pt.tag),
+        })
+      ),
       pagination: {
         page,
         limit,
@@ -94,10 +132,10 @@ export class Database {
 
     if (!post) return null;
 
-    return {
+    return transformPost({
       ...post,
       tags: post.tags.map(pt => pt.tag),
-    };
+    });
   }
 
   static async getFeaturedPosts(limit = 3) {
@@ -115,10 +153,35 @@ export class Database {
       take: limit,
     });
 
-    return posts.map(post => ({
-      ...post,
-      tags: post.tags.map(pt => pt.tag),
-    }));
+    return posts.map(post =>
+      transformPost({
+        ...post,
+        tags: post.tags.map(pt => pt.tag),
+      })
+    );
+  }
+
+  static async getRecentPosts(limit = 6) {
+    const posts = await prisma.blogPost.findMany({
+      where: { published: true },
+      include: {
+        category: true,
+        tags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    });
+
+    return posts.map(post =>
+      transformPost({
+        ...post,
+        tags: post.tags.map(pt => pt.tag),
+      })
+    );
   }
 
   static async getRelatedPosts(postId: string, categoryId: string, limit = 3) {
@@ -140,10 +203,12 @@ export class Database {
       take: limit,
     });
 
-    return posts.map(post => ({
-      ...post,
-      tags: post.tags.map(pt => pt.tag),
-    }));
+    return posts.map(post =>
+      transformPost({
+        ...post,
+        tags: post.tags.map(pt => pt.tag),
+      })
+    );
   }
 
   // Categories
@@ -256,10 +321,12 @@ export class Database {
       take: limit,
     });
 
-    return posts.map(post => ({
-      ...post,
-      tags: post.tags.map(pt => pt.tag),
-    }));
+    return posts.map(post =>
+      transformPost({
+        ...post,
+        tags: post.tags.map(pt => pt.tag),
+      })
+    );
   }
 }
 

@@ -1,17 +1,12 @@
-import { Clock, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
-import { MOCK_BLOG_POSTS } from '@/lib/constants';
+import { Database } from '@/lib/db';
+import { ArrowRight, Clock } from 'lucide-react';
+import Link from 'next/link';
 
-export function RecentPosts() {
-  // Get recent posts (all posts for demo, sorted by date)
-  const recentPosts = [...MOCK_BLOG_POSTS]
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    )
-    .slice(0, 6);
+export async function RecentPosts() {
+  // Get recent posts from database
+  const recentPosts = await Database.getRecentPosts(6);
 
   return (
     <div className="space-y-8">
@@ -38,7 +33,7 @@ export function RecentPosts() {
             {recentPosts.map(post => (
               <BlogCard
                 key={post.id}
-                post={post as any}
+                post={post}
                 variant="default"
                 showExcerpt
                 showCategory

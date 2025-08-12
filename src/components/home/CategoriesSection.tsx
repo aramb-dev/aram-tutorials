@@ -1,82 +1,33 @@
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Database } from '@/lib/db';
+import { generateCategoryUrl } from '@/lib/utils';
 import {
   ArrowRight,
+  Code,
   Folder,
   Laptop,
   Monitor,
-  Smartphone,
-  Code,
   Package,
   Search,
+  Smartphone,
 } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { generateCategoryUrl } from '@/lib/utils';
 
 // Icon mapping for category icons
 const iconMap = {
-  laptop: Laptop,
-  monitor: Monitor,
-  smartphone: Smartphone,
-  code: Code,
-  package: Package,
-  search: Search,
+  '🍎': Laptop,
+  '🪟': Monitor,
+  '🤖': Smartphone,
+  '💻': Code,
+  '🍺': Package,
+  '🔍': Search,
 } as const;
 
-// Default categories for display components with realistic counts
-const categoriesWithCounts = [
-  {
-    slug: 'mac',
-    name: 'macOS',
-    description:
-      'System optimization, productivity tips, and essential workflows',
-    color: '#4A7C59',
-    icon: 'laptop',
-    count: 4,
-  },
-  {
-    slug: 'windows',
-    name: 'Windows',
-    description: 'Configuration, troubleshooting, and power user techniques',
-    color: '#7BA05A',
-    icon: 'monitor',
-    count: 3,
-  },
-  {
-    slug: 'android',
-    name: 'Android',
-    description: 'Device setup, customization, and mobile productivity',
-    color: '#A8C78A',
-    icon: 'smartphone',
-    count: 2,
-  },
-  {
-    slug: 'vscode',
-    name: 'VS Code',
-    description: 'Editor mastery, extensions, and development workflows',
-    color: '#2E5E15',
-    icon: 'code',
-    count: 5,
-  },
-  {
-    slug: 'homebrew',
-    name: 'Homebrew',
-    description: 'Package management and command-line efficiency',
-    color: '#6B7280',
-    icon: 'package',
-    count: 3,
-  },
-  {
-    slug: 'google',
-    name: 'Google Suite',
-    description: 'Productivity optimization and collaboration workflows',
-    color: '#4A7C59',
-    icon: 'search',
-    count: 4,
-  },
-] as const;
+export async function CategoriesSection() {
+  // Get categories from database
+  const categories = await Database.getAllCategories();
 
-export function CategoriesSection() {
   return (
     <div className="space-y-8">
       {/* Section Header */}
@@ -98,7 +49,7 @@ export function CategoriesSection() {
 
       {/* Categories Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {categoriesWithCounts.map((category, index) => {
+        {categories.map((category, index) => {
           const IconComponent =
             iconMap[category.icon as keyof typeof iconMap] || Code;
 
@@ -111,13 +62,7 @@ export function CategoriesSection() {
               <Card className="h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-2 hover:border-primary/20">
                 <CardContent className="p-6 text-center">
                   {/* Category Icon */}
-                  <div
-                    className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{
-                      backgroundColor: `${category.color}15`,
-                      color: category.color,
-                    }}
-                  >
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 bg-brand-primary/10 text-brand-primary">
                     <IconComponent className="h-8 w-8" />
                   </div>
 
@@ -133,7 +78,7 @@ export function CategoriesSection() {
 
                   {/* Tutorial Count */}
                   <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                    <span>{category.count} tutorials</span>
+                    <span>{category._count?.posts || 0} tutorials</span>
                     <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </CardContent>

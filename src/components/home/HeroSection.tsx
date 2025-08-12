@@ -1,7 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpen, Code, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { SearchInput } from '@/components/ui/SearchInput';
+import { HeroSearch } from './HeroSearch';
 
 export function HeroSection() {
   return (
@@ -34,8 +34,8 @@ export function HeroSection() {
             productivity workflows.
           </p>
 
-          <div className="mt-8 max-w-md mx-auto">
-            <SearchInput placeholder="Search tutorials..." />
+          <div className="mt-8">
+            <HeroSearch />
           </div>
 
           <div className="mt-10 flex items-center justify-center gap-x-6">
