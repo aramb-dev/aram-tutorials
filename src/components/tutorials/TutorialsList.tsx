@@ -1,7 +1,8 @@
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Database } from '@/lib/db';
+import { getAllPosts } from '@/lib/mdx';
+import { transformPostToBlogPost } from '@/lib/transformers';
 import {
   BookOpen,
   ChevronLeft,
@@ -29,16 +30,12 @@ export async function TutorialsList({
   sort = 'newest',
   page = 1,
 }: TutorialsListProps) {
-  // Fetch posts from database with filters
-  const result = await Database.getAllPosts({
-    page,
-    limit: POSTS_PER_PAGE,
-    categorySlug: category,
-    search,
-  });
+  const allPosts = (await getAllPosts()).map(transformPostToBlogPost);
 
-  const { data: currentPosts, pagination } = result;
-  const { total: totalPosts, totalPages } = pagination;
+  // TODO: Implement filtering and sorting
+  const currentPosts = allPosts;
+  const totalPosts = allPosts.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
   // Sort options for display
   const sortOptions = [

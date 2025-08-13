@@ -1,4 +1,4 @@
-import { Database } from '@/lib/db';
+// import { Database } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
     const validatedData = contactSchema.parse(body);
 
     // Save to database
-    const submission = await Database.createContactSubmission(validatedData);
+    // Save to database
+    // const submission = await Database.createContactSubmission(validatedData);
 
     // TODO: Send email notification (implement later)
 

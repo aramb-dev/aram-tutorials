@@ -1,4 +1,5 @@
-import { Database } from '@/lib/db';
+import { BlogPost } from '@/types';
+// import { Database } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -19,7 +20,9 @@ export async function GET(request: NextRequest) {
     }
 
     // Search posts
-    const posts = await Database.searchPosts(query.trim(), limit);
+    // Search posts
+    // const posts = await Database.searchPosts(query.trim(), limit);
+    const posts: BlogPost[] = [];
 
     return NextResponse.json(
       {

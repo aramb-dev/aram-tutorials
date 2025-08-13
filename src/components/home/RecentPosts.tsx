@@ -1,12 +1,14 @@
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
-import { Database } from '@/lib/db';
+import { getAllPosts } from '@/lib/mdx';
+import { transformPostToBlogPost } from '@/lib/transformers';
 import { ArrowRight, Clock } from 'lucide-react';
 import Link from 'next/link';
 
 export async function RecentPosts() {
-  // Get recent posts from database
-  const recentPosts = await Database.getRecentPosts(6);
+  // Get recent posts from mdx
+  const allPosts = await getAllPosts();
+  const recentPosts = allPosts.slice(0, 6).map(transformPostToBlogPost);
 
   return (
     <div className="space-y-8">

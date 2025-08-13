@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Database } from '@/lib/db';
+// import { Database } from '@/lib/db';
 import { generateCategoryUrl } from '@/lib/utils';
+import { Category } from '@/types';
 import {
   ArrowRight,
   Code,
@@ -26,7 +27,9 @@ const iconMap = {
 
 export async function CategoriesSection() {
   // Get categories from database
-  const categories = await Database.getAllCategories();
+  // Get categories from database
+  // const categories = await Database.getAllCategories();
+  const categories: Category[] = [];
 
   return (
     <div className="space-y-8">

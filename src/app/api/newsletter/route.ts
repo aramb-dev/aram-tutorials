@@ -1,4 +1,4 @@
-import { Database } from '@/lib/db';
+// import { Database } from '@/lib/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const { email } = newsletterSchema.parse(body);
 
     // Subscribe to newsletter
-    await Database.subscribeToNewsletter(email);
+    // await Database.subscribeToNewsletter(email);
 
     return NextResponse.json(
       {

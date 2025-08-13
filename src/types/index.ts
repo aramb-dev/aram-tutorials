@@ -27,6 +27,9 @@ export interface Tag {
   slug: string;
   created_at: Date;
   updated_at: Date;
+  _count?: {
+    posts: number;
+  };
 }
 
 export interface BlogPost {
@@ -209,3 +212,21 @@ export type CreateCategory = Omit<Category, 'id' | 'created_at' | 'updated_at'>;
 export type UpdateCategory = Partial<CreateCategory>;
 export type CreateTag = Omit<Tag, 'id' | 'created_at' | 'updated_at'>;
 export type UpdateTag = Partial<CreateTag>;
+
+// MDX content types
+export interface Frontmatter {
+  title: string;
+  date: string;
+  category: string;
+  tags: string[];
+  excerpt: string;
+  author: string;
+  published: boolean;
+  featured_image?: string;
+  reading_time: number;
+}
+
+export interface Post extends Frontmatter {
+  slug: string;
+  content: string;
+}

@@ -1,12 +1,17 @@
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/button';
-import { Database } from '@/lib/db';
+import { getAllPosts } from '@/lib/mdx';
+import { transformPostToBlogPost } from '@/lib/transformers';
 import { Star, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 export async function FeaturedPosts() {
-  // Get featured posts from database
-  const featuredPosts = await Database.getFeaturedPosts(3);
+  // Get featured posts from mdx
+  const allPosts = await getAllPosts();
+  const featuredPosts = allPosts
+    .filter(p => p.featured_image)
+    .slice(0, 3)
+    .map(transformPostToBlogPost);
 
   return (
     <div className="space-y-8">
