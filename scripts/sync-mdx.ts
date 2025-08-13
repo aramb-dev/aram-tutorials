@@ -44,6 +44,14 @@ export async function syncMDXToDB() {
 
     console.log(`📚 Found ${files.length} MDX file(s) to process`);
 
+    // Get all existing posts from database for cleanup
+    const existingPosts = await prisma.blogPost.findMany({
+      select: { id: true, slug: true },
+    });
+
+    // Track which posts we've processed
+    const processedSlugs = new Set<string>();
+
     for (const file of files) {
       try {
         const filePath = path.join(CONTENT_DIR, file);
@@ -52,6 +60,9 @@ export async function syncMDXToDB() {
 
         const mdx = metadata as MDXMetadata;
         const slug = path.basename(file, '.mdx');
+
+        // Track this slug as processed
+        processedSlugs.add(slug);
 
         console.log(`📝 Processing: ${mdx.title || slug}`);
 
@@ -134,6 +145,33 @@ export async function syncMDXToDB() {
         console.error(`❌ Error processing ${file}:`, fileError);
         // Continue with other files instead of failing the entire sync
       }
+    }
+
+    // Delete posts that no longer have corresponding MDX files
+    console.log('🗑️  Checking for posts to delete...');
+    const postsToDelete = existingPosts.filter(
+      post => !processedSlugs.has(post.slug)
+    );
+
+    if (postsToDelete.length > 0) {
+      console.log(
+        `🗑️  Deleting ${postsToDelete.length} post(s) that no longer have MDX files...`
+      );
+      for (const post of postsToDelete) {
+        try {
+          // Delete related records first (due to foreign key constraints)
+          await prisma.postTag.deleteMany({ where: { postId: post.id } });
+          await prisma.comment.deleteMany({ where: { postId: post.id } });
+
+          // Delete the post
+          await prisma.blogPost.delete({ where: { id: post.id } });
+          console.log(`🗑️  Deleted: ${post.slug}`);
+        } catch (deleteError) {
+          console.error(`❌ Error deleting ${post.slug}:`, deleteError);
+        }
+      }
+    } else {
+      console.log('✨ No posts to delete');
     }
 
     console.log('🎉 MDX sync completed!');
