@@ -216,14 +216,19 @@ export type UpdateTag = Partial<CreateTag>;
 // MDX content types
 export interface Frontmatter {
   title: string;
-  date: string;
+  description: string;
+  publishedAt: string;
+  author: string;
   category: string;
   tags: string[];
-  excerpt: string;
-  author: string;
-  published: boolean;
+  featured?: boolean;
+  readingTime?: number;
+  // Legacy support
+  date?: string;
+  excerpt?: string;
+  published?: boolean;
+  reading_time?: number;
   featured_image?: string;
-  reading_time: number;
 }
 
 export interface Post extends Frontmatter {

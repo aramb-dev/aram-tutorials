@@ -157,38 +157,45 @@ export function BlogPostHeader({ post }: BlogPostHeaderProps) {
               </div>
             </div>
 
-            {/* Tags - All topic identifiers grouped together */}
-            {(post.tags && post.tags.length > 0) ||
-              (post.category && (
-                <div className="mt-8">
-                  <div className="flex flex-wrap gap-2">
-                    {/* Main Category Tag */}
-                    {post.category && (
-                      <Link href={`/tutorials?category=${post.category.slug}`}>
-                        <Badge
-                          className="hover:opacity-80 transition-opacity"
-                          style={{ backgroundColor: categoryColor.bg }}
-                        >
-                          {post.category.name}
-                        </Badge>
-                      </Link>
-                    )}
+            {/* Category and Tags - All topic identifiers grouped together */}
+            <div className="mt-8">
+              <div className="flex flex-wrap gap-3">
+                {/* Main Category Tag */}
+                {post.category && (
+                  <Link href={`/tutorials?category=${post.category.slug}`}>
+                    <Badge
+                      className="hover:opacity-80 transition-opacity cursor-pointer text-sm px-3 py-1.5 font-medium"
+                      style={{
+                        backgroundColor: categoryColor.bg,
+                        color: categoryColor.text,
+                      }}
+                    >
+                      📁 {post.category.name}
+                    </Badge>
+                  </Link>
+                )}
 
-                    {/* Related Topic Tags */}
-                    {post.tags &&
-                      post.tags.map(tag => (
-                        <Link key={tag.id} href={`/tutorials?tag=${tag.slug}`}>
-                          <Badge
-                            variant="outline"
-                            className="text-white border-white/30 hover:bg-white/10 transition-colors"
-                          >
-                            #{tag.name}
-                          </Badge>
-                        </Link>
-                      ))}
-                  </div>
-                </div>
-              ))}
+                {/* Related Topic Tags */}
+                {post.tags &&
+                  post.tags.map(tag => (
+                    <Link key={tag.id} href={`/tutorials?tag=${tag.slug}`}>
+                      <Badge
+                        variant="outline"
+                        className="text-white border-white/30 hover:bg-white/10 transition-colors cursor-pointer text-sm px-3 py-1.5"
+                      >
+                        #{tag.name}
+                      </Badge>
+                    </Link>
+                  ))}
+              </div>
+
+              {/* Tags count indicator */}
+              {post.tags && post.tags.length > 0 && (
+                <p className="text-xs text-slate-400 mt-2">
+                  {post.tags.length} tag{post.tags.length !== 1 ? 's' : ''}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>

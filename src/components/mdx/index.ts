@@ -13,7 +13,7 @@ export {
 export { AdditionalResources, ResourceLink } from './AdditionalResources';
 export { Card, CardGrid } from './Card';
 export { CodeBlock } from './CodeBlock';
-export { Image, VideoEmbed } from './Media';
+export { Image, ImageComparison, Screenshot, VideoEmbed } from './Media';
 export { PrerequisiteItem, Prerequisites } from './Prerequisites';
 export { Step, StepList } from './Steps';
 export { TableOfContents } from './TableOfContents';
