@@ -73,7 +73,8 @@ This document outlines the development tasks for the A-ram Tutorials project, sy
 - [x] **5.1. Create API route for `ContactForm` submission (`/api/contact`):** Handle form data and save it to the database.
 - [x] **5.2. Create API route for `Newsletter` subscription (`/api/newsletter`):** Add new subscribers to the database.
 - [x] **5.3. Implement API route for blog post search (`/api/search`):** Allow users to search for posts by keyword and category.
-- [ ] **5.4. Set up NextAuth.js:** Configure basic authentication for potential future admin features.
+- [ ] **5.4. Set up Auth.js:** Configure basic authentication for potential future admin features. (npm install next-auth@beta, npx auth secret)
+- [ ]
 
 ## Phase 6: Finalization and Deployment
 

@@ -1,0 +1,356 @@
+---
+title: 'Getting Started with Next.js and TypeScript'
+description: 'A comprehensive guide to setting up a modern Next.js project with TypeScript, Tailwind CSS, and best practices.'
+publishedAt: '2025-01-15'
+author: 'Aram Baghdasaryan'
+category: 'web-development'
+tags: ['nextjs', 'typescript', 'react', 'javascript']
+featured: true
+readingTime: 8
+---
+
+# Getting Started with Next.js and TypeScript
+
+Welcome to this comprehensive tutorial on setting up a modern Next.js project with TypeScript. We'll cover everything from initial setup to deployment best practices.
+
+<TableOfContents />
+
+## Prerequisites
+
+<Prerequisites>
+  <PrerequisiteItem completed>
+    Node.js 18+ installed on your machine
+  </PrerequisiteItem>
+  <PrerequisiteItem completed>
+    Basic knowledge of React and JavaScript
+  </PrerequisiteItem>
+  <PrerequisiteItem>
+    Understanding of TypeScript basics (recommended)
+  </PrerequisiteItem>
+  <PrerequisiteItem>Familiarity with command line interface</PrerequisiteItem>
+</Prerequisites>
+
+## What We'll Build
+
+In this tutorial, we'll create a modern Next.js application with the following features:
+
+<CardGrid columns={2}>
+  <Card title="TypeScript Integration" icon="Code">
+    - Type-safe development environment
+    - Better IDE support and autocomplete
+    - Catch errors at compile time
+    - Improved code documentation
+  </Card>
+
+  <Card title="Modern Tooling" icon="Settings">
+    - Tailwind CSS for styling
+    - ESLint and Prettier for code quality
+    - Hot reload development server
+    - Production-ready build system
+  </Card>
+</CardGrid>
+
+## Step-by-Step Setup
+
+<StepList>
+  <Step number={1} title="Create New Next.js Project">
+    Start by creating a new Next.js project with TypeScript template:
+
+    <CodeBlock language="bash" title="Create Next.js Project">
+    npx create-next-app@latest my-nextjs-app --typescript --tailwind --eslint --app
+    cd my-nextjs-app
+    </CodeBlock>
+
+    This command creates a new Next.js project with:
+    - TypeScript configuration
+    - Tailwind CSS setup
+    - ESLint configuration
+    - App Router (recommended)
+
+  </Step>
+
+  <Step number={2} title="Project Structure Overview">
+    Let's examine the generated project structure:
+
+    <CodeBlock language="text" title="Project Structure">
+    my-nextjs-app/
+    ├── src/
+    │   └── app/
+    │       ├── globals.css
+    │       ├── layout.tsx
+    │       └── page.tsx
+    ├── public/
+    ├── next.config.js
+    ├── package.json
+    ├── tailwind.config.js
+    └── tsconfig.json
+    </CodeBlock>
+
+    <ProTip>
+      The `src/app` directory is where you'll build your application. The App Router uses file-based routing, where each folder represents a route segment.
+    </ProTip>
+
+  </Step>
+
+  <Step number={3} title="Configure TypeScript">
+    Next.js automatically configures TypeScript, but let's understand the key configuration files:
+
+    <CodeBlock language="json" title="tsconfig.json" filename="tsconfig.json">
+    {
+      "compilerOptions": {
+        "lib": ["dom", "dom.iterable", "es6"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+          {
+            "name": "next"
+          }
+        ],
+        "baseUrl": ".",
+        "paths": {
+          "@/*": ["./src/*"]
+        }
+      },
+      "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+      "exclude": ["node_modules"]
+    }
+    </CodeBlock>
+
+  </Step>
+
+  <Step number={4} title="Create Your First Component" completed>
+    Let's create a reusable Button component with proper TypeScript types:
+
+    <CodeBlock language="tsx" title="Button Component" filename="src/components/ui/Button.tsx">
+    import React from 'react';
+    import { cn } from '@/lib/utils';
+
+    interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+      variant?: 'primary' | 'secondary' | 'outline';
+      size?: 'sm' | 'md' | 'lg';
+      children: React.ReactNode;
+    }
+
+    export function Button({
+      variant = 'primary',
+      size = 'md',
+      className,
+      children,
+      ...props
+    }: ButtonProps) {
+      return (
+        <button
+          className={cn(
+            'inline-flex items-center justify-center rounded-md font-medium transition-colors',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+            'disabled:pointer-events-none disabled:opacity-50',
+            {
+              'bg-blue-600 text-white hover:bg-blue-700': variant === 'primary',
+              'bg-gray-200 text-gray-900 hover:bg-gray-300': variant === 'secondary',
+              'border border-gray-300 bg-transparent hover:bg-gray-50': variant === 'outline',
+              'h-8 px-3 text-sm': size === 'sm',
+              'h-10 px-4 text-base': size === 'md',
+              'h-12 px-6 text-lg': size === 'lg',
+            },
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </button>
+      );
+    }
+    </CodeBlock>
+
+  </Step>
+</StepList>
+
+## Best Practices
+
+<ImportantNote>
+  Always use TypeScript's strict mode to catch potential issues early. This
+  includes proper type annotations for props, state, and function parameters.
+</ImportantNote>
+
+Here are some essential best practices when working with Next.js and TypeScript:
+
+### Type Safety
+
+<CardGrid>
+  <Card title="Component Props">
+    Always define interfaces for your component props:
+
+    ```tsx
+    interface UserCardProps {
+      user: {
+        id: string;
+        name: string;
+        email: string;
+      };
+      onEdit?: (id: string) => void;
+    }
+    ```
+
+  </Card>
+
+  <Card title="API Routes">
+    Type your API responses for better development experience:
+
+    ```tsx
+    interface ApiResponse<T> {
+      success: boolean;
+      data?: T;
+      error?: string;
+    }
+    ```
+
+  </Card>
+</CardGrid>
+
+### Performance Optimization
+
+<ProTip title="Image Optimization">
+  Always use Next.js `Image` component instead of regular `img` tags for
+  automatic optimization, lazy loading, and better performance.
+</ProTip>
+
+<CodeBlock language="tsx" title="Optimized Image Usage">
+import Image from 'next/image';
+
+export function UserAvatar({ src, alt }: { src: string; alt: string }) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={64}
+      height={64}
+      className="rounded-full"
+      priority={false} // Set to true for above-the-fold images
+    />
+  );
+}
+</CodeBlock>
+
+## Common Gotchas
+
+<ErrorTip>
+  **Hydration Mismatch**: Make sure your server-side rendered content matches
+  what's rendered on the client. Avoid using browser-only APIs during initial
+  render.
+</ErrorTip>
+
+Here are some common issues you might encounter:
+
+1. **Server vs Client Code**: Remember that Next.js runs on both server and client
+2. **Dynamic Imports**: Use `dynamic` imports for client-only components
+3. **Environment Variables**: Prefix client-side env vars with `NEXT_PUBLIC_`
+
+<CodeBlock language="tsx" title="Client-Only Component">
+import dynamic from 'next/dynamic';
+
+// This component will only render on the client
+const ClientOnlyComponent = dynamic(
+() => import('@/components/ClientOnlyComponent'),
+{ ssr: false }
+);
+
+</CodeBlock>
+
+## Testing Your Application
+
+<StepList>
+  <Step number={1} title="Install Testing Dependencies">
+    <CodeBlock language="bash">
+    npm install --save-dev @testing-library/react @testing-library/jest-dom jest jest-environment-jsdom
+    </CodeBlock>
+  </Step>
+
+  <Step number={2} title="Configure Jest">
+    Create a `jest.config.js` file in your project root:
+
+    <CodeBlock language="javascript" filename="jest.config.js">
+    const nextJest = require('next/jest');
+
+    const createJestConfig = nextJest({
+      dir: './',
+    });
+
+    const customJestConfig = {
+      setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+      testEnvironment: 'jest-environment-jsdom',
+    };
+
+    module.exports = createJestConfig(customJestConfig);
+    </CodeBlock>
+
+  </Step>
+</StepList>
+
+## Deployment
+
+<SuccessNote>
+  Next.js applications are ready for production out of the box. The framework
+  automatically optimizes your code for the best performance.
+</SuccessNote>
+
+### Deploy to Vercel
+
+The easiest way to deploy your Next.js app is using Vercel:
+
+<CodeBlock language="bash" title="Deploy with Vercel CLI">
+  npm install -g vercel vercel --prod
+</CodeBlock>
+
+### Build for Production
+
+<CodeBlock language="bash" title="Production Build">
+  npm run build npm start
+</CodeBlock>
+
+## What's Next?
+
+Congratulations! You now have a solid foundation for building modern web applications with Next.js and TypeScript. Here are some next steps to consider:
+
+<AdditionalResources
+  resources={[
+    {
+      title: 'Next.js Documentation',
+      url: 'https://nextjs.org/docs',
+      description:
+        'Official Next.js documentation with comprehensive guides and API reference',
+      type: 'documentation',
+    },
+    {
+      title: 'TypeScript Handbook',
+      url: 'https://www.typescriptlang.org/docs/',
+      description: 'Complete guide to TypeScript features and best practices',
+      type: 'documentation',
+    },
+    {
+      title: 'Tailwind CSS Docs',
+      url: 'https://tailwindcss.com/docs',
+      description: 'Utility-first CSS framework documentation',
+      type: 'documentation',
+    },
+    {
+      title: 'Next.js Examples',
+      url: 'https://github.com/vercel/next.js/tree/canary/examples',
+      description:
+        'Collection of example projects showcasing different Next.js features',
+      type: 'code',
+    },
+  ]}
+/>
+
+---
+
+That's it! You're now ready to build amazing web applications with Next.js and TypeScript. Remember to keep practicing and exploring the ecosystem to become more proficient.
