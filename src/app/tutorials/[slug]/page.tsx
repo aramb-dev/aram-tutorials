@@ -87,23 +87,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   // Extract table of contents from the MDX content (only h1 and h2)
   const generateTableOfContents = (content: string) => {
-    // Match both standard markdown headers and JSX headings
-    const headingRegex = /^(#{1,2})\s+(.+)$|<h([12])[^>]*>([^<]+)<\/h[12]>/gm;
     const headings = [];
+
+    // Match markdown headers (# and ##)
+    const markdownRegex = /^(#{1,2})\s+(.+)$/gm;
     let match;
 
-    while ((match = headingRegex.exec(content)) !== null) {
-      let level, title;
+    while ((match = markdownRegex.exec(content)) !== null) {
+      const level = match[1].length;
+      const title = match[2].trim();
 
-      if (match[1]) {
-        // Standard markdown heading
-        level = match[1].length;
-        title = match[2].trim();
-      } else {
-        // JSX heading
-        level = parseInt(match[3]);
-        title = match[4].trim();
-      }
+      // Skip if it's not h1 or h2
+      if (level > 2) continue;
+
+      const id = title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
+      headings.push({ id, title, level });
+    }
+
+    // Reset regex for JSX headers
+    const jsxRegex = /<h([12])[^>]*>([^<]+)<\/h[12]>/g;
+
+    while ((match = jsxRegex.exec(content)) !== null) {
+      const level = parseInt(match[1]);
+      const title = match[2].trim();
+
+      // Skip if it's not h1 or h2 (extra safety check)
+      if (level > 2) continue;
 
       const id = title
         .toLowerCase()

@@ -70,23 +70,67 @@ export function CodeBlock({
   };
 
   const getLanguageDisplayName = (lang: string): string => {
+    // Handle empty or undefined language
+    if (!lang || lang.trim() === '' || lang === 'text') {
+      return 'PLAIN TEXT';
+    }
+
     const names: Record<string, string> = {
       js: 'JavaScript',
+      javascript: 'JavaScript',
       jsx: 'JSX',
       ts: 'TypeScript',
+      typescript: 'TypeScript',
       tsx: 'TSX',
       py: 'Python',
+      python: 'Python',
       css: 'CSS',
       html: 'HTML',
       json: 'JSON',
       yml: 'YAML',
       yaml: 'YAML',
       md: 'Markdown',
+      markdown: 'Markdown',
       bash: 'Bash',
       shell: 'Shell',
+      sh: 'Shell',
       sql: 'SQL',
+      xml: 'XML',
+      php: 'PHP',
+      java: 'Java',
+      c: 'C',
+      cpp: 'C++',
+      csharp: 'C#',
+      go: 'Go',
+      rust: 'Rust',
+      swift: 'Swift',
+      kotlin: 'Kotlin',
+      dart: 'Dart',
+      ruby: 'Ruby',
+      powershell: 'PowerShell',
+      dockerfile: 'Dockerfile',
+      nginx: 'Nginx',
+      apache: 'Apache',
+      vim: 'Vim',
+      diff: 'Diff',
+      git: 'Git',
+      ini: 'INI',
+      toml: 'TOML',
+      properties: 'Properties',
     };
-    return names[lang.toLowerCase()] || lang.toUpperCase();
+
+    const normalizedLang = lang.toLowerCase().trim();
+
+    // Check if it looks like a CSS class or contains special characters
+    if (
+      normalizedLang.includes(':') ||
+      normalizedLang.includes('-') ||
+      normalizedLang.includes('.')
+    ) {
+      return 'PLAIN TEXT';
+    }
+
+    return names[normalizedLang] || 'PLAIN TEXT';
   };
 
   const parseHighlightLines = (highlight?: string): Set<number> => {

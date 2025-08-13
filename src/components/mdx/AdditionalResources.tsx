@@ -1,12 +1,29 @@
 import { cn } from '@/lib/utils';
-import { Code, ExternalLink, FileText, Globe, Video } from 'lucide-react';
+import {
+  BookOpen,
+  Code,
+  ExternalLink,
+  FileText,
+  Globe,
+  Settings,
+  Users,
+  Video,
+} from 'lucide-react';
 import Link from 'next/link';
 
 interface ResourceLink {
   title: string;
   url: string;
   description?: string;
-  type?: 'documentation' | 'video' | 'code' | 'website' | 'article';
+  type?:
+    | 'documentation'
+    | 'video'
+    | 'code'
+    | 'website'
+    | 'article'
+    | 'tutorial'
+    | 'tool'
+    | 'community';
 }
 
 interface AdditionalResourcesProps {
@@ -21,9 +38,12 @@ const resourceIcons = {
   code: Code,
   website: Globe,
   article: FileText,
+  tutorial: BookOpen,
+  tool: Settings,
+  community: Users,
 };
 
-export function AdditionalResources({
+export default function AdditionalResources({
   resources,
   title = 'Additional Resources',
   className,
@@ -38,7 +58,7 @@ export function AdditionalResources({
       <h3 className="text-lg font-semibold text-foreground mb-4">{title}</h3>
       <div className="space-y-3">
         {resources.map((resource, index) => {
-          const Icon = resourceIcons[resource.type || 'article'];
+          const Icon = resourceIcons[resource.type || 'article'] || FileText;
           const isExternal = resource.url.startsWith('http');
 
           return (

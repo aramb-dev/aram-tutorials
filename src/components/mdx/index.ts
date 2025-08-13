@@ -10,7 +10,10 @@ export {
   SuccessNote,
 } from './Callout';
 
-export { AdditionalResources, ResourceLink } from './AdditionalResources';
+export {
+  default as AdditionalResources,
+  ResourceLink,
+} from './AdditionalResources';
 export { Card, CardGrid } from './Card';
 export { CodeBlock } from './CodeBlock';
 export { Image, ImageComparison, Screenshot, VideoEmbed } from './Media';

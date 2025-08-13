@@ -24,10 +24,10 @@ export function TableOfContents({
   const [activeId, setActiveId] = useState<string>('');
   const [tocItems, setTocItems] = useState<TOCItem[]>(items || []);
 
-  // Auto-generate TOC from page headings if not provided
+  // Auto-generate TOC from page headings if not provided (only h1 and h2)
   useEffect(() => {
     if (!items) {
-      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      const headings = document.querySelectorAll('h1, h2');
       const generatedItems: TOCItem[] = Array.from(headings).map(heading => ({
         id:
           heading.id ||
@@ -95,12 +95,8 @@ export function TableOfContents({
                   activeId === item.id
                     ? 'text-brand-primary bg-brand-primary/10 font-medium'
                     : 'text-muted-foreground hover:text-foreground',
-                  // Indent based on heading level
-                  item.level === 2 && 'ml-0',
-                  item.level === 3 && 'ml-4',
-                  item.level === 4 && 'ml-8',
-                  item.level === 5 && 'ml-12',
-                  item.level === 6 && 'ml-16'
+                  // Indent based on heading level (only h1 and h2)
+                  item.level === 2 && 'ml-4'
                 )}
               >
                 {item.title}

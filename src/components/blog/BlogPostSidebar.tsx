@@ -80,18 +80,19 @@ export function BlogPostSidebar({
     }
   };
 
-  // Use provided tableOfContents or fallback to static content
-  const tocItems = useMemo(
-    () =>
-      tableOfContents || [
-        { id: 'introduction', title: 'Introduction', level: 1 },
-        { id: 'getting-started', title: 'Getting Started', level: 1 },
-        { id: 'implementation', title: 'Implementation', level: 1 },
-        { id: 'best-practices', title: 'Best Practices', level: 1 },
-        { id: 'conclusion', title: 'Conclusion', level: 1 },
-      ],
-    [tableOfContents]
-  );
+  // Use provided tableOfContents or fallback to static content (only h1 and h2)
+  const tocItems = useMemo(() => {
+    const items = tableOfContents || [
+      { id: 'introduction', title: 'Introduction', level: 1 },
+      { id: 'getting-started', title: 'Getting Started', level: 1 },
+      { id: 'implementation', title: 'Implementation', level: 1 },
+      { id: 'best-practices', title: 'Best Practices', level: 1 },
+      { id: 'conclusion', title: 'Conclusion', level: 1 },
+    ];
+
+    // Filter to only include h1 and h2 headings
+    return items.filter(item => item.level <= 2);
+  }, [tableOfContents]);
 
   // Scroll spy functionality to highlight active section
   useEffect(() => {
@@ -155,19 +156,7 @@ export function BlogPostSidebar({
                   activeId === item.id
                     ? 'text-brand-primary bg-brand-primary/10 font-medium border border-brand-primary/20 shadow-sm'
                     : 'text-muted-foreground hover:text-brand-primary hover:bg-brand-primary/5'
-                } ${
-                  item.level === 2
-                    ? 'ml-0'
-                    : item.level === 3
-                      ? 'ml-4'
-                      : item.level === 4
-                        ? 'ml-8'
-                        : item.level === 5
-                          ? 'ml-12'
-                          : item.level === 6
-                            ? 'ml-16'
-                            : ''
-                }`}
+                } ${item.level === 2 ? 'ml-4' : ''}`}
                 onClick={e => {
                   e.preventDefault();
                   const element = document.getElementById(item.id);

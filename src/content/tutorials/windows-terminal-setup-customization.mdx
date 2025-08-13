@@ -1,0 +1,735 @@
+---
+title: 'Windows Terminal Setup and Customization'
+description: 'Transform your Windows Terminal into a powerful, beautiful, and productive command-line environment. Complete guide with themes, profiles, and advanced configurations.'
+publishedAt: '2025-01-18'
+author: 'Aram Tutorials'
+category: 'windows'
+tags:
+  [
+    'windows-terminal',
+    'powershell',
+    'cmd',
+    'wsl',
+    'customization',
+    'productivity',
+  ]
+featured: true
+readingTime: 12
+---
+
+Windows Terminal has revolutionized the command-line experience on Windows. This comprehensive guide will help you set up, customize, and optimize Windows Terminal to create a powerful and beautiful development environment.
+
+## What is Windows Terminal?
+
+Windows Terminal is a modern, feature-rich terminal application for command-line users. It supports multiple tabs, Unicode and UTF-8 character support, GPU accelerated text rendering, and extensive customization options.
+
+### Key Benefits
+
+- **Multiple Profiles**: PowerShell, CMD, WSL, and more in one app
+- **Tabbed Interface**: Multiple terminals in one window
+- **Rich Customization**: Themes, fonts, and layout options
+- **GPU Acceleration**: Smooth performance and rendering
+- **Unicode Support**: Modern character encoding
+- **Split Panes**: Work with multiple terminals simultaneously
+
+## Prerequisites
+
+<Prerequisites>
+  <PrerequisiteItem>Windows 10 version 1903 or later</PrerequisiteItem>
+  <PrerequisiteItem>
+    Microsoft Store access or manual installation
+  </PrerequisiteItem>
+  <PrerequisiteItem>PowerShell 7+ (recommended)</PrerequisiteItem>
+  <PrerequisiteItem>Basic familiarity with JSON configuration</PrerequisiteItem>
+</Prerequisites>
+
+## Installation Guide
+
+<StepList>
+  <Step number={1} title="Install Windows Terminal">
+    ### Option 1: Microsoft Store (Recommended)
+    1. Open **Microsoft Store**
+    2. Search for "**Windows Terminal**"
+    3. Click **Get** or **Install**
+    4. Launch from Start Menu
+
+    ### Option 2: GitHub Release
+    1. Visit [Windows Terminal GitHub](https://github.com/microsoft/terminal/releases)
+    2. Download the latest `.msixbundle` file
+    3. Double-click to install
+    4. May require enabling sideloading
+
+    ### Option 3: Package Managers
+    ```powershell
+    # Using Chocolatey
+    choco install microsoft-windows-terminal
+
+    # Using Scoop
+    scoop install windows-terminal
+
+    # Using Winget
+    winget install Microsoft.WindowsTerminal
+    ```
+
+    <ProTip>
+      The Microsoft Store version automatically updates, making it the best choice for most users.
+    </ProTip>
+
+  </Step>
+
+  <Step number={2} title="Install PowerShell 7">
+    PowerShell 7 offers the best terminal experience:
+
+    ```powershell
+    # Using Winget
+    winget install Microsoft.PowerShell
+
+    # Using Chocolatey
+    choco install powershell-core
+
+    # Direct download from GitHub
+    # Visit: https://github.com/PowerShell/PowerShell/releases
+    ```
+
+    Verify installation:
+    ```powershell
+    pwsh --version
+    ```
+
+  </Step>
+
+  <Step number={3} title="Install Windows Subsystem for Linux (Optional)">
+    For Linux development environments:
+
+    ```powershell
+    # Enable WSL
+    wsl --install
+
+    # Install specific distribution
+    wsl --install -d Ubuntu
+    ```
+
+    <ImportantNote>
+      Restart your computer after installing WSL for the first time.
+    </ImportantNote>
+
+  </Step>
+</StepList>
+
+## Basic Configuration
+
+### Accessing Settings
+
+Open Windows Terminal settings:
+
+- **GUI Method**: Ctrl + , or click dropdown arrow → Settings
+- **JSON Method**: Ctrl + Shift + , for direct JSON editing
+
+### Understanding the Settings Structure
+
+Windows Terminal uses a JSON configuration file with this structure:
+
+```json
+{
+  "profiles": {
+    "defaults": {
+      /* Applied to all profiles */
+    },
+    "list": [
+      /* Individual profile configurations */
+    ]
+  },
+  "schemes": [
+    /* Color schemes */
+  ],
+  "actions": [
+    /* Keybindings */
+  ],
+  "defaultProfile": "profile-guid"
+}
+```
+
+## Setting Up Profiles
+
+<StepList>
+  <Step number={1} title="Configure PowerShell 7 Profile">
+    Create a PowerShell 7 profile:
+
+    ```json
+    {
+      "name": "PowerShell 7",
+      "commandline": "pwsh.exe",
+      "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+      "hidden": false,
+      "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
+      "startingDirectory": "%USERPROFILE%",
+      "colorScheme": "Campbell Powershell",
+      "fontSize": 12,
+      "fontFace": "Cascadia Code PL"
+    }
+    ```
+
+    <ProTip>
+      Generate unique GUIDs using PowerShell: `[guid]::NewGuid()`
+    </ProTip>
+
+  </Step>
+
+  <Step number={2} title="Configure WSL Profile">
+    Set up Ubuntu (or your preferred distribution):
+
+    ```json
+    {
+      "name": "Ubuntu",
+      "commandline": "wsl.exe -d Ubuntu",
+      "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+      "hidden": false,
+      "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+      "startingDirectory": "//wsl$/Ubuntu/home/username",
+      "colorScheme": "Ubuntu",
+      "fontSize": 12,
+      "fontFace": "Cascadia Code PL"
+    }
+    ```
+
+  </Step>
+
+  <Step number={3} title="Configure Git Bash Profile">
+    If you have Git for Windows installed:
+
+    ```json
+    {
+      "name": "Git Bash",
+      "commandline": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
+      "hidden": false,
+      "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico",
+      "startingDirectory": "%USERPROFILE%",
+      "colorScheme": "GitBash",
+      "fontSize": 12,
+      "fontFace": "Cascadia Code PL"
+    }
+    ```
+
+  </Step>
+</StepList>
+
+## Font Configuration
+
+### Installing Powerline Fonts
+
+Powerline fonts display special characters and icons in your terminal:
+
+#### Cascadia Code (Recommended)
+
+```powershell
+# Download and install Cascadia Code PL
+# Visit: https://github.com/microsoft/cascadia-code/releases
+
+# Or using Chocolatey
+choco install cascadiacode
+```
+
+#### Nerd Fonts
+
+For extensive icon support:
+
+```powershell
+# Download from: https://www.nerdfonts.com/
+# Popular choices:
+# - FiraCode Nerd Font
+# - JetBrains Mono Nerd Font
+# - Hack Nerd Font
+```
+
+### Font Configuration in Profiles
+
+```json
+{
+  "fontFace": "Cascadia Code PL",
+  "fontSize": 12,
+  "fontWeight": "normal"
+}
+```
+
+## Color Schemes and Themes
+
+### Built-in Color Schemes
+
+Windows Terminal includes several color schemes:
+
+- Campbell
+- Campbell Powershell
+- Vintage
+- One Half Dark/Light
+- Solarized Dark/Light
+- Tango Dark/Light
+
+### Custom Color Schemes
+
+#### Popular Theme: Dracula
+
+```json
+{
+  "schemes": [
+    {
+      "name": "Dracula",
+      "background": "#282A36",
+      "foreground": "#F8F8F2",
+      "black": "#21222C",
+      "blue": "#BD93F9",
+      "brightBlack": "#6272A4",
+      "brightBlue": "#D6ACFF",
+      "brightCyan": "#A4FFFF",
+      "brightGreen": "#69FF94",
+      "brightPurple": "#FF92DF",
+      "brightRed": "#FF6E6E",
+      "brightWhite": "#FFFFFF",
+      "brightYellow": "#FFFFA5",
+      "cyan": "#8BE9FD",
+      "green": "#50FA7B",
+      "purple": "#FF79C6",
+      "red": "#FF5555",
+      "white": "#F8F8F2",
+      "yellow": "#F1FA8C"
+    }
+  ]
+}
+```
+
+#### Popular Theme: Tokyo Night
+
+```json
+{
+  "name": "Tokyo Night",
+  "background": "#1A1B26",
+  "foreground": "#C0CAF5",
+  "black": "#15161E",
+  "blue": "#7AA2F7",
+  "brightBlack": "#414868",
+  "brightBlue": "#7AA2F7",
+  "brightCyan": "#7DCFFF",
+  "brightGreen": "#9ECE6A",
+  "brightPurple": "#BB9AF7",
+  "brightRed": "#F7768E",
+  "brightWhite": "#C0CAF5",
+  "brightYellow": "#E0AF68",
+  "cyan": "#7DCFFF",
+  "green": "#9ECE6A",
+  "purple": "#BB9AF7",
+  "red": "#F7768E",
+  "white": "#A9B1D6",
+  "yellow": "#E0AF68"
+}
+```
+
+### Applying Themes
+
+In each profile, specify the color scheme:
+
+```json
+{
+  "colorScheme": "Dracula"
+}
+```
+
+## Advanced Customization
+
+### Background Images and Effects
+
+#### Background Image
+
+```json
+{
+  "backgroundImage": "C:\\Users\\username\\Pictures\\terminal-bg.jpg",
+  "backgroundImageOpacity": 0.3,
+  "backgroundImageStretchMode": "uniformToFill"
+}
+```
+
+#### Acrylic Effect
+
+```json
+{
+  "useAcrylic": true,
+  "acrylicOpacity": 0.8
+}
+```
+
+### Cursor Customization
+
+```json
+{
+  "cursorShape": "bar",
+  "cursorColor": "#FFFFFF",
+  "cursorHeight": 25
+}
+```
+
+Options for `cursorShape`:
+
+- `bar` (default)
+- `underscore`
+- `filledBox`
+- `emptyBox`
+- `vintage`
+
+### Window Appearance
+
+```json
+{
+  "initialCols": 120,
+  "initialRows": 30,
+  "padding": "8, 8, 8, 8",
+  "scrollbarState": "hidden",
+  "snapToGridOnResize": true,
+  "antialiasingMode": "grayscale"
+}
+```
+
+## Keyboard Shortcuts and Actions
+
+### Essential Shortcuts
+
+<CardGrid columns={2}>
+  <Card title="Tab Management">
+    - `Ctrl + Shift + T`: New tab
+    - `Ctrl + Shift + W`: Close tab
+    - `Ctrl + Tab`: Next tab
+    - `Ctrl + Shift + Tab`: Previous tab
+    - `Ctrl + Shift + D`: Duplicate tab
+  </Card>
+
+  <Card title="Pane Management">
+    - `Alt + Shift + D`: Split pane
+    - `Alt + Shift + -`: Split horizontal
+    - `Alt + Shift + +`: Split vertical
+    - `Alt + Arrow`: Navigate panes
+    - `Alt + Shift + W`: Close pane
+  </Card>
+</CardGrid>
+
+### Custom Keybindings
+
+Add custom actions to the `actions` array:
+
+```json
+{
+  "actions": [
+    {
+      "command": {
+        "action": "splitPane",
+        "split": "vertical",
+        "profile": "PowerShell 7"
+      },
+      "keys": "ctrl+shift+v"
+    },
+    {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "command": {
+        "action": "newTab",
+        "profile": "Ubuntu"
+      },
+      "keys": "ctrl+shift+u"
+    }
+  ]
+}
+```
+
+## PowerShell Enhancement
+
+### Install Oh My Posh
+
+Oh My Posh provides beautiful and informative prompts:
+
+```powershell
+# Install Oh My Posh
+winget install JanDeDobbeleer.OhMyPosh
+
+# Or via PowerShell Gallery
+Install-Module oh-my-posh -Scope CurrentUser
+```
+
+### Configure Oh My Posh
+
+Create or edit your PowerShell profile:
+
+```powershell
+# Open profile for editing
+notepad $PROFILE
+
+# Add to profile
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\paradox.omp.json" | Invoke-Expression
+```
+
+Popular themes:
+
+- `paradox`
+- `agnoster`
+- `atomic`
+- `tokyo`
+
+### Install Terminal Icons
+
+Add file type icons to directory listings:
+
+```powershell
+Install-Module -Name Terminal-Icons -Repository PSGallery
+Import-Module Terminal-Icons
+```
+
+### PSReadLine Configuration
+
+Enhance command-line editing:
+
+```powershell
+# Install PSReadLine
+Install-Module PSReadLine -AllowPrerelease -Scope CurrentUser -Force
+
+# Add to profile
+Set-PSReadLineOption -PredictionSource History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -EditMode Windows
+```
+
+## Productivity Features
+
+### Split Panes
+
+<Screenshot
+  src="/images/windows-terminal-split-panes.png"
+  alt="Windows Terminal with split panes"
+  terminal={true}
+  caption="Multiple panes for increased productivity"
+/>
+
+Work with multiple terminals simultaneously:
+
+1. **Vertical Split**: Alt + Shift + +
+2. **Horizontal Split**: Alt + Shift + -
+3. **Navigate**: Alt + Arrow keys
+4. **Resize**: Alt + Shift + Arrow keys
+
+### Tab Management
+
+Organize your work with multiple tabs:
+
+```json
+{
+  "newTabMenu": [
+    {
+      "type": "remainingProfiles"
+    }
+  ],
+  "tabWidthMode": "equal"
+}
+```
+
+### Focus Mode
+
+Minimize distractions:
+
+```json
+{
+  "actions": [
+    {
+      "command": "toggleFocusMode",
+      "keys": "f11"
+    }
+  ]
+}
+```
+
+## Performance Optimization
+
+### GPU Acceleration
+
+Ensure smooth performance:
+
+```json
+{
+  "rendering.backend": "d3d11",
+  "rendering.graphicsAPI": "direct2d"
+}
+```
+
+### Memory Management
+
+For systems with limited RAM:
+
+```json
+{
+  "profiles": {
+    "defaults": {
+      "historySize": 1000,
+      "snapOnInput": true,
+      "altGrAliasing": false
+    }
+  }
+}
+```
+
+## Troubleshooting Common Issues
+
+### Terminal Won't Open
+
+<ErrorTip>
+  **Settings Corruption**: If Windows Terminal won't start, reset settings by
+  deleting
+  `%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json`
+</ErrorTip>
+
+Common solutions:
+
+1. **Reinstall from Microsoft Store**
+2. **Check Windows version** (requires 1903+)
+3. **Run Windows Update**
+4. **Reset Terminal settings**
+
+### Font Not Displaying Correctly
+
+1. **Install proper fonts** (Cascadia Code PL)
+2. **Check font name** in configuration
+3. **Restart Windows Terminal** after font installation
+4. **Clear font cache** if necessary
+
+### WSL Profile Not Working
+
+```powershell
+# Check WSL installation
+wsl --list --verbose
+
+# Update WSL
+wsl --update
+
+# Set WSL version
+wsl --set-version Ubuntu 2
+```
+
+### Performance Issues
+
+1. **Disable transparency** effects
+2. **Reduce history size**
+3. **Turn off animations**
+4. **Use hardware acceleration**
+
+## Backup and Sync
+
+### Export Settings
+
+Backup your configuration:
+
+```powershell
+# Copy settings file
+copy "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" "C:\Backup\terminal-settings.json"
+```
+
+### Sync Across Devices
+
+Use cloud storage or version control:
+
+```bash
+# Using Git
+git init
+git add settings.json
+git commit -m "Windows Terminal configuration"
+git remote add origin https://github.com/username/terminal-config
+git push -u origin main
+```
+
+## Complete Example Configuration
+
+Here's a full `settings.json` example:
+
+```json
+{
+  "$help": "https://aka.ms/terminal-documentation",
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+  "copyOnSelect": false,
+  "copyFormatting": "none",
+  "profiles": {
+    "defaults": {
+      "fontFace": "Cascadia Code PL",
+      "fontSize": 12,
+      "cursorShape": "bar",
+      "useAcrylic": false,
+      "antialiasingMode": "grayscale"
+    },
+    "list": [
+      {
+        "name": "PowerShell 7",
+        "commandline": "pwsh.exe",
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "colorScheme": "Tokyo Night",
+        "startingDirectory": "%USERPROFILE%"
+      },
+      {
+        "name": "Ubuntu",
+        "commandline": "wsl.exe -d Ubuntu",
+        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+        "hidden": false,
+        "colorScheme": "Ubuntu",
+        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png"
+      }
+    ]
+  },
+  "schemes": [
+    /* Color schemes here */
+  ],
+  "actions": [
+    {
+      "command": {
+        "action": "copy",
+        "singleLine": false
+      },
+      "keys": "ctrl+c"
+    },
+    {
+      "command": "paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "command": "find",
+      "keys": "ctrl+shift+f"
+    }
+  ]
+}
+```
+
+## What's Next?
+
+<AdditionalResources
+  resources={[
+    {
+      title: 'Windows Terminal Documentation',
+      url: 'https://docs.microsoft.com/en-us/windows/terminal/',
+      description: 'Official Microsoft documentation for Windows Terminal',
+      type: 'documentation',
+    },
+    {
+      title: 'Oh My Posh Themes',
+      url: 'https://ohmyposh.dev/docs/themes',
+      description: 'Browse and preview Oh My Posh themes',
+      type: 'website',
+    },
+    {
+      title: 'Nerd Fonts',
+      url: 'https://www.nerdfonts.com/',
+      description: 'Patched fonts with extra glyphs and icons',
+      type: 'tool',
+    },
+    {
+      title: 'Windows Terminal GitHub',
+      url: 'https://github.com/microsoft/terminal',
+      description: 'Source code, issues, and community discussions',
+      type: 'code',
+    },
+  ]}
+/>
+
+Your Windows Terminal is now transformed into a powerful, beautiful, and productive command-line environment! Experiment with different themes, shortcuts, and configurations to create the perfect setup for your workflow. Remember that you can always adjust these settings as your needs evolve.

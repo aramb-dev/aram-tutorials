@@ -49,7 +49,62 @@ export function EnhancedCodeBlock({
     }
   };
 
-  // Language mapping for better syntax highlighting
+  // Get display name for language
+  const getLanguageDisplayName = (lang?: string): string => {
+    if (!lang || lang.trim() === '' || lang === 'text') {
+      return 'PLAIN TEXT';
+    }
+
+    const names: Record<string, string> = {
+      js: 'JavaScript',
+      javascript: 'JavaScript',
+      jsx: 'JSX',
+      ts: 'TypeScript',
+      typescript: 'TypeScript',
+      tsx: 'TSX',
+      py: 'Python',
+      python: 'Python',
+      css: 'CSS',
+      html: 'HTML',
+      json: 'JSON',
+      yml: 'YAML',
+      yaml: 'YAML',
+      md: 'Markdown',
+      markdown: 'Markdown',
+      bash: 'Bash',
+      shell: 'Shell',
+      sh: 'Shell',
+      sql: 'SQL',
+      xml: 'XML',
+      php: 'PHP',
+      java: 'Java',
+      c: 'C',
+      cpp: 'C++',
+      csharp: 'C#',
+      go: 'Go',
+      rust: 'Rust',
+      swift: 'Swift',
+      kotlin: 'Kotlin',
+      dart: 'Dart',
+      ruby: 'Ruby',
+      powershell: 'PowerShell',
+      dockerfile: 'Dockerfile',
+      text: 'PLAIN TEXT',
+    };
+
+    const normalizedLang = lang.toLowerCase().trim();
+
+    // Check if it looks like a CSS class or contains special characters
+    if (
+      normalizedLang.includes(':') ||
+      normalizedLang.includes('-') ||
+      normalizedLang.includes('.')
+    ) {
+      return 'PLAIN TEXT';
+    }
+
+    return names[normalizedLang] || 'PLAIN TEXT';
+  };
   const getLanguageForHighlighter = (lang?: string): string => {
     if (!lang) return 'text';
 
@@ -88,11 +143,9 @@ export function EnhancedCodeBlock({
           {/* Header with language and copy button */}
           <div className="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700">
             <div className="flex items-center gap-2">
-              {language && (
-                <span className="px-2 py-1 bg-slate-900 rounded text-xs font-mono text-slate-300 border border-slate-600">
-                  {language.toUpperCase()}
-                </span>
-              )}
+              <span className="px-2 py-1 bg-slate-900 rounded text-xs font-mono text-slate-300 border border-slate-600">
+                {getLanguageDisplayName(language)}
+              </span>
             </div>
             <Button
               variant="ghost"
