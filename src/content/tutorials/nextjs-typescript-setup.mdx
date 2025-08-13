@@ -56,10 +56,10 @@ In this tutorial, we'll create a modern Next.js application with the following f
   <Step number={1} title="Create New Next.js Project">
     Start by creating a new Next.js project with TypeScript template:
 
-    <CodeBlock language="bash" title="Create Next.js Project">
+    ```bash
     npx create-next-app@latest my-nextjs-app --typescript --tailwind --eslint --app
     cd my-nextjs-app
-    </CodeBlock>
+    ```
 
     This command creates a new Next.js project with:
     - TypeScript configuration
@@ -72,7 +72,7 @@ In this tutorial, we'll create a modern Next.js application with the following f
   <Step number={2} title="Project Structure Overview">
     Let's examine the generated project structure:
 
-    <CodeBlock language="text" title="Project Structure">
+    ```text
     my-nextjs-app/
     ├── src/
     │   └── app/
@@ -84,7 +84,7 @@ In this tutorial, we'll create a modern Next.js application with the following f
     ├── package.json
     ├── tailwind.config.js
     └── tsconfig.json
-    </CodeBlock>
+    ```
 
     <ProTip>
       The `src/app` directory is where you'll build your application. The App Router uses file-based routing, where each folder represents a route segment.
@@ -95,7 +95,7 @@ In this tutorial, we'll create a modern Next.js application with the following f
   <Step number={3} title="Configure TypeScript">
     Next.js automatically configures TypeScript, but let's understand the key configuration files:
 
-    <CodeBlock language="json" title="tsconfig.json" filename="tsconfig.json">
+    ```json title="tsconfig.json"
     {
       "compilerOptions": {
         "lib": ["dom", "dom.iterable", "es6"],
@@ -123,14 +123,14 @@ In this tutorial, we'll create a modern Next.js application with the following f
       "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
       "exclude": ["node_modules"]
     }
-    </CodeBlock>
+    ```
 
   </Step>
 
   <Step number={4} title="Create Your First Component" completed>
     Let's create a reusable Button component with proper TypeScript types:
 
-    <CodeBlock language="tsx" title="Button Component" filename="src/components/ui/Button.tsx">
+    ```tsx title="Button Component" filename="src/components/ui/Button.tsx"
     import React from 'react';
     import { cn } from '@/lib/utils';
 
@@ -140,12 +140,12 @@ In this tutorial, we'll create a modern Next.js application with the following f
       children: React.ReactNode;
     }
 
-    export function Button({
-      variant = 'primary',
-      size = 'md',
+    export function Button({ 
+      variant = 'primary', 
+      size = 'md', 
       className,
       children,
-      ...props
+      ...props 
     }: ButtonProps) {
       return (
         <button
@@ -169,8 +169,7 @@ In this tutorial, we'll create a modern Next.js application with the following f
         </button>
       );
     }
-    </CodeBlock>
-
+    ```
   </Step>
 </StepList>
 
@@ -219,11 +218,10 @@ Here are some essential best practices when working with Next.js and TypeScript:
 ### Performance Optimization
 
 <ProTip title="Image Optimization">
-  Always use Next.js `Image` component instead of regular `img` tags for
-  automatic optimization, lazy loading, and better performance.
+  Always use Next.js `Image` component instead of regular `img` tags for automatic optimization, lazy loading, and better performance.
 </ProTip>
 
-<CodeBlock language="tsx" title="Optimized Image Usage">
+```tsx title="Optimized Image Usage"
 import Image from 'next/image';
 
 export function UserAvatar({ src, alt }: { src: string; alt: string }) {
@@ -238,7 +236,7 @@ export function UserAvatar({ src, alt }: { src: string; alt: string }) {
     />
   );
 }
-</CodeBlock>
+```
 
 ## Common Gotchas
 
@@ -254,30 +252,29 @@ Here are some common issues you might encounter:
 2. **Dynamic Imports**: Use `dynamic` imports for client-only components
 3. **Environment Variables**: Prefix client-side env vars with `NEXT_PUBLIC_`
 
-<CodeBlock language="tsx" title="Client-Only Component">
+```tsx title="Client-Only Component"
 import dynamic from 'next/dynamic';
 
 // This component will only render on the client
 const ClientOnlyComponent = dynamic(
-() => import('@/components/ClientOnlyComponent'),
-{ ssr: false }
+  () => import('@/components/ClientOnlyComponent'),
+  { ssr: false }
 );
-
-</CodeBlock>
+```
 
 ## Testing Your Application
 
 <StepList>
   <Step number={1} title="Install Testing Dependencies">
-    <CodeBlock language="bash">
+    ```bash
     npm install --save-dev @testing-library/react @testing-library/jest-dom jest jest-environment-jsdom
-    </CodeBlock>
+    ```
   </Step>
 
   <Step number={2} title="Configure Jest">
     Create a `jest.config.js` file in your project root:
 
-    <CodeBlock language="javascript" filename="jest.config.js">
+    ```javascript filename="jest.config.js"
     const nextJest = require('next/jest');
 
     const createJestConfig = nextJest({
@@ -290,7 +287,7 @@ const ClientOnlyComponent = dynamic(
     };
 
     module.exports = createJestConfig(customJestConfig);
-    </CodeBlock>
+    ```
 
   </Step>
 </StepList>
@@ -306,15 +303,17 @@ const ClientOnlyComponent = dynamic(
 
 The easiest way to deploy your Next.js app is using Vercel:
 
-<CodeBlock language="bash" title="Deploy with Vercel CLI">
-  npm install -g vercel vercel --prod
-</CodeBlock>
+```bash
+npm install -g vercel
+vercel --prod
+```
 
 ### Build for Production
 
-<CodeBlock language="bash" title="Production Build">
-  npm run build npm start
-</CodeBlock>
+```bash
+npm run build
+npm start
+```
 
 ## What's Next?
 
