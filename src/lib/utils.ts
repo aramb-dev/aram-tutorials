@@ -112,3 +112,12 @@ export function generateCategoryUrl(slug: string): string {
 export function generateTagUrl(slug: string): string {
   return `/tutorials?tag=${slug}`;
 }
+
+// Slugify utility
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
