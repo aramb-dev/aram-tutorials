@@ -1,40 +1,48 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import type { BlogPost } from '@/types';
 import {
-  User,
-  Calendar,
-  Clock,
-  Eye,
-  Heart,
-  Share2,
+  Award,
   Bookmark,
-  Twitter,
-  Facebook,
-  Linkedin,
-  Link as LinkIcon,
+  Calendar,
   Check,
   ChevronRight,
-  Star,
-  Award,
+  Clock,
   Coffee,
+  Eye,
+  Facebook,
+  Heart,
+  Linkedin,
+  Link as LinkIcon,
+  Share2,
+  Star,
+  Twitter,
+  User,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import type { BlogPost } from '@/types';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useMemo, useState } from 'react';
 
 interface BlogPostSidebarProps {
   post: BlogPost;
+  tableOfContents?: Array<{
+    id: string;
+    title: string;
+    level: number;
+  }>;
 }
 
-export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
+export function BlogPostSidebar({
+  post,
+  tableOfContents,
+}: BlogPostSidebarProps) {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
   const [copied, setCopied] = useState(false);
+  const [activeId, setActiveId] = useState<string>('');
 
   const handleShare = async (platform: string) => {
     const url = typeof window !== 'undefined' ? window.location.href : '';
@@ -72,13 +80,42 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
     }
   };
 
-  const tableOfContents = [
-    { id: 'introduction', title: 'Introduction', level: 1 },
-    { id: 'getting-started', title: 'Getting Started', level: 1 },
-    { id: 'implementation', title: 'Implementation', level: 1 },
-    { id: 'best-practices', title: 'Best Practices', level: 1 },
-    { id: 'conclusion', title: 'Conclusion', level: 1 },
-  ];
+  // Use provided tableOfContents or fallback to static content
+  const tocItems = useMemo(
+    () =>
+      tableOfContents || [
+        { id: 'introduction', title: 'Introduction', level: 1 },
+        { id: 'getting-started', title: 'Getting Started', level: 1 },
+        { id: 'implementation', title: 'Implementation', level: 1 },
+        { id: 'best-practices', title: 'Best Practices', level: 1 },
+        { id: 'conclusion', title: 'Conclusion', level: 1 },
+      ],
+    [tableOfContents]
+  );
+
+  // Scroll spy functionality to highlight active section
+  useEffect(() => {
+    const handleScroll = () => {
+      const headingElements = tocItems
+        .map(item => document.getElementById(item.id))
+        .filter(Boolean);
+
+      const currentHeading = headingElements.find(heading => {
+        if (!heading) return false;
+        const rect = heading.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 0;
+      });
+
+      if (currentHeading) {
+        setActiveId(currentHeading.id);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call once to set initial state
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [tocItems]);
 
   const relatedPosts = [
     {
@@ -103,6 +140,61 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
 
   return (
     <div className="space-y-6">
+      {/* Table of Contents - Moved to top */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Table of Contents</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <nav className="space-y-2">
+            {tocItems.map(item => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`flex items-center gap-2 text-sm transition-all duration-200 py-2 px-3 rounded-lg group ${
+                  activeId === item.id
+                    ? 'text-brand-primary bg-brand-primary/10 font-medium border border-brand-primary/20 shadow-sm'
+                    : 'text-muted-foreground hover:text-brand-primary hover:bg-brand-primary/5'
+                } ${
+                  item.level === 2
+                    ? 'ml-0'
+                    : item.level === 3
+                      ? 'ml-4'
+                      : item.level === 4
+                        ? 'ml-8'
+                        : item.level === 5
+                          ? 'ml-12'
+                          : item.level === 6
+                            ? 'ml-16'
+                            : ''
+                }`}
+                onClick={e => {
+                  e.preventDefault();
+                  const element = document.getElementById(item.id);
+                  if (element) {
+                    element.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    });
+                  }
+                }}
+              >
+                <ChevronRight
+                  className={`h-3 w-3 transition-all duration-200 ${
+                    activeId === item.id
+                      ? 'opacity-100 text-brand-primary'
+                      : 'opacity-0 group-hover:opacity-100 group-hover:text-brand-primary'
+                  }`}
+                />
+                <span className="group-hover:translate-x-1 transition-transform duration-200">
+                  {item.title}
+                </span>
+              </a>
+            ))}
+          </nav>
+        </CardContent>
+      </Card>
+
       {/* Author Card */}
       <Card>
         <CardHeader>
@@ -237,29 +329,6 @@ export function BlogPostSidebar({ post }: BlogPostSidebarProps) {
               {copied ? 'Copied!' : 'Copy Link'}
             </Button>
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Table of Contents */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Table of Contents</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <nav className="space-y-2">
-            {tableOfContents.map(item => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors py-1 group"
-              >
-                <ChevronRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="group-hover:translate-x-1 transition-transform">
-                  {item.title}
-                </span>
-              </a>
-            ))}
-          </nav>
         </CardContent>
       </Card>
 
