@@ -140,12 +140,12 @@ In this tutorial, we'll create a modern Next.js application with the following f
       children: React.ReactNode;
     }
 
-    export function Button({ 
-      variant = 'primary', 
-      size = 'md', 
+    export function Button({
+      variant = 'primary',
+      size = 'md',
       className,
       children,
-      ...props 
+      ...props
     }: ButtonProps) {
       return (
         <button
@@ -170,6 +170,7 @@ In this tutorial, we'll create a modern Next.js application with the following f
       );
     }
     ```
+
   </Step>
 </StepList>
 
@@ -218,7 +219,8 @@ Here are some essential best practices when working with Next.js and TypeScript:
 ### Performance Optimization
 
 <ProTip title="Image Optimization">
-  Always use Next.js `Image` component instead of regular `img` tags for automatic optimization, lazy loading, and better performance.
+  Always use Next.js `Image` component instead of regular `img` tags for
+  automatic optimization, lazy loading, and better performance.
 </ProTip>
 
 ```tsx title="Optimized Image Usage"

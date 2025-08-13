@@ -3,8 +3,8 @@ import { BlogPostContent } from '@/components/blog/BlogPostContent';
 import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { BackButton } from '@/components/ui/BackButton';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Database } from '@/lib/db';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -36,8 +36,9 @@ async function getTutorial(slug: string) {
   const dbPost = await Database.getPostBySlug(slug);
   if (dbPost) {
     // Check if this post contains MDX content (has JSX components)
-    const hasMDXContent = dbPost.content.includes('<') && dbPost.content.includes('/>');
-    
+    const hasMDXContent =
+      dbPost.content.includes('<') && dbPost.content.includes('/>');
+
     if (hasMDXContent) {
       // Try to get the original MDX file
       const mdxTutorial = await getMDXTutorial(slug);
@@ -49,7 +50,7 @@ async function getTutorial(slug: string) {
         };
       }
     }
-    
+
     return {
       content: dbPost,
       type: 'database' as const,
@@ -99,7 +100,8 @@ export async function generateMetadata({
         images: [
           {
             url:
-              post.featured_image || 'https://tutorials.aramb.dev/og-default.jpg',
+              post.featured_image ||
+              'https://tutorials.aramb.dev/og-default.jpg',
             width: 1200,
             height: 630,
             alt: post.title,
@@ -128,7 +130,7 @@ export async function generateMetadata({
     const dbPost = 'dbPost' in tutorial ? tutorial.dbPost : null;
     const title = metadata.title || dbPost?.title || 'Tutorial';
     const description = metadata.description || dbPost?.excerpt || '';
-    
+
     return {
       title: `${title} | Aram Tutorials`,
       description: description,
@@ -137,7 +139,8 @@ export async function generateMetadata({
         title: title,
         description: description,
         type: 'article',
-        publishedTime: metadata.publishedAt || dbPost?.published_at?.toISOString(),
+        publishedTime:
+          metadata.publishedAt || dbPost?.published_at?.toISOString(),
         tags: metadata.tags || [],
       },
       twitter: {
@@ -179,17 +182,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-3">
               <article className="space-y-8">
-                <Suspense fallback={<LoadingSpinner size="lg" text="Loading content..." />}>
+                <Suspense
+                  fallback={
+                    <LoadingSpinner size="lg" text="Loading content..." />
+                  }
+                >
                   <BlogPostContent post={post} />
                 </Suspense>
-                <Suspense fallback={<LoadingSpinner size="md" text="Loading comments..." />}>
+                <Suspense
+                  fallback={
+                    <LoadingSpinner size="md" text="Loading comments..." />
+                  }
+                >
                   <BlogPostComments postId={post.id} />
                 </Suspense>
               </article>
             </div>
             <div className="lg:col-span-1">
               <div className="sticky top-8 space-y-6">
-                <Suspense fallback={<LoadingSpinner size="sm" text="Loading sidebar..." />}>
+                <Suspense
+                  fallback={
+                    <LoadingSpinner size="sm" text="Loading sidebar..." />
+                  }
+                >
                   <BlogPostSidebar post={post} />
                 </Suspense>
               </div>
@@ -197,7 +212,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
           {relatedPosts.length > 0 && (
             <div className="mt-16">
-              <Suspense fallback={<LoadingSpinner size="md" text="Loading related posts..." />}>
+              <Suspense
+                fallback={
+                  <LoadingSpinner size="md" text="Loading related posts..." />
+                }
+              >
                 <RelatedPosts
                   currentPostId={post.id}
                   category={post.category?.name}
@@ -214,7 +233,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Render MDX post (new behavior for MDX content)
   const { content: MDXContent, metadata } = tutorial;
   const dbPost = 'dbPost' in tutorial ? tutorial.dbPost : null;
-  
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -223,7 +242,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="flex items-center justify-between">
             <BackButton href="/tutorials" />
             <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <span className="capitalize">{metadata.category || 'tutorial'}</span>
+              <span className="capitalize">
+                {metadata.category || 'tutorial'}
+              </span>
               <span>•</span>
               <span>{metadata.readingTime || 5} min read</span>
             </div>
@@ -238,20 +259,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mb-4">
             <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
               <time dateTime={metadata.publishedAt}>
-                {metadata.publishedAt ? new Date(metadata.publishedAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                }) : 'Recently published'}
+                {metadata.publishedAt
+                  ? new Date(metadata.publishedAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })
+                  : 'Recently published'}
               </time>
               <span>•</span>
               <span>By {metadata.author || 'Aram Baghdasaryan'}</span>
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight mb-4">
               {metadata.title || dbPost?.title || 'Tutorial'}
             </h1>
-            
+
             <p className="text-xl text-gray-600 leading-relaxed">
               {metadata.description || dbPost?.excerpt || ''}
             </p>
@@ -281,10 +304,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <footer className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
-              <p>Written by <span className="font-medium text-gray-900">{metadata.author || 'Aram Baghdasaryan'}</span></p>
-              <p>Published on {metadata.publishedAt ? new Date(metadata.publishedAt).toLocaleDateString() : 'Recently'}</p>
+              <p>
+                Written by{' '}
+                <span className="font-medium text-gray-900">
+                  {metadata.author || 'Aram Baghdasaryan'}
+                </span>
+              </p>
+              <p>
+                Published on{' '}
+                {metadata.publishedAt
+                  ? new Date(metadata.publishedAt).toLocaleDateString()
+                  : 'Recently'}
+              </p>
             </div>
-            
+
             <BackButton href="/tutorials" variant="outline">
               ← Back to Tutorials
             </BackButton>
@@ -294,7 +327,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Comments for synced posts */}
         {dbPost && (
           <div className="mt-12 pt-8 border-t border-gray-200">
-            <Suspense fallback={<LoadingSpinner size="md" text="Loading comments..." />}>
+            <Suspense
+              fallback={<LoadingSpinner size="md" text="Loading comments..." />}
+            >
               <BlogPostComments postId={dbPost.id} />
             </Suspense>
           </div>

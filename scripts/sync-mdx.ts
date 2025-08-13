@@ -57,7 +57,9 @@ export async function syncMDXToDB() {
 
         // Validate required fields
         if (!mdx.title || !mdx.description) {
-          console.warn(`⚠️  Skipping ${file}: Missing required title or description`);
+          console.warn(
+            `⚠️  Skipping ${file}: Missing required title or description`
+          );
           continue;
         }
 
@@ -137,13 +139,13 @@ export async function syncMDXToDB() {
     console.log('🎉 MDX sync completed!');
   } catch (error) {
     console.error('❌ Error syncing MDX files:', error);
-    
+
     // In production, we might want to continue the build even if sync fails
     if (process.env.NODE_ENV === 'production') {
       console.warn('⚠️  Continuing build despite sync errors...');
       return;
     }
-    
+
     throw error;
   } finally {
     // Ensure database connection is closed
