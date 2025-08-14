@@ -1,17 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import {
-  Clock,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Send,
-  Twitter,
-  Youtube,
-} from 'lucide-react';
+import { Button, Input, Textarea } from '@/components/ui';
+import { Clock, Mail, MessageCircle, Send, Youtube } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -68,18 +58,6 @@ export function AboutContact() {
       icon: Youtube,
       url: 'https://YouTube.com/@AramTutorials',
       description: 'Subscribe for video tutorials',
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      url: 'https://linkedin.com/in/aramtutorials',
-      description: 'Connect with us professionally',
-    },
-    {
-      name: 'Twitter',
-      icon: Twitter,
-      url: 'https://twitter.com/aramtutorials',
-      description: 'Follow for tech updates and tips',
     },
   ];
 

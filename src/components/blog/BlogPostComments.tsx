@@ -1,26 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
 import {
-  MessageCircle,
-  Reply,
-  Heart,
-  Flag,
-  MoreHorizontal,
-  Send,
-  User,
-  Calendar,
-  ThumbsUp,
-  ThumbsDown,
-  Edit,
-  Trash2,
-} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  Textarea,
+} from '@/components/ui';
+import { Flag, Heart, MessageCircle, Reply, Send, User } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface Comment {
   id: string;
