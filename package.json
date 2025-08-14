@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsx scripts/sync-mdx.ts || echo 'MDX sync failed, continuing build...'",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",

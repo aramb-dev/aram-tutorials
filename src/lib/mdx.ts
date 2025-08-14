@@ -20,7 +20,12 @@ export function getAllPosts(): Post[] {
     };
   });
 
-  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return allPostsData.sort((a, b) => {
+    // Use publishedAt as primary, fallback to date, then to empty string for consistent sorting
+    const dateA = a.publishedAt || a.date || '';
+    const dateB = b.publishedAt || b.date || '';
+    return dateA < dateB ? 1 : -1;
+  });
 }
 
 export function getPostBySlug(slug: string): Post {

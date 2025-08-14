@@ -81,7 +81,7 @@ export async function CategoriesSection() {
 
                   {/* Tutorial Count */}
                   <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                    <span>{category._count?.posts || 0} tutorials</span>
+                    <span>0 tutorials</span>
                     <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </CardContent>
