@@ -1,7 +1,9 @@
+import { FloatingHeader } from '@/components/layout/FloatingHeader';
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
+import { GlobalFooter } from '@/components/ui/GlobalFooter';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { GlobalFooter } from '@/components/ui/GlobalFooter';
-import { FloatingHeader } from '@/components/layout/FloatingHeader';
 import './globals.css';
 
 const geistSans = Geist({
@@ -29,11 +31,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-      >
+      ><StackProvider app={stackServerApp}><StackTheme>
         <FloatingHeader />
         <main className="flex-grow">{children}</main>
         <GlobalFooter />
-      </body>
+      </StackTheme></StackProvider></body>
     </html>
   );
 }

@@ -5,13 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { BlogPost } from '@/types';
 import {
   Award,
-  Bookmark,
-  Calendar,
   Check,
   ChevronRight,
   Clock,
   Coffee,
-  Eye,
   Facebook,
   Heart,
   Linkedin,
@@ -24,6 +21,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+
+import PostActions from './PostActions';
 
 interface BlogPostSidebarProps {
   post: BlogPost;
@@ -38,8 +37,6 @@ export function BlogPostSidebar({
   post,
   tableOfContents,
 }: BlogPostSidebarProps) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
   const [shareUrl, setShareUrl] = useState('');
   const [copied, setCopied] = useState(false);
   const [activeId, setActiveId] = useState<string>('');
@@ -231,38 +228,7 @@ export function BlogPostSidebar({
       </Card>
 
       {/* Post Actions */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Actions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <Button
-              variant={isLiked ? 'default' : 'outline'}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setIsLiked(!isLiked)}
-            >
-              <Heart
-                className={`h-4 w-4 mr-2 ${isLiked ? 'fill-current' : ''}`}
-              />
-              {isLiked ? 'Liked' : 'Like this post'}
-            </Button>
-
-            <Button
-              variant={isBookmarked ? 'default' : 'outline'}
-              size="sm"
-              className="w-full justify-start"
-              onClick={() => setIsBookmarked(!isBookmarked)}
-            >
-              <Bookmark
-                className={`h-4 w-4 mr-2 ${isBookmarked ? 'fill-current' : ''}`}
-              />
-              {isBookmarked ? 'Bookmarked' : 'Bookmark'}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      <PostActions slug={post.slug} />
 
       {/* Share */}
       <Card>
@@ -317,72 +283,6 @@ export function BlogPostSidebar({
               )}
               {copied ? 'Copied!' : 'Copy Link'}
             </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Post Stats */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Post Statistics</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Eye className="h-4 w-4" />
-                <span>Views</span>
-              </div>
-              <span className="font-medium">
-                {post.views?.toLocaleString() || '1,234'}
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Heart className="h-4 w-4" />
-                <span>Likes</span>
-              </div>
-              <span className="font-medium">89</span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Bookmark className="h-4 w-4" />
-                <span>Bookmarks</span>
-              </div>
-              <span className="font-medium">23</span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Clock className="h-4 w-4" />
-                <span>Read Time</span>
-              </div>
-              <span className="font-medium">{post.reading_time} min</span>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                <span>Published</span>
-              </div>
-              <span className="font-medium">
-                {new Date(
-                  (
-                    post.published_at ||
-                    post.created_at ||
-                    (post as any).publishedAt ||
-                    (post as any).updatedAt ||
-                    new Date()
-                  ).toString()
-                ).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
-              </span>
-            </div>
           </div>
         </CardContent>
       </Card>
