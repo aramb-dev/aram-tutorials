@@ -23,7 +23,7 @@ export function CookieConsent() {
     localStorage.setItem('cookie-consent', 'accepted');
     setConsentGiven(true);
     setShow(false);
-    
+
     // Trigger custom event for analytics scripts to listen to
     window.dispatchEvent(new Event('cookieConsentAccepted'));
   };
@@ -32,7 +32,7 @@ export function CookieConsent() {
     localStorage.setItem('cookie-consent', 'rejected');
     setConsentGiven(false);
     setShow(false);
-    
+
     // Trigger custom event
     window.dispatchEvent(new Event('cookieConsentRejected'));
   };
@@ -73,7 +73,7 @@ export function CookieConsent() {
                 <Cookie className="h-6 w-6 text-primary" />
               </div>
             </div>
-            
+
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold">
@@ -88,7 +88,7 @@ export function CookieConsent() {
                   <X className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <p className="text-sm text-muted-foreground mb-4">
                 We use cookies and similar tracking technologies to analyze site
                 traffic, understand where our audience is coming from, and

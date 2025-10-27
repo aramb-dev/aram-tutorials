@@ -44,13 +44,13 @@ export function Analytics() {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              
+
               // Set default consent state
               gtag('consent', 'default', {
                 analytics_storage: ${consent ? "'granted'" : "'denied'"},
                 ad_storage: 'denied',
               });
-              
+
               gtag('config', '${gaId}', {
                 page_path: window.location.pathname,
               });
