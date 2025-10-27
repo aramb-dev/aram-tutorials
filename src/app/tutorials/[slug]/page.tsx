@@ -1,13 +1,10 @@
-import { BlogPostComments } from '@/components/blog/BlogPostComments';
 import { BlogPostContent } from '@/components/blog/BlogPostContent';
 import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
-import { PostViewTracker } from '@/components/blog/PostViewTracker';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { getAllPosts, getPostBySlug } from '@/lib/mdx';
 import { transformPostToBlogPost } from '@/lib/transformers';
-import { PrismaClient } from '@prisma/client';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -76,8 +73,6 @@ export async function generateStaticParams() {
   }));
 }
 
-const prisma = new PrismaClient();
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -143,7 +138,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <PostViewTracker slug={slug} />
       {/* Blog Post Header */}
       <BlogPostHeader post={blogPost} />
 
@@ -160,15 +154,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 }
               >
                 <BlogPostContent post={blogPost} />
-              </Suspense>
-
-              {/* Comments Section */}
-              <Suspense
-                fallback={
-                  <LoadingSpinner size="md" text="Loading comments..." />
-                }
-              >
-                <BlogPostComments postSlug={blogPost.slug} />
               </Suspense>
             </article>
           </div>

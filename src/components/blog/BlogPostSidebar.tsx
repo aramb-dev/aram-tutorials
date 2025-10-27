@@ -22,8 +22,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
-import PostActions from './PostActions';
-
 interface BlogPostSidebarProps {
   post: BlogPost;
   tableOfContents?: Array<{
@@ -226,9 +224,6 @@ export function BlogPostSidebar({
           </div>
         </CardContent>
       </Card>
-
-      {/* Post Actions */}
-      <PostActions slug={post.slug} />
 
       {/* Share */}
       <Card>
