@@ -6,7 +6,7 @@ import {
   Rocket,
   TrendingUp,
 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/Card';
 
 export function AboutStory() {
   const milestones = [

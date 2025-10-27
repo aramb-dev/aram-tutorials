@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { Check, Copy, Download, FileText } from 'lucide-react';
 import { useState } from 'react';

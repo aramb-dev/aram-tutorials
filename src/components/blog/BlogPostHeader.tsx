@@ -1,5 +1,5 @@
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
 import { formatDate, formatRelativeTime, getCategoryColor } from '@/lib/utils';
 import type { BlogPost } from '@/types';
 import {

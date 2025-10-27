@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/Badge';
 import { generateTagUrl } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 import type { TagProps } from '@/types';

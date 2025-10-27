@@ -1,5 +1,5 @@
 import { BlogCard } from '@/components/blog/BlogCard';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { getAllPosts } from '@/lib/mdx';
 import { transformPostToBlogPost } from '@/lib/transformers';
 import { ArrowRight, Clock } from 'lucide-react';

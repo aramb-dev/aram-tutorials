@@ -1,7 +1,7 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
 import { ArrowDown, Lightbulb, Mail, MessageCircle, Users } from 'lucide-react';
 
 export function ContactHeader() {

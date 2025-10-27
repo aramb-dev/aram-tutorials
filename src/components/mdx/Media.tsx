@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { Download, FileImage, Maximize2, Play, X } from 'lucide-react';
 import NextImage from 'next/image';

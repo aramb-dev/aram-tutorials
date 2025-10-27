@@ -1,6 +1,6 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/Badge';
 import { BookOpen, Code, Cpu, Database, Globe } from 'lucide-react';
 import { TutorialsSearch } from './TutorialsSearch';
 
