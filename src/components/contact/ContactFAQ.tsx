@@ -1,19 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import {
-  HelpCircle,
-  ChevronDown,
-  ChevronUp,
-  MessageCircle,
-  BookOpen,
-  Users,
-  Code,
-  Lightbulb,
-  Clock,
-} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+    BookOpen,
+    ChevronDown,
+    ChevronUp,
+    Clock,
+    Code,
+    HelpCircle,
+    Lightbulb,
+    MessageCircle,
+    Users,
+} from 'lucide-react';
+import { useState } from 'react';
 
 interface FAQItem {
   id: string;
