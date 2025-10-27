@@ -77,7 +77,7 @@ export function AboutHero() {
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-2">
                   <div className="w-80 h-80 md:w-96 md:h-96 relative rounded-2xl overflow-hidden bg-gradient-to-br from-brand-lighter/10 to-brand-light/10 flex items-center justify-center">
                     {/* Aram Tutorials Logo */}
-                    <div className="w-full h-full relative rounded-xl overflow-hidden bg-white/5 border border-white/10">
+                    <div className="w-full h-full relative rounded-xl overflow-hidden bg-white/5">
                       <Image
                         src="/aram-tutorials-logo-nontransparent.png"
                         alt="Aram Tutorials Logo"
