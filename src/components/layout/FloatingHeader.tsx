@@ -19,6 +19,11 @@ export function FloatingHeader() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Determine which logo to use based on scroll state
+  const logoSource = isScrolled 
+    ? '/aram-tutorials-logo-nontransparent.png' 
+    : '/aram-tutorials-logo.png';
+
   return (
     <header
       className={cn(
@@ -47,11 +52,11 @@ export function FloatingHeader() {
             >
               {/* Aram Tutorials Logo */}
               <Image
-                src="/aram-tutorials-logo.png"
+                src={logoSource}
                 alt="Aram Tutorials Logo"
                 width={40}
                 height={40}
-                className="w-10 h-10 object-contain"
+                className="w-10 h-10 object-contain transition-opacity duration-300"
                 priority
               />
 
