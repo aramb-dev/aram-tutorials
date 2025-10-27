@@ -82,7 +82,7 @@ export function AboutHero() {
                         src="/aram-tutorials-logo-nontransparent.png"
                         alt="Aram Tutorials Logo"
                         fill
-                        className="object-contain p-8"
+                        className="object-contain"
                         priority
                       />
                     </div>
