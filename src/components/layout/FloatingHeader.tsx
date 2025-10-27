@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 export function FloatingHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,8 +20,8 @@ export function FloatingHeader() {
   }, []);
 
   // Determine which logo to use based on scroll state
-  const logoSource = isScrolled 
-    ? '/aram-tutorials-logo-nontransparent.png' 
+  const logoSource = isScrolled
+    ? '/aram-tutorials-logo-nontransparent.png'
     : '/aram-tutorials-logo.png';
 
   return (
@@ -50,15 +50,17 @@ export function FloatingHeader() {
                 'hover:scale-105 active:scale-95'
               )}
             >
-              {/* Aram Tutorials Logo */}
-              <Image
-                src={logoSource}
-                alt="Aram Tutorials Logo"
-                width={40}
-                height={40}
-                className="w-10 h-10 object-contain transition-opacity duration-300"
-                priority
-              />
+              {/* Aram Tutorials Logo with Frame */}
+              <div className="w-10 h-10 rounded-lg overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg">
+                <Image
+                  src={logoSource}
+                  alt="Aram Tutorials Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-contain p-1 transition-opacity duration-300"
+                  priority
+                />
+              </div>
 
               {/* Brand Text - Only visible when scrolled */}
               <div
