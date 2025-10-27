@@ -60,7 +60,7 @@ export function ContactFAQ() {
       category: 'general',
       question: 'Are your tutorials free to access?',
       answer:
-        'Yes, all tutorials on the YouTube channel and website are free to watch and learn from. Occasionally, affiliate links may be used to support the channel, but there's no extra cost to viewers.',
+        'Yes, all tutorials on the YouTube channel and website are free to watch and learn from. Occasionally, affiliate links may be used to support the channel, but there is no extra cost to viewers.',
     },
     {
       id: '6',
