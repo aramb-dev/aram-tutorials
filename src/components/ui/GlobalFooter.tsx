@@ -1,15 +1,15 @@
 'use client';
 
+import {
+    BookOpen,
+    Home,
+    Mail,
+    MessageCircle,
+    User,
+    Youtube,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Youtube,
-  Mail,
-  Home,
-  BookOpen,
-  User,
-  MessageCircle,
-} from 'lucide-react';
 
 export function GlobalFooter() {
   const currentYear = new Date().getFullYear();
