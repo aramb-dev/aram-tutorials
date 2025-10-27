@@ -53,7 +53,7 @@ export function ContactFAQ() {
       category: 'collaboration',
       question: 'Do you accept collaborations or sponsorships?',
       answer:
-        'Yes — relevant collaborations with tech brands, services, and tools are considered. If you'd like to work together, please send details to aramtutorials@gmail.com.',
+        'Yes - relevant collaborations with tech brands, services, and tools are considered. If you'd like to work together, please send details to aramtutorials@gmail.com.',
     },
     {
       id: '5',
