@@ -75,15 +75,18 @@ This notification is for internal use only - the subscriber has already received
       `,
     });
 
-    // Option 1: Add to Resend contacts list
-    // Note: Requires Resend Audience API to be set up
-    try {
-      await resend.contacts.create({
-        email,
-        unsubscribed: false,
-      });
-    } catch (contactError) {
-      console.log('Contacts API not available, skipping contact creation');
+    // Option 1: Add to Resend contacts list when an audience is configured
+    const audienceId = process.env.RESEND_AUDIENCE_ID;
+    if (audienceId) {
+      try {
+        await resend.contacts.create({
+          audienceId,
+          email,
+          unsubscribed: false,
+        });
+      } catch (contactError) {
+        console.log('Contacts API not available, skipping contact creation');
+      }
     }
 
     return NextResponse.json(
