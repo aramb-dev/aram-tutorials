@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from './button';
+import { Button } from './Button';
 
 interface BackButtonProps {
   href?: string;

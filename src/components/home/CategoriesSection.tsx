@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/Button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/Card';
 // import { Database } from '@/lib/db';
 import { generateCategoryUrl } from '@/lib/utils';
 import { Category } from '@/types';

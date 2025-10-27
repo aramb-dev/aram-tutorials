@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Input } from './input';
-import { Button } from './button';
+import { Input } from './Input';
+import { Button } from './Button';
 
 export interface SearchInputProps {
   placeholder?: string;

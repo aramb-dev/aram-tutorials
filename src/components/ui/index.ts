@@ -1,11 +1,11 @@
 // UI Components Export - Primary components
-export * from './badge';
-export * from './button';
-export * from './card';
+export * from './Badge';
+export * from './Button';
+export * from './Card';
 export * from './dialog';
 export * from './dropdown-menu';
-export * from './input';
-export * from './textarea';
+export * from './Input';
+export * from './Textarea';
 
 // Custom components
 export { SearchInput } from './SearchInput';
