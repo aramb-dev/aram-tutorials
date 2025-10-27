@@ -30,72 +30,51 @@ export function ContactFAQ() {
     {
       id: '1',
       category: 'general',
-      question: 'How quickly do you respond to messages?',
+      question: 'What is Aram Tutorials about?',
       answer:
-        "I typically respond to emails within 24-48 hours during weekdays. For Discord messages, I usually respond within 2-6 hours. If your matter is urgent, please mention it in the subject line and I'll prioritize it for same-day response.",
+        'Aram Tutorials focuses on creating clear, beginner-friendly tech tutorials. The content covers a wide range of topics including software installation, productivity tools, cloud services, and basic tech guides to help users navigate technology with ease.',
     },
     {
       id: '2',
       category: 'tutorials',
-      question: 'Can I request a specific tutorial topic?',
+      question: 'How often are new tutorials posted?',
       answer:
-        "Absolutely! I love hearing tutorial requests from the community. Please provide as much detail as possible about what you'd like to learn, your current skill level, and any specific technologies or frameworks you're interested in. I prioritize tutorials based on community demand and relevance.",
+        "There's no fixed upload schedule. New videos are posted whenever they're fully prepared to ensure the best quality. You can subscribe on YouTube to stay updated whenever a new tutorial goes live.",
     },
     {
       id: '3',
       category: 'tutorials',
-      question: 'Do you offer personalized coding help?',
+      question: 'Can I suggest a tutorial topic?',
       answer:
-        'Yes, I offer limited one-on-one mentoring sessions for complex projects or specific learning goals. You can schedule a 30-minute consultation through the contact form. For quick questions, the Discord community is usually the fastest way to get help.',
+        "Yes! Suggestions are always welcome. If there's a specific tool or topic you'd like covered, you can email your idea to aramtutorials@gmail.com or use the contact form on the website.",
     },
     {
       id: '4',
       category: 'collaboration',
-      question: 'Are you available for freelance projects?',
+      question: 'Do you accept collaborations or sponsorships?',
       answer:
-        'I occasionally take on interesting freelance projects, especially those that align with my expertise in React, Next.js, and modern web development. Please reach out with project details, timeline, and budget for consideration.',
+        'Yes — relevant collaborations with tech brands, services, and tools are considered. If you'd like to work together, please send details to aramtutorials@gmail.com.',
     },
     {
       id: '5',
-      category: 'collaboration',
-      question: 'Can we collaborate on content creation?',
+      category: 'general',
+      question: 'Are your tutorials free to access?',
       answer:
-        "I'm always open to collaborating with other developers and content creators! Whether it's guest posts, joint tutorials, podcast appearances, or video collaborations, I'd love to explore opportunities. Please share your ideas and how you envision working together.",
+        'Yes, all tutorials on the YouTube channel and website are free to watch and learn from. Occasionally, affiliate links may be used to support the channel, but there's no extra cost to viewers.',
     },
     {
       id: '6',
-      category: 'technical',
-      question: 'What technologies do you specialize in?',
+      category: 'general',
+      question: 'Do you offer one-on-one help or consulting?',
       answer:
-        'My main expertise includes React, Next.js, TypeScript, Node.js, and modern web development practices. I also work with databases (PostgreSQL, MongoDB), cloud platforms (Vercel, AWS), and various CSS frameworks. Check my tutorials page for a complete overview of topics I cover.',
+        'While direct support isn't guaranteed, some personalized guidance or future tutorials based on common questions may be offered. Priority is given to widely useful topics.',
     },
     {
       id: '7',
       category: 'general',
-      question: 'Do you offer code reviews?',
+      question: 'How can I stay updated on new videos and guides?',
       answer:
-        "I provide code reviews on a case-by-case basis, usually for educational purposes or community projects. Please share your code repository, specific areas you'd like feedback on, and the context of your project. Note that detailed code reviews may require scheduling a consultation session.",
-    },
-    {
-      id: '8',
-      category: 'tutorials',
-      question: 'Can I translate your tutorials to other languages?',
-      answer:
-        "I appreciate the interest in making content more accessible! Please reach out if you'd like to translate any of my tutorials. I'm happy to discuss attribution, hosting options, and how we can work together to reach more developers globally.",
-    },
-    {
-      id: '9',
-      category: 'general',
-      question: 'How can I support your work?',
-      answer:
-        'There are several ways to support my work: sharing tutorials with others, providing feedback, suggesting improvements, contributing to discussions in the community, or supporting me financially through coffee donations or GitHub sponsorship. Every bit of support helps me create better content!',
-    },
-    {
-      id: '10',
-      category: 'technical',
-      question: 'Do you provide debugging help?',
-      answer:
-        "For quick debugging questions, the Discord community is your best bet. For complex issues, please provide a minimal reproducible example, error messages, and what you've already tried. I'm happy to help, but detailed debugging sessions may require a scheduled consultation.",
+        'Subscribe to the YouTube channel (https://www.youtube.com/@AramTutorials) and follow on social platforms to get notified when new tutorials are published.',
     },
   ];
 
