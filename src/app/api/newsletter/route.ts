@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 const newsletterSchema = z.object({
   email: z.string().email('Invalid email address'),
+  turnstile: z.string().min(1, 'Captcha verification is required'),
 });
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -13,7 +14,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     // Validate the request body
-    const { email } = newsletterSchema.parse(body);
+    const validatedData = newsletterSchema.parse(body);
+    const { email, turnstile } = validatedData;
 
     // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
@@ -27,6 +29,52 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Verify Turnstile token
+    const turnstileResponse = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: turnstile,
+        }),
+      }
+    );
+
+    const turnstileResult = await turnstileResponse.json();
+
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Captcha verification failed. Please try again.',
+        },
+        { status: 400 }
+      );
+    }
+
+    // Send notification email to you
+    await resend.emails.send({
+      from: 'Aram Tutorials <onboarding@resend.dev>',
+      to: ['findarambilal@gmail.com'],
+      subject: 'New Newsletter Subscription',
+      html: `
+        <h2>New Newsletter Subscription</h2>
+        <p><strong>New subscriber email:</strong> ${email}</p>
+        <p>Please add this email to your newsletter list.</p>
+        <p><small>This notification is for internal use only - the subscriber has already received a confirmation.</small></p>
+      `,
+      text: `New Newsletter Subscription
+
+New subscriber email: ${email}
+
+Please add this email to your newsletter list.
+
+This notification is for internal use only - the subscriber has already received a confirmation.
+      `,
+    });
+
     // Option 1: Add to Resend contacts list
     // Note: Requires Resend Audience API to be set up
     try {
@@ -35,25 +83,7 @@ export async function POST(request: NextRequest) {
         unsubscribed: false,
       });
     } catch (contactError) {
-      // If contacts API fails, send a notification email instead
-      console.log('Contacts API not available, sending notification email');
-      await resend.emails.send({
-        from: 'Aram Tutorials <onboarding@resend.dev>',
-        to: ['aramtutorials@gmail.com'],
-        subject: 'New Newsletter Subscription',
-        html: `
-          <h2>New Newsletter Subscription</h2>
-          <p>Email: ${email}</p>
-          <p>Please add this email to your newsletter list.</p>
-        `,
-        text: `
-New Newsletter Subscription
-
-Email: ${email}
-
-Please add this email to your newsletter list.
-        `,
-      });
+      console.log('Contacts API not available, skipping contact creation');
     }
 
     return NextResponse.json(
