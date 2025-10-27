@@ -5,7 +5,12 @@ import path from 'path';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/tutorials');
 
-export function getAllPosts(): Post[] {
+// Cache for posts data to avoid re-reading files on every request
+let postsCache: Post[] | null = null;
+let postsCacheTime = 0;
+const CACHE_DURATION = 60 * 1000; // 1 minute cache
+
+function getAllPostsUncached(): Post[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map(fileName => {
     const slug = fileName.replace(/\.mdx$/, '');
@@ -28,8 +33,28 @@ export function getAllPosts(): Post[] {
   });
 }
 
+export function getAllPosts(): Post[] {
+  const now = Date.now();
+  
+  // Return cached data if available and fresh
+  if (postsCache && (now - postsCacheTime < CACHE_DURATION)) {
+    return postsCache;
+  }
+
+  // Fetch fresh data and update cache
+  postsCache = getAllPostsUncached();
+  postsCacheTime = now;
+  
+  return postsCache;
+}
+
 export function getPostBySlug(slug: string): Post {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post with slug "${slug}" not found`);
+  }
+  
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
