@@ -202,7 +202,7 @@ export function ContactFAQ() {
             have.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button
               size="lg"
               onClick={() => {
@@ -214,11 +214,6 @@ export function ContactFAQ() {
             >
               <MessageCircle className="h-5 w-5 mr-2" />
               Send a Message
-            </Button>
-
-            <Button variant="outline" size="lg">
-              <Users className="h-5 w-5 mr-2" />
-              Join Discord Community
             </Button>
           </div>
 
