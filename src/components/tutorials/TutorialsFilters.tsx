@@ -15,20 +15,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
-import { DEFAULT_CATEGORIES } from '@/lib/constants';
+import { CATEGORIES_CONFIG as DEFAULT_CATEGORIES, CategoryWithCount } from '@/lib/categories';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 
 interface TutorialsFiltersProps {
   selectedCategory?: string;
   selectedTag?: string;
   searchQuery?: string;
+  categoriesWithPosts?: CategoryWithCount[];
 }
 
 export function TutorialsFilters({
   selectedCategory,
   selectedTag,
   searchQuery,
+  categoriesWithPosts = [],
 }: TutorialsFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -180,27 +183,34 @@ export function TutorialsFilters({
         </CardHeader>
         {expandedSections.categories && (
           <CardContent className="space-y-2">
-            {DEFAULT_CATEGORIES.map(category => (
-              <button
-                key={category.slug}
-                onClick={() => updateFilters('category', category.slug)}
-                className={`w-full text-left p-2 rounded-md transition-colors hover:bg-muted ${
-                  selectedCategory === category.slug
-                    ? 'bg-primary/10 text-primary border border-primary/20'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">{category.name}</span>
-                  <Badge variant="outline" className="text-xs">
-                    0
-                  </Badge>
-                </div>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {category.description}
-                </p>
-              </button>
-            ))}
+            {DEFAULT_CATEGORIES.map(category => {
+              const categoryWithCount = categoriesWithPosts.find(
+                cat => cat.slug === category.slug
+              );
+              const count = categoryWithCount?.count || 0;
+
+              return (
+                <button
+                  key={category.slug}
+                  onClick={() => updateFilters('category', category.slug)}
+                  className={`w-full text-left p-2 rounded-md transition-colors hover:bg-muted ${
+                    selectedCategory === category.slug
+                      ? 'bg-primary/10 text-primary border border-primary/20'
+                      : 'text-muted-foreground'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium">{category.name}</span>
+                    <Badge variant="outline" className="text-xs">
+                      {count}
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {category.description}
+                  </p>
+                </button>
+              );
+            })}
           </CardContent>
         )}
       </Card>

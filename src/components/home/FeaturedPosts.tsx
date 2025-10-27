@@ -9,7 +9,7 @@ export async function FeaturedPosts() {
   // Get featured posts from mdx
   const allPosts = await getAllPosts();
   const featuredPosts = allPosts
-    .filter(p => p.featured_image)
+    .filter(p => p.featured)
     .slice(0, 3)
     .map(transformPostToBlogPost);
 

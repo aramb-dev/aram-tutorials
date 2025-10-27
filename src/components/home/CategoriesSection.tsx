@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 // import { Database } from '@/lib/db';
 import { generateCategoryUrl } from '@/lib/utils';
-import { Category } from '@/types';
+import { Category } from '@/lib/categories';
 import {
   ArrowRight,
   Code,
@@ -23,13 +23,77 @@ const iconMap = {
   '💻': Code,
   '🍺': Package,
   '🔍': Search,
+  laptop: Laptop,
+  monitor: Monitor,
+  smartphone: Smartphone,
+  code: Code,
+  package: Package,
+  search: Search,
+  mail: Search, // Using Search icon for mail as fallback
 } as const;
 
 export async function CategoriesSection() {
   // Get categories from database
   // Get categories from database
   // const categories = await Database.getAllCategories();
-  const categories: Category[] = [];
+  const categories: Category[] = [
+    {
+      id: 'mac',
+      name: 'macOS',
+      slug: 'mac',
+      description: 'macOS tutorials and guides',
+      color: '#4A7C59',
+      icon: 'laptop',
+    },
+    {
+      id: 'windows',
+      name: 'Windows',
+      slug: 'windows',
+      description: 'Windows tutorials and guides',
+      color: '#7BA05A',
+      icon: 'monitor',
+    },
+    {
+      id: 'android',
+      name: 'Android',
+      slug: 'android',
+      description: 'Android development and guides',
+      color: '#A8C78A',
+      icon: 'smartphone',
+    },
+    {
+      id: 'vscode',
+      name: 'VS Code',
+      slug: 'vscode',
+      description: 'Visual Studio Code tutorials',
+      color: '#2E5E15',
+      icon: 'code',
+    },
+    {
+      id: 'homebrew',
+      name: 'Homebrew',
+      slug: 'homebrew',
+      description: 'Homebrew package manager guides',
+      color: '#6B7280',
+      icon: 'package',
+    },
+    {
+      id: 'google',
+      name: 'Google',
+      slug: 'google',
+      description: 'Google services and tools',
+      color: '#4A7C59',
+      icon: 'search',
+    },
+    {
+      id: 'email',
+      name: 'Email',
+      slug: 'email',
+      description: 'Email communication and productivity',
+      color: '#3B82F6',
+      icon: 'mail',
+    },
+  ];
 
   return (
     <div className="space-y-8">

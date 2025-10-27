@@ -32,9 +32,56 @@ export async function TutorialsList({
 }: TutorialsListProps) {
   const allPosts = (await getAllPosts()).map(transformPostToBlogPost);
 
-  // TODO: Implement filtering and sorting
-  const currentPosts = allPosts;
-  const totalPosts = allPosts.length;
+  // Filter posts based on category, tag, and search
+  let filteredPosts = allPosts;
+
+  // Category filtering
+  if (category) {
+    filteredPosts = filteredPosts.filter(post =>
+      post.category.slug.toLowerCase() === category.toLowerCase()
+    );
+  }
+
+  // Tag filtering
+  if (tag) {
+    filteredPosts = filteredPosts.filter(post =>
+      post.tags.some(t => t.slug.toLowerCase() === tag.toLowerCase())
+    );
+  }
+
+  // Search filtering
+  if (search) {
+    const searchLower = search.toLowerCase();
+    filteredPosts = filteredPosts.filter(post =>
+      post.title.toLowerCase().includes(searchLower) ||
+      post.excerpt.toLowerCase().includes(searchLower) ||
+      post.tags.some(t => t.name.toLowerCase().includes(searchLower))
+    );
+  }
+
+  // Sorting
+  let sortedPosts = [...filteredPosts];
+  switch (sort) {
+    case 'oldest':
+      sortedPosts.sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime());
+      break;
+    case 'popular':
+      sortedPosts.sort((a, b) => (b.views || 0) - (a.views || 0));
+      break;
+    case 'alphabetical':
+      sortedPosts.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    case 'newest':
+    default:
+      sortedPosts.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      break;
+  }
+
+  // Pagination
+  const startIndex = (page - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const currentPosts = sortedPosts.slice(startIndex, endIndex);
+  const totalPosts = sortedPosts.length;
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
   // Sort options for display

@@ -4,6 +4,8 @@ import { TutorialsList } from '@/components/tutorials/TutorialsList';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
+import { CATEGORIES_CONFIG, CategoryWithCount } from '@/lib/categories';
+import { getAllPosts } from '@/lib/mdx';
 
 export const metadata: Metadata = {
   title: 'Tutorials | Aram Tutorials - Tech Made Simple',
@@ -64,6 +66,25 @@ export default async function TutorialsPage({
     page = '1',
   } = await searchParams;
 
+  // Fetch categories server-side to avoid fs module in client
+  const posts = getAllPosts();
+  const categoryCounts = new Map<string, number>();
+
+  // Count posts per category
+  posts.forEach(post => {
+    const categorySlug = post.category;
+    categoryCounts.set(categorySlug, (categoryCounts.get(categorySlug) || 0) + 1);
+  });
+
+  // Create categories with counts, only including those with posts
+  const categoriesWithPosts: CategoryWithCount[] = CATEGORIES_CONFIG
+    .filter(category => categoryCounts.has(category.slug))
+    .map(category => ({
+      ...category,
+      count: categoryCounts.get(category.slug) || 0,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name)); // Alphabetical sort
+
   return (
     <div className="min-h-screen bg-background">
       {/* Page Header */}
@@ -84,6 +105,7 @@ export default async function TutorialsPage({
                   selectedCategory={category}
                   selectedTag={tag}
                   searchQuery={search}
+                  categoriesWithPosts={categoriesWithPosts}
                 />
               </Suspense>
             </div>
