@@ -39,14 +39,14 @@ export function ContactFAQ() {
       category: 'tutorials',
       question: 'How often are new tutorials posted?',
       answer:
-        "There's no fixed upload schedule. New videos are posted whenever they're fully prepared to ensure the best quality. You can subscribe on YouTube to stay updated whenever a new tutorial goes live.",
+        "There is no fixed upload schedule. New videos are posted whenever they are fully prepared to ensure the best quality. You can subscribe on YouTube to stay updated whenever a new tutorial goes live.",
     },
     {
       id: '3',
       category: 'tutorials',
       question: 'Can I suggest a tutorial topic?',
       answer:
-        "Yes! Suggestions are always welcome. If there's a specific tool or topic you'd like covered, you can email your idea to aramtutorials@gmail.com or use the contact form on the website.",
+        "Yes! Suggestions are always welcome. If there is a specific tool or topic you would like covered, you can email your idea to aramtutorials@gmail.com or use the contact form on the website.",
     },
     {
       id: '4',
@@ -67,7 +67,7 @@ export function ContactFAQ() {
       category: 'general',
       question: 'Do you offer one-on-one help or consulting?',
       answer:
-        'While direct support isn't guaranteed, some personalized guidance or future tutorials based on common questions may be offered. Priority is given to widely useful topics.',
+        'While direct support is not guaranteed, some personalized guidance or future tutorials based on common questions may be offered. Priority is given to widely useful topics.',
     },
     {
       id: '7',
@@ -106,7 +106,7 @@ export function ContactFAQ() {
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Find answers to common questions about tutorials, collaboration, and
-          getting in touch. Can't find what you're looking for? Feel free to
+          getting in touch. Cannot find what you are looking for? Feel free to
           reach out!
         </p>
       </div>
@@ -197,8 +197,8 @@ export function ContactFAQ() {
           </h3>
 
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Can't find the answer you're looking for? Don't hesitate to reach
-            out! I'm always happy to help and answer any questions you might
+            Cannot find the answer you are looking for? Do not hesitate to reach
+            out! I am always happy to help and answer any questions you might
             have.
           </p>
 
