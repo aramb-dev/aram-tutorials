@@ -79,7 +79,7 @@ export function AboutHero() {
                     {/* Aram Tutorials Logo */}
                     <div className="w-64 h-64 md:w-80 md:h-80 relative rounded-xl overflow-hidden bg-white/5 border border-white/10">
                       <Image
-                        src="/aram-tutorials-logo.png"
+                        src="/aram-tutorials-logo-nontransparent.png"
                         alt="Aram Tutorials Logo"
                         width={320}
                         height={320}
