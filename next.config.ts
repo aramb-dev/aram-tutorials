@@ -1,7 +1,5 @@
 import createMDX from '@next/mdx';
 import type { NextConfig } from 'next';
-import rehypeHighlight from 'rehype-highlight';
-import remarkGfm from 'remark-gfm';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
@@ -27,13 +25,14 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
+    // Turbopack requires serializable loader options, so we reference plugins by module path
+    remarkPlugins: ['remark-gfm'] as any,
     rehypePlugins: [
-      rehypeHighlight,
+      'rehype-highlight',
       // Temporarily disable these to avoid conflicts with MDXRemote
-      // rehypeSlug,
+      // 'rehype-slug',
       // [
-      //   rehypeAutolinkHeadings,
+      //   'rehype-autolink-headings',
       //   {
       //     behavior: 'wrap',
       //     properties: {
@@ -41,7 +40,7 @@ const withMDX = createMDX({
       //     },
       //   },
       // ],
-    ],
+    ] as any,
   },
 });
 

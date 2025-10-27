@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Send,
   User,
@@ -11,11 +11,27 @@ import {
   AlertCircle,
   Loader2,
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        element: HTMLElement,
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          'error-callback'?: () => void;
+          'expired-callback'?: () => void;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
 
 interface FormData {
   name: string;
@@ -33,6 +49,7 @@ interface FormErrors {
 }
 
 export function ContactForm() {
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -44,6 +61,11 @@ export function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null);
+  const turnstileRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     {
@@ -81,6 +103,76 @@ export function ContactForm() {
     },
   ];
 
+  useEffect(() => {
+    if (isSubmitted) {
+      return;
+    }
+
+    if (!turnstileRef.current) {
+      return;
+    }
+
+    if (!siteKey) {
+      console.error('NEXT_PUBLIC_TURNSTILE_SITE_KEY is not configured.');
+      setTurnstileError(
+        'Security check is unavailable. Please try again later.'
+      );
+      return;
+    }
+
+    const renderWidget = () => {
+      if (!turnstileRef.current || !window.turnstile) {
+        return;
+      }
+
+      const widgetId = window.turnstile.render(turnstileRef.current, {
+        sitekey: siteKey,
+        callback: token => {
+          setTurnstileToken(token);
+          setTurnstileError(null);
+        },
+        'error-callback': () => {
+          setTurnstileToken(null);
+          setTurnstileError('Security check failed. Please try again.');
+        },
+        'expired-callback': () => {
+          setTurnstileToken(null);
+          setTurnstileError('Security check expired. Please try again.');
+        },
+      });
+
+      setTurnstileWidgetId(widgetId);
+    };
+
+    if (window.turnstile) {
+      renderWidget();
+      return;
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[data-turnstile-script="true"]'
+    );
+
+    if (existingScript) {
+      existingScript.addEventListener('load', renderWidget);
+      return () => {
+        existingScript.removeEventListener('load', renderWidget);
+      };
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    script.dataset.turnstileScript = 'true';
+    script.addEventListener('load', renderWidget);
+    document.head.appendChild(script);
+
+    return () => {
+      script.removeEventListener('load', renderWidget);
+    };
+  }, [siteKey, isSubmitted]);
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
@@ -115,14 +207,46 @@ export function ContactForm() {
       return;
     }
 
+    if (!turnstileToken) {
+      setTurnstileError('Please complete the security check.');
+      return;
+    }
+
+    setSubmitError(null);
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const selectedCategory = categories.find(
+        category => category.id === formData.category
+      );
 
-      // In a real app, you would send the form data to your API
-      console.log('Form submitted:', formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          category: selectedCategory?.label ?? null,
+          message: formData.message,
+          turnstile: turnstileToken,
+        }),
+      });
+
+      const data: {
+        success?: boolean;
+        message?: string;
+      } | null = await response.json().catch(() => null);
+
+      if (!response.ok || !data?.success) {
+        const message =
+          data?.message ??
+          'Something went wrong while sending your message. Please try again.';
+        setSubmitError(message);
+        return;
+      }
 
       setIsSubmitted(true);
       setFormData({
@@ -132,8 +256,19 @@ export function ContactForm() {
         category: '',
         message: '',
       });
+      setErrors({});
+      setTurnstileToken(null);
+      setTurnstileError(null);
+      if (turnstileWidgetId) {
+        window.turnstile?.reset(turnstileWidgetId);
+      } else {
+        window.turnstile?.reset();
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      setSubmitError(
+        'Unable to send your message right now. Please try again in a moment.'
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -145,6 +280,9 @@ export function ContactForm() {
     // Clear error when user starts typing
     if (errors[field as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+    if (submitError) {
+      setSubmitError(null);
     }
   };
 
@@ -330,6 +468,23 @@ export function ContactForm() {
             </div>
           </div>
 
+          {/* Turnstile */}
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">
+              Security Check *
+            </label>
+            <div
+              ref={turnstileRef}
+              className="rounded-md border border-input bg-background p-2 min-h-[65px]"
+            />
+            {turnstileError && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
+                <AlertCircle className="h-4 w-4" />
+                {turnstileError}
+              </p>
+            )}
+          </div>
+
           {/* Submit Button */}
           <div className="pt-4">
             <Button
@@ -350,6 +505,12 @@ export function ContactForm() {
                 </>
               )}
             </Button>
+            {submitError && (
+              <p className="text-red-500 text-sm mt-3 flex items-center gap-1">
+                <AlertCircle className="h-4 w-4" />
+                {submitError}
+              </p>
+            )}
           </div>
 
           {/* Privacy Notice */}

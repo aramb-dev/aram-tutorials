@@ -5,6 +5,12 @@ import { z } from 'zod';
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
   email: z.string().email('Invalid email address'),
+  subject: z.string().min(1, 'Subject is required').max(150),
+  category: z
+    .string()
+    .max(100)
+    .nullish()
+    .transform(value => (value?.trim() ? value : null)),
   message: z
     .string()
     .min(10, 'Message must be at least 10 characters')
@@ -20,6 +26,8 @@ export async function POST(request: NextRequest) {
 
     // Validate the request body
     const validatedData = contactSchema.parse(body);
+    const { name, email, subject, category, message, turnstile } =
+      validatedData;
 
     // Check if Resend API key is configured
     if (!process.env.RESEND_API_KEY) {
@@ -41,7 +49,7 @@ export async function POST(request: NextRequest) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           secret: process.env.TURNSTILE_SECRET_KEY,
-          response: validatedData.turnstile,
+          response: turnstile,
         }),
       }
     );
@@ -61,27 +69,36 @@ export async function POST(request: NextRequest) {
     // Send confirmation email to submitter
     await resend.emails.send({
       from: 'Aram Tutorials <onboarding@resend.dev>',
-      to: [validatedData.email],
+      to: [email],
       subject: 'Thank you for contacting Aram Tutorials',
       html: `
         <h2>Thank you for your message!</h2>
-        <p>Hi ${validatedData.name},</p>
+        <p>Hi ${name},</p>
         <p>We've received your message and will get back to you soon.</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        ${
+          category
+            ? `<p><strong>Category:</strong> ${category}</p>`
+            : '<p><strong>Category:</strong> Not specified</p>'
+        }
         <p>Here's a copy of your message:</p>
         <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 15px 0;">
-          ${validatedData.message.replace(/\n/g, '<br>')}
+          ${message.replace(/\n/g, '<br>')}
         </div>
         <p>Best regards,<br>The Aram Tutorials Team</p>
       `,
       text: `Thank you for your message!
 
-Hi ${validatedData.name},
+Hi ${name},
 
 We've received your message and will get back to you soon.
 
+Subject: ${subject}
+Category: ${category ?? 'Not specified'}
+
 Here's a copy of your message:
 
-${validatedData.message}
+${message}
 
 Best regards,
 The Aram Tutorials Team
@@ -92,27 +109,35 @@ The Aram Tutorials Team
     await resend.emails.send({
       from: 'Aram Tutorials <onboarding@resend.dev>',
       to: ['findarambilal@gmail.com'],
-      subject: `New Contact Form Submission from ${validatedData.name}`,
-      replyTo: validatedData.email,
+      subject: `New Contact Form Submission: ${subject}`,
+      replyTo: email,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>From:</strong> ${validatedData.name}</p>
-        <p><strong>Email:</strong> ${validatedData.email}</p>
+        <p><strong>From:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        ${
+          category
+            ? `<p><strong>Category:</strong> ${category}</p>`
+            : '<p><strong>Category:</strong> Not specified</p>'
+        }
         <p><strong>Message:</strong></p>
         <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 15px 0;">
-          ${validatedData.message.replace(/\n/g, '<br>')}
+          ${message.replace(/\n/g, '<br>')}
         </div>
-        <p><a href="mailto:${validatedData.email}">Reply to this message</a></p>
+        <p><a href="mailto:${email}">Reply to this message</a></p>
       `,
       text: `New Contact Form Submission
 
-From: ${validatedData.name}
-Email: ${validatedData.email}
+From: ${name}
+Email: ${email}
+Subject: ${subject}
+Category: ${category ?? 'Not specified'}
 
 Message:
-${validatedData.message}
+${message}
 
-Reply to: ${validatedData.email}
+Reply to: ${email}
       `,
     });
 
