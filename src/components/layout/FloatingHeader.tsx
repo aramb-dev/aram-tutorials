@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -44,21 +45,15 @@ export function FloatingHeader() {
                 'hover:scale-105 active:scale-95'
               )}
             >
-              {/* AT Logo Badge */}
-              <div
-                className={cn(
-                  'w-10 h-10 rounded-lg flex items-center justify-center',
-                  'bg-primary/90 backdrop-blur-sm',
-                  'border border-white/20',
-                  'shadow-lg shadow-primary/20',
-                  'transition-all duration-300',
-                  'group-hover:bg-primary group-hover:shadow-primary/30'
-                )}
-              >
-                <span className="text-white font-bold text-lg tracking-tight">
-                  AT
-                </span>
-              </div>
+              {/* Aram Tutorials Logo */}
+              <Image
+                src="/aram-tutorials-logo.png"
+                alt="Aram Tutorials Logo"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+                priority
+              />
 
               {/* Brand Text - Only visible when scrolled */}
               <div

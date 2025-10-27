@@ -188,10 +188,11 @@ export function BlogPostSidebar({
           <div className="flex items-start gap-4">
             <div className="relative w-16 h-16 rounded-full overflow-hidden bg-muted flex-shrink-0">
               <Image
-                src="https://trae-api-us.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20headshot%20of%20a%20young%20software%20developer%2C%20friendly%20smile%2C%20modern%20tech%20background%2C%20high%20quality%20portrait&image_size=square"
+                src="/aram-tutorials-logo.png"
                 alt="Aram Tutorials Team"
-                fill
-                className="object-cover"
+                width={64}
+                height={64}
+                className="object-contain p-2"
               />
             </div>
             <div className="flex-1 min-w-0">
@@ -215,12 +216,12 @@ export function BlogPostSidebar({
             </div>
           </div>
           <div className="mt-4 pt-4 border-t">
-            <Link href="/about">
-              <Button variant="outline" size="sm" className="w-full">
-                <User className="h-4 w-4 mr-2" />
-                View Profile
-              </Button>
-            </Link>
+              <Link href="/about">
+                <Button variant="outline" size="sm" className="w-full">
+                  <User className="h-4 w-4 mr-2" />
+                  Learn More
+                </Button>
+              </Link>
           </div>
         </CardContent>
       </Card>
