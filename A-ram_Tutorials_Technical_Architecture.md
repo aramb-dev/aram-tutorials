@@ -4,50 +4,39 @@
 
 ```mermaid
 graph TD
-    A[User Browser] --> B[Next.js Frontend Application]
-    B --> C[Neon Database Client]
-    C --> D[Neon PostgreSQL]
+    A[User Browser] --> B[Next.js Static Application]
+    B --> C[MDX Content Files]
     B --> E[External APIs]
 
     subgraph "Frontend Layer"
         B
         F[TailwindCSS]
         G[React Components]
-        H[NextAuth.js]
     end
 
-    subgraph "Database Layer (Neon)"
-        D
-        I[Connection Pooling]
-        J[Serverless PostgreSQL]
+    subgraph "Content Storage"
+        C
+        H[Git Repository]
     end
 
     subgraph "External Services"
         E
-        K[YouTube API]
-        L[Newsletter Service]
-        M[Analytics]
-        N[Vercel Blob Storage]
+        I[Resend Email API]
+        J[Google Analytics]
+        K[Microsoft Clarity]
     end
 ```
 
 ## 2. Technology Description
 
-- **Frontend**: Next.js\@14 + React\@18 + TailwindCSS\@3 + TypeScript
-
-\*- **Database**: Neon PostgreSQL with connection pooling
-
-- **Authentication**: NextAuth.js
-
-- **File Storage**: Vercel Blob Storage
-
-* **Styling**: TailwindCSS with custom design system
-
-* **Deployment**: Vercel
-
-* **Analytics**: Plausible Analytics
-
-* **Content Management**: Markdown-based with frontmatter
+- **Frontend**: Next.js 15 + React 19 + TailwindCSS 4 + TypeScript
+- **Content Management**: Markdown-based MDX files with frontmatter
+- **Styling**: TailwindCSS with custom design system
+- **Email Service**: Resend for contact form and newsletter
+- **Analytics**: Google Analytics 4 + Microsoft Clarity (consent-based)
+- **Deployment**: Vercel
+- **Authentication**: None (fully static application)
+- **Database**: None (content managed via Git)
 
 ## 3. Route Definitions
 
@@ -142,203 +131,68 @@ Response:
 
 ```mermaid
 graph TD
-    A[Client / Frontend] --> B[Next.js API Routes]
-    B --> C[Service Layer]
-    C --> D[Neon Database Client]
-    D --> E[(Neon PostgreSQL)]
+    A[Client / Frontend] --> B[Next.js Static Site]
+    B --> C[MDX Content Reader]
+    B --> D[API Routes]
 
     subgraph "Next.js Application"
         B
         C
         F[Static Site Generation]
-        G[Server-Side Rendering]
-        H[NextAuth.js]
+        G[Incremental Static Regeneration]
     end
 
     subgraph "External Services"
-        I[YouTube API]
-        J[Newsletter Service]
-        K[Analytics Service]
-        L[Vercel Blob Storage]
+        I[Resend Email API]
+        J[Google Analytics]
+        K[Microsoft Clarity]
     end
 
-    C --> I
-    C --> J
-    C --> L
+    D --> I
+    A --> J
     A --> K
 ```
 
-## 6. Data Model
+## 6. Content Model
 
-### 6.1 Data Model Definition
+### 6.1 MDX File Structure
 
-```mermaid
-erDiagram
-    BLOG_POSTS ||--o{ CATEGORIES : belongs_to
-    BLOG_POSTS ||--o{ TAGS : has_many
-    BLOG_POSTS ||--o{ COMMENTS : has_many
-    USERS ||--o{ COMMENTS : writes
-    USERS ||--o{ NEWSLETTER_SUBSCRIPTIONS : has_one
+Tutorial content is stored in MDX files located in `src/content/tutorials/`. Each file represents a tutorial post with frontmatter metadata.
 
-    BLOG_POSTS {
-        uuid id PK
-        string title
-        string slug
-        text content
-        string excerpt
-        string featured_image
-        string youtube_url
-        integer reading_time
-        boolean published
-        timestamp created_at
-        timestamp updated_at
-        uuid category_id FK
-    }
+**Frontmatter Schema:**
 
-    CATEGORIES {
-        uuid id PK
-        string name
-        string slug
-        string description
-        string icon
-        string color
-        timestamp created_at
-    }
-
-    TAGS {
-        uuid id PK
-        string name
-        string slug
-        timestamp created_at
-    }
-
-    COMMENTS {
-        uuid id PK
-        uuid post_id FK
-        uuid user_id FK
-        text content
-        boolean approved
-        timestamp created_at
-    }
-
-    USERS {
-        uuid id PK
-        string email
-        string name
-        timestamp created_at
-    }
-
-    NEWSLETTER_SUBSCRIPTIONS {
-        uuid id PK
-        string email
-        boolean active
-        timestamp subscribed_at
-    }
-
-    CONTACT_SUBMISSIONS {
-        uuid id PK
-        string name
-        string email
-        text message
-        timestamp created_at
-    }
+```typescript
+interface MDXFrontmatter {
+  title: string;              // Tutorial title
+  description: string;         // SEO description
+  publishedAt: string;         // Publication date (YYYY-MM-DD)
+  author: string;              // Author name (default: "Aram Tutorials")
+  category: string;            // Category slug (mac, windows, etc.)
+  tags: string[];            // Array of tag strings
+  featured?: boolean;         // Whether to feature on homepage
+  readingTime?: number;       // Estimated reading time in minutes
+}
 ```
 
-### 6.2 Data Definition Language
+**Content Structure:**
 
-**Blog Posts Table**
+- MDX files use standard Markdown with React components
+- Custom components available: `<Prerequisites>`, `<StepList>`, `<Step>`, `<Card>`, etc.
+- Code blocks are highlighted with `rehype-highlight`
+- Syntax: markdown + JSX
 
-```sql
--- Create blog_posts table
-CREATE TABLE blog_posts (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    title VARCHAR(255) NOT NULL,
-    slug VARCHAR(255) UNIQUE NOT NULL,
-    content TEXT NOT NULL,
-    excerpt TEXT,
-    featured_image VARCHAR(500),
-    youtube_url VARCHAR(500),
-    reading_time INTEGER DEFAULT 5,
-    published BOOLEAN DEFAULT false,
-    category_id UUID REFERENCES categories(id),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+### 6.2 API Data Handling
 
--- Create categories table
-CREATE TABLE categories (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(100) NOT NULL,
-    slug VARCHAR(100) UNIQUE NOT NULL,
-    description TEXT,
-    icon VARCHAR(50),
-    color VARCHAR(7) DEFAULT '#1e293b',
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+**Contact Form API (`/api/contact`):**
+- Receives: name, email, message
+- Action: Sends email via Resend to `aramtutorials@gmail.com`
+- Storage: No database storage
 
--- Create tags table
-CREATE TABLE tags (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(50) NOT NULL,
-    slug VARCHAR(50) UNIQUE NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
+**Newsletter API (`/api/newsletter`):**
+- Receives: email
+- Action: Adds to Resend contacts list or sends notification email
+- Storage: Resend Audience
 
--- Create post_tags junction table
-CREATE TABLE post_tags (
-    post_id UUID REFERENCES blog_posts(id) ON DELETE CASCADE,
-    tag_id UUID REFERENCES tags(id) ON DELETE CASCADE,
-    PRIMARY KEY (post_id, tag_id)
-);
-
--- Create newsletter_subscriptions table
-CREATE TABLE newsletter_subscriptions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email VARCHAR(255) UNIQUE NOT NULL,
-    active BOOLEAN DEFAULT true,
-    subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Create contact_submissions table
-CREATE TABLE contact_submissions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Create indexes for performance
-CREATE INDEX idx_blog_posts_published ON blog_posts(published, created_at DESC);
-CREATE INDEX idx_blog_posts_category ON blog_posts(category_id);
-CREATE INDEX idx_blog_posts_slug ON blog_posts(slug);
-CREATE INDEX idx_categories_slug ON categories(slug);
-CREATE INDEX idx_tags_slug ON tags(slug);
-
--- Grant permissions for Neon database
--- Note: Neon uses standard PostgreSQL permissions
--- Application-level authentication will be handled by NextAuth.js
-GRANT SELECT ON blog_posts TO PUBLIC;
-GRANT SELECT ON categories TO PUBLIC;
-GRANT SELECT ON tags TO PUBLIC;
-GRANT SELECT ON post_tags TO PUBLIC;
--- Admin operations will be handled through authenticated API routes
-
--- Insert initial categories
-INSERT INTO categories (name, slug, description, icon, color) VALUES
-('Mac', 'mac', 'Tutorials for macOS users', '🍎', '#007AFF'),
-('Windows', 'windows', 'Windows tips and guides', '🪟', '#0078D4'),
-('Android', 'android', 'Android app configurations', '🤖', '#3DDC84'),
-('VS Code', 'vs-code', 'Visual Studio Code tutorials', '💻', '#007ACC'),
-('Homebrew', 'homebrew', 'Package management for macOS', '🍺', '#FBB040'),
-('Google Tools', 'google-tools', 'Google productivity tools', '🔍', '#4285F4');
-
--- Insert sample tags
-INSERT INTO tags (name, slug) VALUES
-('beginner', 'beginner'),
-('installation', 'installation'),
-('configuration', 'configuration'),
-('productivity', 'productivity'),
-('troubleshooting', 'troubleshooting'),
-('tips', 'tips');
-```
+**Search API (`/api/search`):**
+- Client-side search of MDX content
+- No backend database required
