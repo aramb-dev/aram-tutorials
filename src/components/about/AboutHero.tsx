@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Calendar, Coffee, Heart, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export function AboutHero() {
@@ -72,21 +73,20 @@ export function AboutHero() {
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-lighter/20 to-brand-light/20 rounded-3xl transform rotate-6"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-light/20 to-brand-lightest/20 rounded-3xl transform -rotate-3"></div>
 
-                {/* Profile Image Container */}
+                {/* Logo Container */}
                 <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-2">
-                  <div className="w-80 h-80 md:w-96 md:h-96 relative rounded-2xl overflow-hidden bg-gradient-to-br from-brand-lighter/10 to-brand-light/10">
-                    {/* Placeholder for team image */}
-                    <div className="w-full h-full flex items-center justify-center text-6xl font-bold text-white/20">
-                      AT
+                  <div className="w-80 h-80 md:w-96 md:h-96 relative rounded-2xl overflow-hidden bg-gradient-to-br from-brand-lighter/10 to-brand-light/10 flex items-center justify-center">
+                    {/* Aram Tutorials Logo */}
+                    <div className="w-64 h-64 md:w-80 md:h-80 relative rounded-xl overflow-hidden bg-white/5 border border-white/10">
+                      <Image
+                        src="/aram-tutorials-logo.png"
+                        alt="Aram Tutorials Logo"
+                        width={320}
+                        height={320}
+                        className="w-full h-full object-contain"
+                        priority
+                      />
                     </div>
-                    {/* Uncomment when you have an actual image */}
-                    {/* <Image
-                      src="/images/team-photo.jpg"
-                      alt="Aram Tutorials Team"
-                      fill
-                      className="object-cover"
-                      priority
-                    /> */}
                   </div>
                 </div>
               </div>
