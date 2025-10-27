@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
 import { Cookie, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
