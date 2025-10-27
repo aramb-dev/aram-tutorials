@@ -35,7 +35,7 @@ function getAllPostsUncached(): Post[] {
 
 export function getAllPosts(): Post[] {
   const now = Date.now();
-  
+
   // Return cached data if available and fresh
   if (postsCache && (now - postsCacheTime < CACHE_DURATION)) {
     return postsCache;
@@ -44,17 +44,17 @@ export function getAllPosts(): Post[] {
   // Fetch fresh data and update cache
   postsCache = getAllPostsUncached();
   postsCacheTime = now;
-  
+
   return postsCache;
 }
 
 export function getPostBySlug(slug: string): Post {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  
+
   if (!fs.existsSync(fullPath)) {
     throw new Error(`Post with slug "${slug}" not found`);
   }
-  
+
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
