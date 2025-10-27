@@ -1,3 +1,5 @@
+import { Analytics } from '@/components/analytics/Analytics';
+import { CookieConsent } from '@/components/ui/CookieConsent';
 import { FloatingHeader } from '@/components/layout/FloatingHeader';
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack";
@@ -35,6 +37,8 @@ export default function RootLayout({
         <FloatingHeader />
         <main className="flex-grow">{children}</main>
         <GlobalFooter />
+        <CookieConsent />
+        <Analytics />
       </StackTheme></StackProvider></body>
     </html>
   );
