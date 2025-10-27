@@ -1,4 +1,4 @@
-// import { Database } from '@/lib/db';
+import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
@@ -11,6 +11,8 @@ const contactSchema = z.object({
     .max(1000),
 });
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -18,11 +20,41 @@ export async function POST(request: NextRequest) {
     // Validate the request body
     const validatedData = contactSchema.parse(body);
 
-    // Save to database
-    // Save to database
-    // const submission = await Database.createContactSubmission(validatedData);
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Email service is not configured. Please try again later.',
+        },
+        { status: 500 }
+      );
+    }
 
-    // TODO: Send email notification (implement later)
+    // Send email via Resend
+    await resend.emails.send({
+      from: 'Aram Tutorials <onboarding@resend.dev>',
+      to: ['aramtutorials@gmail.com'],
+      subject: `New Contact Form Submission from ${validatedData.name}`,
+      replyTo: validatedData.email,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>From:</strong> ${validatedData.name}</p>
+        <p><strong>Email:</strong> ${validatedData.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${validatedData.message.replace(/\n/g, '<br>')}</p>
+      `,
+      text: `
+New Contact Form Submission
+
+From: ${validatedData.name}
+Email: ${validatedData.email}
+
+Message:
+${validatedData.message}
+      `,
+    });
 
     return NextResponse.json(
       {
