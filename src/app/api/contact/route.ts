@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to submitter
     await resend.emails.send({
-      from: 'Aram Tutorials <onboarding@resend.dev>',
+      from: 'Aram Tutorials <forms@tutorials.aramb.dev>',
       to: [email],
       subject: 'Thank you for contacting Aram Tutorials',
       html: `
@@ -107,7 +107,7 @@ The Aram Tutorials Team
 
     // Send notification email to you
     await resend.emails.send({
-      from: 'Aram Tutorials <onboarding@resend.dev>',
+      from: 'Aram Tutorials <forms@tutorials.aramb.dev>',
       to: ['findarambilal@gmail.com'],
       subject: `New Contact Form Submission: ${subject}`,
       replyTo: email,

@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 
     // Send notification email to you
     await resend.emails.send({
-      from: 'Aram Tutorials <onboarding@resend.dev>',
+      from: 'Aram Tutorials <newsletter@tutorials.aramb.dev>',
       to: ['findarambilal@gmail.com'],
       subject: 'New Newsletter Subscription',
       html: `
