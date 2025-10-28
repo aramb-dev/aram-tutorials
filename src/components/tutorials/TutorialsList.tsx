@@ -35,35 +35,45 @@ export async function TutorialsList({
   // Filter posts based on category, tag, and search
   let filteredPosts = allPosts;
 
+  const getDateValue = (date?: Date) => (date ? new Date(date).getTime() : 0);
+
   // Category filtering
   if (category) {
-    filteredPosts = filteredPosts.filter(post =>
-      post.category.slug.toLowerCase() === category.toLowerCase()
-    );
+    const normalizedCategory = category.toLowerCase();
+    filteredPosts = filteredPosts.filter(post => {
+      const postCategory = post.category?.slug?.toLowerCase();
+      return postCategory === normalizedCategory;
+    });
   }
 
   // Tag filtering
   if (tag) {
     filteredPosts = filteredPosts.filter(post =>
-      post.tags.some(t => t.slug.toLowerCase() === tag.toLowerCase())
+      post.tags?.some(t => t.slug.toLowerCase() === tag.toLowerCase()) ?? false
     );
   }
 
   // Search filtering
   if (search) {
     const searchLower = search.toLowerCase();
-    filteredPosts = filteredPosts.filter(post =>
-      post.title.toLowerCase().includes(searchLower) ||
-      post.excerpt.toLowerCase().includes(searchLower) ||
-      post.tags.some(t => t.name.toLowerCase().includes(searchLower))
-    );
+    filteredPosts = filteredPosts.filter(post => {
+      const matchesTitle = post.title.toLowerCase().includes(searchLower);
+      const matchesExcerpt = post.excerpt.toLowerCase().includes(searchLower);
+      const matchesTags = post.tags?.some(t =>
+        t.name.toLowerCase().includes(searchLower)
+      ) ?? false;
+
+      return matchesTitle || matchesExcerpt || matchesTags;
+    });
   }
 
   // Sorting
   let sortedPosts = [...filteredPosts];
   switch (sort) {
     case 'oldest':
-      sortedPosts.sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime());
+      sortedPosts.sort(
+        (a, b) => getDateValue(a.published_at) - getDateValue(b.published_at)
+      );
       break;
     case 'popular':
       sortedPosts.sort((a, b) => (b.views || 0) - (a.views || 0));
@@ -73,7 +83,9 @@ export async function TutorialsList({
       break;
     case 'newest':
     default:
-      sortedPosts.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      sortedPosts.sort(
+        (a, b) => getDateValue(b.published_at) - getDateValue(a.published_at)
+      );
       break;
   }
 

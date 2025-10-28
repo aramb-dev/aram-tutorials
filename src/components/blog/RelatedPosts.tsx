@@ -207,7 +207,39 @@ export function RelatedPosts({
   ];
 
   // Filter out the current post
-  const filteredPosts = relatedPosts.filter(post => post.id !== currentPostId);
+  const allPosts = relatedPosts.filter(post => post.id !== currentPostId);
+
+  // Build related posts list: prioritize category matches, then tag matches
+  let related: BlogPost[] = [];
+
+  // First, add posts with the same category
+  if (category) {
+    const categoryMatches = allPosts.filter(post => post.category?.slug === category);
+    related.push(...categoryMatches);
+  }
+
+  // Then, add posts that share tags (if not already included)
+  if (tags && tags.length > 0) {
+    const tagMatches = allPosts.filter(post => {
+      // Skip if already in related
+      if (related.some(r => r.id === post.id)) return false;
+      // Check if post has any matching tags
+      return post.tags?.some(tag => tags.includes(tag.slug));
+    });
+    related.push(...tagMatches);
+  }
+
+  // If still not enough posts, add remaining posts
+  if (related.length < 5) {
+    const remaining = allPosts.filter(post => !related.some(r => r.id === post.id));
+    related.push(...remaining.slice(0, 5 - related.length));
+  }
+
+  // Limit to maximum 5 posts
+  related = related.slice(0, 5);
+
+  // Use related instead of filteredPosts
+  const filteredPosts = related;
 
   // Get trending posts (mock data)
   const trendingPosts = [
