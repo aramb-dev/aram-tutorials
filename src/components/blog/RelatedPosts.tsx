@@ -1,8 +1,7 @@
-'use client';
-
 import { BlogCard } from '@/components/blog/BlogCard';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
+import type { CategoryWithCount } from '@/lib/categories';
 import type { BlogPost } from '@/types';
 import {
   ArrowRight,
@@ -18,12 +17,14 @@ interface RelatedPostsProps {
   currentPostId: string;
   category?: string;
   tags?: string[];
+  categories?: CategoryWithCount[];
 }
 
 export function RelatedPosts({
   currentPostId,
   category,
   tags,
+  categories = [],
 }: RelatedPostsProps) {
   // Mock related posts data - in a real app, this would come from an API
   const relatedPosts: BlogPost[] = [
@@ -266,6 +267,15 @@ export function RelatedPosts({
     },
   ];
 
+  const categoriesToDisplay: CategoryWithCount[] = categories.slice(0, 6);
+  const getInitials = (name: string) =>
+    name
+      .split(' ')
+      .filter(Boolean)
+      .map(part => part[0]?.toUpperCase())
+      .slice(0, 2)
+      .join('');
+
   return (
     <div className="space-y-8">
       {/* Related Posts Section */}
@@ -361,69 +371,44 @@ export function RelatedPosts({
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/tutorials?category=react" className="group">
-                <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">
-                      R
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    React
-                  </span>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    25 tutorials
-                  </p>
-                </div>
-              </Link>
+              {categoriesToDisplay.length === 0 ? (
+                <p className="text-sm text-muted-foreground col-span-2 text-center">
+                  No categories to display yet.
+                </p>
+              ) : (
+                categoriesToDisplay.map((category: CategoryWithCount) => {
+                  const initials = getInitials(category.name) || category.name[0];
+                  const baseColor = category.color || '#3B82F6';
+                  const backgroundHex = `${baseColor.replace('#', '')}1A`;
 
-              <Link href="/tutorials?category=typescript" className="group">
-                <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
-                  <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">
-                      TS
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    TypeScript
-                  </span>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    18 tutorials
-                  </p>
-                </div>
-              </Link>
-
-              <Link href="/tutorials?category=nextjs" className="group">
-                <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
-                  <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-gray-600 dark:text-gray-400 text-sm font-bold">
-                      N
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    Next.js
-                  </span>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    15 tutorials
-                  </p>
-                </div>
-              </Link>
-
-              <Link href="/tutorials?category=css" className="group">
-                <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
-                  <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <span className="text-purple-600 dark:text-purple-400 text-sm font-bold">
-                      CSS
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                    CSS
-                  </span>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    12 tutorials
-                  </p>
-                </div>
-              </Link>
+                  return (
+                    <Link
+                      key={category.slug}
+                      href={`/tutorials?category=${encodeURIComponent(category.slug)}`}
+                      className="group"
+                    >
+                      <div className="p-3 rounded-lg border border-transparent group-hover:border-border group-hover:bg-muted/30 transition-all text-center">
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-2"
+                          style={{
+                            backgroundColor: `#${backgroundHex}`,
+                            color: baseColor,
+                          }}
+                        >
+                          <span className="text-sm font-bold">{initials}</span>
+                        </div>
+                        <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                          {category.name}
+                        </span>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {category.count}{' '}
+                          {category.count === 1 ? 'tutorial' : 'tutorials'}
+                        </p>
+                      </div>
+                    </Link>
+                  );
+                })
+              )}
             </div>
 
             <div className="mt-6 pt-4 border-t">

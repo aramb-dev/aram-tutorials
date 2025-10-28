@@ -1,3 +1,5 @@
+import type { Post } from '@/types';
+
 export interface Category {
   id: string;
   name: string;
@@ -70,3 +72,35 @@ export interface CategoryWithCount extends Category {
   count: number;
 }
 
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+export const normalizeCategorySlug = (category?: string | null) =>
+  category ? slugify(category) : '';
+
+export function getCategoriesWithCounts(posts: Post[]): CategoryWithCount[] {
+  const categoryCounts = new Map<string, number>();
+
+  posts.forEach(post => {
+    const slug = normalizeCategorySlug(post.category);
+    if (!slug) {
+      return;
+    }
+
+    categoryCounts.set(slug, (categoryCounts.get(slug) ?? 0) + 1);
+  });
+
+  return CATEGORIES_CONFIG.filter(category =>
+    categoryCounts.has(category.slug)
+  )
+    .map(category => ({
+      ...category,
+      count: categoryCounts.get(category.slug) ?? 0,
+    }))
+    .filter(category => category.count > 0)
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}

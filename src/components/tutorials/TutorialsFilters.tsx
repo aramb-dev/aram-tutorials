@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
-import { CATEGORIES_CONFIG as DEFAULT_CATEGORIES, CategoryWithCount } from '@/lib/categories';
+import type { CategoryWithCount } from '@/lib/categories';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
@@ -183,13 +183,12 @@ export function TutorialsFilters({
         </CardHeader>
         {expandedSections.categories && (
           <CardContent className="space-y-2">
-            {DEFAULT_CATEGORIES.map(category => {
-              const categoryWithCount = categoriesWithPosts.find(
-                cat => cat.slug === category.slug
-              );
-              const count = categoryWithCount?.count || 0;
-
-              return (
+            {categoriesWithPosts.length === 0 ? (
+              <p className="text-sm text-muted-foreground">
+                No categories available yet.
+              </p>
+            ) : (
+              categoriesWithPosts.map(category => (
                 <button
                   key={category.slug}
                   onClick={() => updateFilters('category', category.slug)}
@@ -202,15 +201,15 @@ export function TutorialsFilters({
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{category.name}</span>
                     <Badge variant="outline" className="text-xs">
-                      {count}
+                      {category.count}
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
                     {category.description}
                   </p>
                 </button>
-              );
-            })}
+              ))
+            )}
           </CardContent>
         )}
       </Card>

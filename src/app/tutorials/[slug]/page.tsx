@@ -3,6 +3,7 @@ import { BlogPostHeader } from '@/components/blog/BlogPostHeader';
 import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { getCategoriesWithCounts } from '@/lib/categories';
 import { getAllPosts, getPostBySlug } from '@/lib/mdx';
 import { transformPostToBlogPost } from '@/lib/transformers';
 import { Metadata } from 'next';
@@ -136,6 +137,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     .filter(p => p.slug !== post.slug && p.category === post.category)
     .slice(0, 3);
 
+  const categoriesWithPosts = getCategoriesWithCounts(allPosts);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Blog Post Header */}
@@ -187,6 +190,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 currentPostId={blogPost.id}
                 category={blogPost.category?.name}
                 tags={blogPost.tags?.map((tag: any) => tag.name)}
+                categories={categoriesWithPosts}
               />
             </Suspense>
           </div>
