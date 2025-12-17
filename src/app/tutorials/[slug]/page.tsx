@@ -4,6 +4,7 @@ import { BlogPostSidebar } from '@/components/blog/BlogPostSidebar';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { getCategoriesWithCounts } from '@/lib/categories';
+import { SEO_DEFAULTS, SITE_CONFIG } from '@/lib/constants';
 import { getAllPosts, getPostBySlug } from '@/lib/mdx';
 import { transformPostToBlogPost } from '@/lib/transformers';
 import { Metadata } from 'next';
@@ -30,38 +31,49 @@ export async function generateMetadata({
     };
   }
 
+  const description = post.description || post.excerpt || '';
+  const imagePath = post.featured_image || SEO_DEFAULTS.DEFAULT_IMAGE;
+  const imageUrl = imagePath.startsWith('http')
+    ? imagePath
+    : new URL(imagePath, SITE_CONFIG.url).toString();
+  const canonicalUrl = new URL(`/tutorials/${post.slug}`, SITE_CONFIG.url).toString();
+  const publishedTime = post.publishedAt || post.date;
+  const publishedTimeIso = publishedTime
+    ? new Date(publishedTime).toISOString()
+    : undefined;
+
   return {
     title: `${post.title} | Aram Tutorials`,
-    description: post.excerpt,
+    description,
     keywords: post.tags,
     authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: 'article',
-      url: `https://aramtutorials.com/tutorials/${post.slug}`,
+      url: canonicalUrl,
       images: [
         {
-          url: 'https://aramtutorials.com/og-default.jpg',
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: post.title,
         },
       ],
-      publishedTime: post.date,
-      modifiedTime: post.date,
+      publishedTime: publishedTimeIso,
+      modifiedTime: publishedTimeIso,
       authors: [post.author],
       tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt,
-      images: ['https://aramtutorials.com/og-default.jpg'],
-      creator: '@aram_dev',
+      description,
+      images: [imageUrl],
+      creator: SEO_DEFAULTS.TWITTER_CREATOR,
     },
     alternates: {
-      canonical: `https://aramtutorials.com/tutorials/${post.slug}`,
+      canonical: canonicalUrl,
     },
   };
 }
