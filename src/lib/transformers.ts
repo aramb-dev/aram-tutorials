@@ -8,6 +8,7 @@ export function transformPostToBlogPost(post: Post): BlogPost {
     excerpt: post.description || post.excerpt || '',
     content: post.content,
     featured_image: post.featured_image,
+    cta: post.cta,
     author_id: 'default-author',
     category_id: 'default-category',
     status:

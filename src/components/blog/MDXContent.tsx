@@ -1,22 +1,22 @@
 import {
-  AdditionalResources,
-  Callout,
-  Card,
-  CardGrid,
-  CodeBlock,
-  ErrorTip,
-  Image,
-  ImageComparison,
-  ImportantNote,
-  PrerequisiteItem,
-  Prerequisites,
-  ProTip,
-  ResourceLink,
-  Screenshot,
-  Step,
-  StepList,
-  SuccessNote,
-  VideoEmbed,
+    AdditionalResources,
+    Callout,
+    Card,
+    CardGrid,
+    CodeBlock,
+    ErrorTip,
+    Image,
+    ImageComparison,
+    ImportantNote,
+    PrerequisiteItem,
+    Prerequisites,
+    ProTip,
+    ResourceLink,
+    Screenshot,
+    Step,
+    StepList,
+    SuccessNote,
+    VideoEmbed,
 } from '@/components/mdx';
 import type { BlogPost } from '@/types';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -100,13 +100,13 @@ const components = {
   pre: (props: any) => <EnhancedCodeBlock {...props} />,
   ul: (props: any) => (
     <ul
-      className="list-disc list-inside space-y-2 mb-4 text-muted-foreground"
+      className="list-disc list-outside pl-6 space-y-2 mb-4 text-muted-foreground"
       {...props}
     />
   ),
   ol: (props: any) => (
     <ol
-      className="list-decimal list-inside space-y-2 mb-4 text-muted-foreground"
+      className="list-decimal list-outside pl-6 space-y-2 mb-4 text-muted-foreground"
       {...props}
     />
   ),

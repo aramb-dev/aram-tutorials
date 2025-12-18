@@ -54,6 +54,13 @@ export interface BlogPost {
   category?: Category;
   tags?: Tag[];
   comments?: Comment[];
+
+  cta?: {
+    heading: string;
+    body: string;
+    href: string;
+    buttonText: string;
+  };
 }
 
 export interface Comment {
@@ -223,6 +230,13 @@ export interface Frontmatter {
   tags: string[];
   featured?: boolean;
   readingTime?: number;
+
+  cta?: {
+    heading: string;
+    body: string;
+    href: string;
+    buttonText: string;
+  };
   // Legacy support
   date?: string;
   excerpt?: string;
